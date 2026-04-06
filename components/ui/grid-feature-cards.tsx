@@ -8,14 +8,27 @@ export function FeatureCard({ title, description, icon, index }: { title: string
         <motion.div
             initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.7, delay: index * 0.1, ease: "easeOut" }}
+            transition={{ duration: 0.65, delay: index * 0.1, ease: "easeOut" }}
             viewport={{ once: true, margin: "-50px" }}
-            className="relative p-6 sm:p-8 rounded-3xl bg-black/30 backdrop-blur-md border border-white/10 overflow-hidden group hover:bg-black/50 transition-colors duration-500"
+            className="relative p-6 sm:p-8 rounded-2xl overflow-hidden group cursor-default"
+            style={{
+                background: "rgba(0,0,0,0.25)",
+                border: "1px solid rgba(255,255,255,0.15)",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+            }}
+            whileHover={{
+                y: -6,
+                borderColor: "rgba(124,58,237,0.5)",
+                boxShadow: "0 20px 40px rgba(124,58,237,0.12)",
+            }}
         >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            {/* Hover gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-            {/* Grid Pattern inside card for subtle background */}
-            <div className="absolute inset-0 z-0 opacity-[0.03] overflow-hidden transition-opacity duration-700 group-hover:opacity-[0.08]">
+            {/* Grid pattern */}
+            <div className="absolute inset-0 z-0 opacity-[0.03] overflow-hidden transition-opacity duration-700 group-hover:opacity-[0.06]">
                 <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <pattern id={`pattern-${index}`} width="24" height="24" patternUnits="userSpaceOnUse">
@@ -27,11 +40,12 @@ export function FeatureCard({ title, description, icon, index }: { title: string
             </div>
 
             <div className="relative z-10">
-                <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-white shadow-[0_0_15px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] transition-shadow duration-500">
+                <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-xl text-white transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(124,58,237,0.25)]"
+                    style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.10)" }}>
                     {icon}
                 </div>
-                <h3 className="text-xl font-medium text-white mb-3 tracking-wide">{title}</h3>
-                <p className="text-neutral-400 leading-relaxed text-sm font-light">{description}</p>
+                <h3 className="font-syne font-bold text-xl text-white mb-3 tracking-wide">{title}</h3>
+                <p className="font-dm-sans text-[#B0A4CC] leading-relaxed text-sm font-light">{description}</p>
             </div>
         </motion.div>
     )
