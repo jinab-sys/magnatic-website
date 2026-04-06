@@ -123,7 +123,10 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background: linear-gradient(160deg, #1A1660 0%, #2E1E90 18%, #5C2EA8 40%, #9B3E5C 62%, #C86030 82%, #D97830 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    @apply text-foreground;
   }
 
   html {
@@ -154,6 +157,37 @@
   to {
     transform: translateY(calc(-100% - var(--gap)));
   }
+}
+
+/* ===== Magnatic Design System ===== */
+:root {
+  --mag-purple: #7C3AED;
+  --mag-cyan: #3D6EFA;
+  --mag-coral: #F96B2A;
+  --mag-yellow: #FFA040;
+  --mag-muted: rgba(255,255,255,0.65);
+  --mag-glass: rgba(0,0,0,0.22);
+  --mag-glass-border: rgba(255,255,255,0.16);
+}
+
+@layer utilities {
+  .font-syne       { font-family: var(--font-syne), 'Syne', sans-serif; }
+  .font-dm-sans    { font-family: var(--font-dm-sans), 'DM Sans', sans-serif; }
+  .font-space-mono { font-family: var(--font-space-mono), 'Space Mono', monospace; }
+}
+
+@keyframes blobPulse {
+  0%, 100% { transform: scale(1);    opacity: 0.14; }
+  50%      { transform: scale(1.15); opacity: 0.22; }
+}
+
+.mag-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  animation: blobPulse 7s ease-in-out infinite;
 }
 
 /* ===== Clerk Dark Mode Overrides ===== */

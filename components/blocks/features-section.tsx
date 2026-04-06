@@ -42,10 +42,13 @@ export function FeaturesSection() {
             <div className="max-w-7xl mx-auto px-6 w-full">
 
                 <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-24">
-                    <h2 className="text-3xl sm:text-5xl font-bold text-white mb-6 tracking-tight">
+                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase text-[#7C3AED] mb-4">
+                        Platform Features
+                    </p>
+                    <h2 className="font-syne font-bold text-3xl sm:text-5xl text-white mb-6 tracking-tight">
                         Everything You Need to Dominate
                     </h2>
-                    <p className="text-lg text-neutral-400 font-light">
+                    <p className="font-dm-sans text-lg text-white/65 font-light">
                         AI-powered tools and human expertise, working together.
                     </p>
                 </div>
