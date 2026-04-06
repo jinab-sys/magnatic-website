@@ -1,30 +1,105 @@
 "use client"
-import Link from 'next/link'
-import { SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs"
+import { useEffect, useState } from "react"
+import Link from "next/link"
 
 export function Navbar() {
-    return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-xl border-b border-white/5 transition-opacity duration-1000 animate-in fade-in">
-            <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                <Link href="/">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/logo-full-white.svg" alt="Magnatic Logo" className="h-8" />
-                </Link>
+    const [scrolled, setScrolled] = useState(false)
+    const [menuOpen, setMenuOpen] = useState(false)
 
-                <div className="flex items-center gap-4">
-                    <Show when="signed-out">
-                        <SignInButton>
-                            <button className="text-sm font-medium text-neutral-300 hover:text-white transition-colors">Sign In</button>
-                        </SignInButton>
-                        <SignUpButton>
-                            <button className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white px-6 py-2 rounded-full transition-all text-sm font-medium">Sign Up</button>
-                        </SignUpButton>
-                    </Show>
-                    <Show when="signed-in">
-                        <UserButton />
-                    </Show>
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 50)
+        window.addEventListener("scroll", onScroll, { passive: true })
+        return () => window.removeEventListener("scroll", onScroll)
+    }, [])
+
+    const navLinks = [
+        { label: "Features",     href: "#features"      },
+        { label: "How It Works", href: "#how-it-works"  },
+        { label: "Avatars",      href: "#avatars"        },
+        { label: "Pricing",      href: "#pricing"        },
+    ]
+
+    return (
+        <>
+            <nav
+                className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 backdrop-blur-xl ${
+                    scrolled
+                        ? "border-white/15"
+                        : "border-white/8"
+                }`}
+                style={{ background: scrolled ? "rgba(0,0,0,0.55)" : "rgba(0,0,0,0.25)" }}
+            >
+                <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                    {/* Logo */}
+                    <Link href="/" className="font-syne font-bold text-xl tracking-widest"
+                        style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+                        MAGNATIC
+                    </Link>
+
+                    {/* Desktop nav links */}
+                    <ul className="hidden md:flex items-center gap-8 list-none">
+                        {navLinks.map(l => (
+                            <li key={l.label}>
+                                <a href={l.href} className="text-white/70 hover:text-white text-sm font-medium transition-colors duration-200 font-dm-sans">
+                                    {l.label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+
+                    {/* Desktop CTA */}
+                    <div className="hidden md:flex items-center">
+                        {/* ⚠️ DO NOT MODIFY: Supabase-connected registration link */}
+                        <Link href="/register">
+                            <button
+                                className="font-dm-sans font-medium text-sm text-white px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
+                                style={{
+                                    background: "linear-gradient(135deg,#7C3AED,#3D6EFA)",
+                                    boxShadow: "0 0 0 rgba(124,58,237,0)",
+                                }}
+                                onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 28px rgba(124,58,237,0.5),0 0 50px rgba(61,110,250,0.15)")}
+                                onMouseLeave={e => (e.currentTarget.style.boxShadow = "0 0 0 rgba(124,58,237,0)")}
+                            >
+                                Get Access
+                            </button>
+                        </Link>
+                    </div>
+
+                    {/* Hamburger */}
+                    <button
+                        className="md:hidden flex flex-col gap-[5px] p-1 cursor-pointer"
+                        onClick={() => setMenuOpen(o => !o)}
+                        aria-label="Toggle menu"
+                    >
+                        <span className={`block w-6 h-0.5 bg-white rounded transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
+                        <span className={`block w-6 h-0.5 bg-white rounded transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+                        <span className={`block w-6 h-0.5 bg-white rounded transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
+                    </button>
                 </div>
-            </div>
-        </nav>
+            </nav>
+
+            {/* Mobile menu */}
+            {menuOpen && (
+                <div className="fixed top-20 left-0 right-0 z-40 backdrop-blur-xl border-b border-white/10 px-6 py-6" style={{ background: "rgba(0,0,0,0.7)" }}>
+                    <ul className="list-none flex flex-col gap-5 mb-6">
+                        {navLinks.map(l => (
+                            <li key={l.label}>
+                                <a href={l.href} onClick={() => setMenuOpen(false)}
+                                    className="text-white/70 hover:text-white text-lg font-medium transition-colors font-dm-sans">
+                                    {l.label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                    {/* ⚠️ DO NOT MODIFY: Supabase-connected registration link */}
+                    <Link href="/register" onClick={() => setMenuOpen(false)}>
+                        <button className="font-dm-sans font-medium text-sm text-white w-full py-3 rounded-full"
+                            style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }}>
+                            Get Access
+                        </button>
+                    </Link>
+                </div>
+            )}
+        </>
     )
 }
