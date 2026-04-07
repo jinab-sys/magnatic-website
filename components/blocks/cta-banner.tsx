@@ -4,16 +4,16 @@ export function CtaBanner() {
     return (
         <section className="relative w-full z-20 py-24 sm:py-32 overflow-hidden text-center">
             {/* Radial purple glow */}
-            <div className="mag-blob w-[700px] h-[500px] bg-[#7C3AED]"
+            <div className="mag-blob mag-blob-a w-[700px] h-[500px]"
                 style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%)" }} />
 
             <div className="relative z-10 max-w-4xl mx-auto px-6">
-                <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase text-[#3D6EFA] mb-6">
+                <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase mag-eyebrow mb-6">
                     Ready to Start?
                 </p>
                 <h2 className="font-syne font-bold text-3xl sm:text-5xl md:text-[56px] text-white leading-tight mb-5 tracking-tight">
                     Your competitors are already<br />
-                    <span style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+                    <span className="mag-text-gradient">
                         using AI.
                     </span>{" "}Are you?
                 </h2>

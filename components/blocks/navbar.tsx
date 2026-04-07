@@ -51,13 +51,8 @@ export function Navbar() {
                         {/* ⚠️ DO NOT MODIFY: Supabase-connected registration link */}
                         <Link href="/register">
                             <button
-                                className="font-dm-sans font-medium text-sm text-white px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
-                                style={{
-                                    background: "linear-gradient(135deg,#7C3AED,#3D6EFA)",
-                                    boxShadow: "0 0 0 rgba(124,58,237,0)",
-                                }}
-                                onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 28px rgba(124,58,237,0.5),0 0 50px rgba(61,110,250,0.15)")}
-                                onMouseLeave={e => (e.currentTarget.style.boxShadow = "0 0 0 rgba(124,58,237,0)")}
+                                type="button"
+                                className="mag-btn-primary font-dm-sans font-medium text-sm text-white px-6 py-2.5 rounded-full hover:scale-105"
                             >
                                 Get Access
                             </button>
@@ -92,8 +87,10 @@ export function Navbar() {
                     </ul>
                     {/* ⚠️ DO NOT MODIFY: Supabase-connected registration link */}
                     <Link href="/register" onClick={() => setMenuOpen(false)}>
-                        <button className="font-dm-sans font-medium text-sm text-white w-full py-3 rounded-full"
-                            style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }}>
+                        <button
+                            type="button"
+                            className="mag-btn-primary font-dm-sans font-medium text-sm text-white w-full py-3 rounded-full"
+                        >
                             Get Access
                         </button>
                     </Link>

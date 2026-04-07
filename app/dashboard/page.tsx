@@ -2,7 +2,7 @@ import { Navbar } from "@/components/blocks/navbar"
 
 export default function DashboardPage() {
     return (
-        <main className="relative min-h-screen selection:bg-white/30 selection:text-white flex flex-col">
+        <main className="relative min-h-screen flex flex-col">
             <Navbar />
 
             <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center p-6 text-center mt-20">

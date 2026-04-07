@@ -5,7 +5,7 @@ export function VisionStatement() {
     return (
         <section className="relative w-full flex items-center justify-center z-20 py-20 sm:py-28 overflow-hidden">
             {/* Subtle glow behind card */}
-            <div className="mag-blob w-[500px] h-[300px] bg-[#7C3AED]"
+            <div className="mag-blob mag-blob-a w-[500px] h-[300px]"
                 style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%)" }} />
 
             <motion.div
@@ -22,12 +22,11 @@ export function VisionStatement() {
                 }}
             >
                 {/* Gradient top accent line */}
-                <div className="w-16 h-1 rounded-full mx-auto mb-8"
-                    style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }} />
+                <div className="mag-gradient-fill w-16 h-1 rounded-full mx-auto mb-8" />
 
                 <p className="font-syne font-bold text-2xl md:text-3xl text-white leading-relaxed">
                     We deploy AI influencers, intelligent workflows, and a dedicated human team to craft content that converts. Your brand deserves more than templates — it deserves{" "}
-                    <span style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+                    <span className="mag-text-gradient">
                         Magnatic.
                     </span>
                 </p>

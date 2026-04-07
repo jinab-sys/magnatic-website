@@ -57,7 +57,7 @@ export default async function Home() {
     }
 
     return (
-        <main className="relative min-h-screen selection:bg-white/20 selection:text-white overflow-x-hidden">
+        <main className="relative min-h-screen overflow-x-hidden">
             <Navbar />
 
             <div className="relative w-full">
@@ -73,15 +73,14 @@ export default async function Home() {
                 <CtaBanner />
 
                 {/* ── Footer ── */}
-                <footer className="relative z-20 border-t border-white/15" style={{ background: "rgba(0,0,0,0.35)", backdropFilter: "blur(12px)" }}>
+                <footer className="relative z-20 border-t border-white/10 mag-section-dim backdrop-blur-md">
                     <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
 
                         {/* Top grid */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 mb-16">
                             {/* Brand */}
                             <div className="col-span-2 sm:col-span-3 lg:col-span-1">
-                                <p className="font-syne font-bold text-xl tracking-widest mb-3"
-                                    style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+                                <p className="font-syne font-bold text-xl tracking-widest mb-3 mag-text-gradient">
                                     MAGNATIC
                                 </p>
                                 <p className="font-dm-sans text-white/60 text-sm leading-relaxed max-w-[200px]">
@@ -109,15 +108,14 @@ export default async function Home() {
                         {/* Bottom bar */}
                         <div className="flex flex-col sm:flex-row items-center justify-between gap-5 pt-8 border-t border-white/10">
                             <p className="font-dm-sans text-white/60 text-xs sm:text-sm">
-                                © 2025 Magnatic Inc. All rights reserved.
+                                © 2026 Magnatic Inc. All rights reserved.
                             </p>
 
                             {/* Social icons */}
                             <div className="flex gap-2">
                                 {socials.map((s) => (
                                     <a key={s.title} href="#" title={s.title}
-                                        className="w-9 h-9 rounded-lg flex items-center justify-center text-[#B0A4CC] text-sm font-semibold hover:text-white transition-all duration-300 hover:bg-[rgba(124,58,237,0.2)] hover:border-[rgba(124,58,237,0.4)]"
-                                        style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                                        className="w-9 h-9 rounded-lg flex items-center justify-center mag-text-muted text-sm font-semibold transition-all duration-300 hover:text-white hover:bg-[rgba(99,102,241,0.18)] hover:border-[rgba(99,102,241,0.35)] border border-white/[0.08] bg-white/[0.06]">
                                         {s.label}
                                     </a>
                                 ))}

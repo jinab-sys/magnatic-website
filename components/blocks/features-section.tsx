@@ -42,7 +42,7 @@ export function FeaturesSection() {
             <div className="max-w-7xl mx-auto px-6 w-full">
 
                 <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-24">
-                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase text-[#7C3AED] mb-4">
+                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase mag-eyebrow mb-4">
                         Platform Features
                     </p>
                     <h2 className="font-syne font-bold text-3xl sm:text-5xl text-white mb-6 tracking-tight">

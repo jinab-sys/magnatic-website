@@ -28,7 +28,7 @@ function AvatarGridCard() {
                                 alt=""
                                 className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                             />
-                            <span className="absolute -top-1 -right-1 rounded bg-[#F96B2A] px-1 py-0.5 font-space-mono text-[6px] tracking-wider text-white">
+                            <span className="absolute -top-1 -right-1 rounded bg-[color:var(--mag-accent-to)] px-1 py-0.5 font-space-mono text-[6px] tracking-wider text-white">
                                 LIVE
                             </span>
                         </div>
@@ -48,15 +48,15 @@ function UrlGeneratorCard() {
         <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>
             <p className="font-space-mono text-[10px] tracking-[0.14em] uppercase text-white/65 mb-6 opacity-70">URL → Video Generator</p>
             <div className="rounded-xl px-4 py-3 flex items-center gap-2 mb-4" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                <span className="font-space-mono text-[#3D6EFA] text-xs">https://</span>
+                <span className="font-space-mono mag-eyebrow text-xs">https://</span>
                 <span className="font-dm-sans text-white/65 text-sm truncate">yourstore.com/products/amazing-product</span>
             </div>
-            <button className="w-full py-2.5 rounded-xl font-dm-sans font-medium text-white text-sm mb-5" style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }}>
+            <button type="button" className="mag-btn-primary w-full py-2.5 rounded-xl font-dm-sans font-medium text-white text-sm mb-5">
                 Generate 10+ Variations →
             </button>
             {/* Animated progress bar */}
             <div className="rounded-full h-1.5 overflow-hidden mb-3" style={{ background: "rgba(0,0,0,0.2)" }}>
-                <div className="h-full rounded-full" style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)", animation: "progAnim 3.2s ease-in-out infinite" }} />
+                <div className="mag-gradient-fill h-full rounded-full" style={{ animation: "progAnim 3.2s ease-in-out infinite" }} />
             </div>
             <style>{`@keyframes progAnim { 0%{width:0%} 65%{width:80%} 100%{width:0%} }`}</style>
             <p className="font-space-mono text-[10px] text-white/65 opacity-60">Analyzing product · Generating scripts · Rendering…</p>
@@ -71,12 +71,12 @@ function PlatformCard() {
         { name: "YouTube",   color: "#FF4444", bg: "rgba(255,68,68,0.08)",   border: "rgba(255,68,68,0.25)"   },
         { name: "Meta",      color: "#1877F2", bg: "rgba(24,119,242,0.08)",  border: "rgba(24,119,242,0.25)"  },
         { name: "LinkedIn",  color: "#0A66C2", bg: "rgba(10,102,194,0.08)",  border: "rgba(10,102,194,0.25)"  },
-        { name: "CTV",       color: "#FFA040", bg: "rgba(255,160,64,0.08)",  border: "rgba(255,160,64,0.25)"  },
+        { name: "CTV",       color: "#a78bfa", bg: "rgba(167,139,250,0.08)", border: "rgba(167,139,250,0.25)" },
     ]
     const formats = [
-        { ratio: "9:16 · Vertical",   platforms: "TikTok, Reels",     status: "✓ READY",     statusColor: "#7C3AED" },
-        { ratio: "16:9 · Landscape",  platforms: "YouTube, CTV",      status: "✓ READY",     statusColor: "#7C3AED" },
-        { ratio: "1:1 · Square",      platforms: "Instagram, Meta",   status: "⟳ RENDERING", statusColor: "#3D6EFA" },
+        { ratio: "9:16 · Vertical",   platforms: "TikTok, Reels",     status: "✓ READY",     statusColor: "#7c3aed" },
+        { ratio: "16:9 · Landscape",  platforms: "YouTube, CTV",      status: "✓ READY",     statusColor: "#7c3aed" },
+        { ratio: "1:1 · Square",      platforms: "Instagram, Meta",   status: "⟳ RENDERING", statusColor: "#6366f1" },
     ]
     return (
         <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>
@@ -136,7 +136,7 @@ export function HowItWorks() {
             <div className="max-w-7xl mx-auto px-6">
 
                 <div className="text-center mb-16 sm:mb-24">
-                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase text-[#7C3AED] mb-4">How It Works</p>
+                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase mag-eyebrow mb-4">How It Works</p>
                     <h2 className="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight">
                         From Idea to Live Ad in Minutes
                     </h2>
@@ -154,13 +154,12 @@ export function HowItWorks() {
                         >
                             {/* Text */}
                             <div>
-                                <p className="font-space-mono text-[11px] tracking-[0.14em] uppercase text-[#7C3AED] mb-3">{row.tag}</p>
+                                <p className="font-space-mono text-[11px] tracking-[0.14em] uppercase mag-eyebrow mb-3">{row.tag}</p>
                                 <h3 className="font-syne font-bold text-2xl sm:text-3xl md:text-4xl text-white mb-5 leading-tight">{row.title}</h3>
                                 <p className="font-dm-sans text-white/65 text-base sm:text-lg leading-relaxed mb-7">{row.text}</p>
                                 {/* ⚠️ DO NOT MODIFY: triggers Supabase registration flow */}
                                 <Link href="/register">
-                                    <button className="font-dm-sans font-medium text-white text-sm px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_24px_rgba(124,58,237,0.4)]"
-                                        style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }}>
+                                    <button type="button" className="mag-btn-primary font-dm-sans font-medium text-white text-sm px-6 py-3 rounded-full hover:scale-105">
                                         Try It Free →
                                     </button>
                                 </Link>

@@ -48,9 +48,9 @@ export default function RegisterPage() {
                     <img src="/logo-full-white.svg" alt="Magnatic" className="h-8" />
                 </div>
 
-                <div className="border border-white/20 bg-black/50 backdrop-blur-2xl rounded-3xl p-8 shadow-2xl">
+                <div className="mag-panel rounded-3xl p-8 shadow-2xl">
                     <h1 className="text-2xl font-bold text-white mb-1">Get Access</h1>
-                    <p className="text-neutral-400 text-sm mb-8">
+                    <p className="mag-text-muted text-sm mb-8">
                         Tell us about your business and we'll reach out.
                     </p>
 
@@ -58,7 +58,7 @@ export default function RegisterPage() {
 
                         {/* Business Name */}
                         <div className="flex flex-col gap-1.5">
-                            <label className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
+                            <label className="text-xs font-medium mag-text-muted uppercase tracking-wider">
                                 Business Name *
                             </label>
                             <input
@@ -73,7 +73,7 @@ export default function RegisterPage() {
 
                         {/* Email — required */}
                         <div className="flex flex-col gap-1.5">
-                            <label className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
+                            <label className="text-xs font-medium mag-text-muted uppercase tracking-wider">
                                 Email Address *
                             </label>
                             <input
@@ -88,9 +88,9 @@ export default function RegisterPage() {
 
                         {/* Phone — optional */}
                         <div className="flex flex-col gap-1.5">
-                            <label className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
+                            <label className="text-xs font-medium mag-text-muted uppercase tracking-wider">
                                 Phone Number{" "}
-                                <span className="normal-case text-neutral-600">(optional)</span>
+                                <span className="normal-case text-[color:var(--mag-fg-subtle)]">(optional)</span>
                             </label>
                             <input
                                 type="tel"
@@ -103,9 +103,9 @@ export default function RegisterPage() {
 
                         {/* Optional message */}
                         <div className="flex flex-col gap-1.5">
-                            <label className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
+                            <label className="text-xs font-medium mag-text-muted uppercase tracking-wider">
                                 Message for us{" "}
-                                <span className="normal-case text-neutral-600">(optional)</span>
+                                <span className="normal-case text-[color:var(--mag-fg-subtle)]">(optional)</span>
                             </label>
                             <textarea
                                 placeholder="Tell us what you're looking to achieve..."

@@ -15,7 +15,7 @@ function BrandName({ name }: { name: string }) {
 
 export function BrandsMarquee() {
     return (
-        <section className="relative w-full overflow-hidden border-t border-b border-white/10 py-14 z-20" style={{ background: "rgba(0,0,0,0.2)" }}>
+        <section className="relative w-full overflow-hidden border-t border-b border-white/10 py-14 z-20 mag-section-dim">
             <p className="font-space-mono text-[11px] tracking-[0.18em] uppercase text-white/65 text-center mb-10 opacity-60">
                 Trusted by Fast-Growing Brands
             </p>

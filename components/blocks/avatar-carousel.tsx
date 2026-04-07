@@ -26,9 +26,9 @@ export function AvatarCarousel() {
     }
 
     return (
-        <section id="avatars" className="relative z-20 w-full overflow-hidden py-20 sm:py-28" style={{ background: "rgba(0,0,0,0.2)" }}>
+        <section id="avatars" className="relative z-20 w-full overflow-hidden py-20 sm:py-28 mag-section-dim">
             <div
-                className="mag-blob h-[400px] w-[400px] bg-[#7C3AED]"
+                className="mag-blob mag-blob-a h-[400px] w-[400px]"
                 style={{ top: "-60px", right: "8%", animationDelay: "1.5s" }}
             />
 
@@ -40,7 +40,7 @@ export function AvatarCarousel() {
                     viewport={{ once: true }}
                     className="mb-12 text-center"
                 >
-                    <p className="mb-4 font-space-mono text-[11px] uppercase tracking-[0.15em] text-[#3D6EFA]">AI Influencers</p>
+                    <p className="mb-4 font-space-mono text-[11px] uppercase tracking-[0.15em] mag-eyebrow">AI Influencers</p>
                     <h2 className="mb-4 font-syne text-3xl font-bold tracking-tight text-white sm:text-5xl">Meet Your AI Influencers</h2>
                     <p className="font-dm-sans text-lg text-white/65">
                         {INFLUENCER_COUNT} flagship personas (Ayla, Maaya, Ayzad, Rayan) — open a card to view their Instagram.
@@ -72,8 +72,8 @@ export function AvatarCarousel() {
                                 }}
                                 whileHover={{
                                     y: -8,
-                                    borderColor: "rgba(124,58,237,0.5)",
-                                    boxShadow: "0 20px 50px rgba(124,58,237,0.2)",
+                                    borderColor: "rgba(99,102,241,0.45)",
+                                    boxShadow: "0 20px 50px rgba(99,102,241,0.18)",
                                 }}
                             >
                                 {inf.imageFile ? (
@@ -98,8 +98,8 @@ export function AvatarCarousel() {
                                 <span
                                     className="inline-block rounded-full px-3 py-1 font-dm-sans text-xs text-white/65"
                                     style={{
-                                        background: "rgba(124,58,237,0.1)",
-                                        border: "1px solid rgba(124,58,237,0.2)",
+                                        background: "rgba(99,102,241,0.1)",
+                                        border: "1px solid rgba(99,102,241,0.22)",
                                     }}
                                 >
                                     View on Instagram
@@ -115,7 +115,7 @@ export function AvatarCarousel() {
                             key={arrow}
                             type="button"
                             onClick={() => scroll(i === 0 ? -1 : 1)}
-                            className="flex h-12 w-12 items-center justify-center rounded-full text-lg text-white transition-all duration-300 hover:bg-[rgba(124,58,237,0.2)] hover:border-[rgba(124,58,237,0.5)]"
+                            className="flex h-12 w-12 items-center justify-center rounded-full text-lg text-white transition-all duration-300 hover:bg-[rgba(99,102,241,0.18)] hover:border-[rgba(99,102,241,0.4)]"
                             style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.1)" }}
                         >
                             {arrow}

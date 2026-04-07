@@ -4,27 +4,27 @@ import { motion } from "framer-motion"
 const testimonials = [
     {
         quote: "We went from 0 to 40 video ads in a single afternoon. Our TikTok ROAS tripled in week one.",
-        name: "Sarah L.",   role: "Head of Growth · NovaSkin",    initials: "SL", grad: "linear-gradient(135deg,#7C3AED,#3D6EFA)",
+        name: "Sarah L.",   role: "Head of Growth · NovaSkin",    initials: "SL", grad: "linear-gradient(135deg, #6366f1, #7c3aed)",
     },
     {
         quote: "The AI avatars look insanely real. Engagement went through the roof and our CPM dropped 60%.",
-        name: "James M.",  role: "CMO · PeakFit",                 initials: "JM", grad: "linear-gradient(135deg,#F96B2A,#FFA040)",
+        name: "James M.",  role: "CMO · PeakFit",                 initials: "JM", grad: "linear-gradient(135deg, #818cf8, #6366f1)",
     },
     {
         quote: "Magnatic cut our video production costs by 90%. We ship 3x more creative every month now.",
-        name: "Aisha R.",  role: "Marketing Director · Lumora Beauty", initials: "AR", grad: "linear-gradient(135deg,#3D6EFA,#7C3AED)",
+        name: "Aisha R.",  role: "Marketing Director · Lumora Beauty", initials: "AR", grad: "linear-gradient(135deg, #7c3aed, #a78bfa)",
     },
     {
         quote: "Finally a tool that just works. URL in, video out. Our whole team uses it every single day.",
-        name: "Tom H.",    role: "Founder · Driftly",              initials: "TH", grad: "linear-gradient(135deg,#FFA040,#F96B2A)",
+        name: "Tom H.",    role: "Founder · Driftly",              initials: "TH", grad: "linear-gradient(135deg, #4f46e5, #8b5cf6)",
     },
     {
         quote: "The multi-platform export alone is worth every penny. No more manual resizing at 2am.",
-        name: "Nina C.",   role: "Social Media Lead · UrbanKicks", initials: "NC", grad: "linear-gradient(135deg,#7C3AED,#F96B2A)",
+        name: "Nina C.",   role: "Social Media Lead · UrbanKicks", initials: "NC", grad: "linear-gradient(135deg, #6366f1, #8b5cf6)",
     },
     {
         quote: "We tested 50 ad variations in one week, found our winner, and ROAS went up 280%.",
-        name: "Raj P.",    role: "Performance Lead · ZestBox",     initials: "RP", grad: "linear-gradient(135deg,#3D6EFA,#FFA040)",
+        name: "Raj P.",    role: "Performance Lead · ZestBox",     initials: "RP", grad: "linear-gradient(135deg, #a78bfa, #6366f1)",
     },
 ]
 
@@ -40,7 +40,7 @@ export function TestimonialsSection() {
                     viewport={{ once: true }}
                     className="text-center mb-14"
                 >
-                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase text-[#3D6EFA] mb-4">Social Proof</p>
+                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase mag-eyebrow mb-4">Social Proof</p>
                     <h2 className="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight">
                         Brands Love Magnatic
                     </h2>
@@ -61,9 +61,9 @@ export function TestimonialsSection() {
                                 backdropFilter: "blur(12px)",
                                 transition: "transform 0.3s ease, border-color 0.3s ease",
                             }}
-                            whileHover={{ y: -4, borderColor: "rgba(124,58,237,0.25)" }}
+                            whileHover={{ y: -4, borderColor: "rgba(99,102,241,0.28)" }}
                         >
-                            <div className="text-[#FFA040] text-base tracking-widest mb-4">★★★★★</div>
+                            <div className="mag-star-rating text-base tracking-widest mb-4">★★★★★</div>
                             <p className="font-dm-sans text-white text-[15px] leading-relaxed italic flex-1 mb-6">
                                 &ldquo;{t.quote}&rdquo;
                             </p>

@@ -16,12 +16,10 @@ export type PublicInfluencer = {
 }
 
 const GRADIENTS = [
-    "linear-gradient(135deg,#7C3AED,#3D6EFA)",
-    "linear-gradient(135deg,#F96B2A,#FFA040)",
-    "linear-gradient(135deg,#3D6EFA,#7C3AED)",
-    "linear-gradient(135deg,#FFA040,#F96B2A)",
-    "linear-gradient(135deg,#7C3AED,#F96B2A)",
-    "linear-gradient(135deg,#3D6EFA,#FFA040)",
+    "linear-gradient(135deg, #6366f1, #7c3aed)",
+    "linear-gradient(135deg, #818cf8, #6366f1)",
+    "linear-gradient(135deg, #7c3aed, #a78bfa)",
+    "linear-gradient(135deg, #4f46e5, #8b5cf6)",
 ] as const
 
 /**

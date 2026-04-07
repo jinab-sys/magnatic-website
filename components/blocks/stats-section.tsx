@@ -26,10 +26,7 @@ export function StatsSection() {
                             {i < stats.length - 1 && (
                                 <div className="hidden md:block absolute top-[20%] right-0 h-[60%] w-px bg-white/8" />
                             )}
-                            <div
-                                className="font-syne font-bold text-4xl sm:text-5xl md:text-[56px] leading-none mb-3"
-                                style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
-                            >
+                            <div className="font-syne font-bold text-4xl sm:text-5xl md:text-[56px] leading-none mb-3 mag-text-gradient">
                                 {s.num}
                             </div>
                             <div className="font-dm-sans text-sm text-white/65 font-medium">

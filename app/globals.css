@@ -122,11 +122,17 @@
     @apply border-border outline-ring/50;
   }
 
-  body {
-    background: linear-gradient(160deg, #1A1660 0%, #2E1E90 18%, #5C2EA8 40%, #9B3E5C 62%, #C86030 82%, #D97830 100%);
-    background-attachment: fixed;
+  html.dark body {
     min-height: 100vh;
-    @apply text-foreground;
+    color: var(--mag-fg);
+    background-color: var(--mag-bg-base);
+    background-image: var(--mag-bg-gradient);
+    background-attachment: fixed;
+  }
+
+  html.dark ::selection {
+    background-color: rgba(99, 102, 241, 0.35);
+    color: var(--mag-fg);
   }
 
   html {
@@ -159,15 +165,30 @@
   }
 }
 
-/* ===== Magnatic Design System ===== */
+/* ===== Magnatic Design System (unified dark UI) ===== */
 :root {
-  --mag-purple: #7C3AED;
-  --mag-cyan: #3D6EFA;
-  --mag-coral: #F96B2A;
-  --mag-yellow: #FFA040;
-  --mag-muted: rgba(255,255,255,0.65);
-  --mag-glass: rgba(0,0,0,0.22);
-  --mag-glass-border: rgba(255,255,255,0.16);
+  --mag-bg-base: #09090b;
+  --mag-fg: #fafafa;
+  --mag-fg-muted: #a1a1aa;
+  --mag-fg-subtle: #71717a;
+  --mag-border: rgba(255, 255, 255, 0.08);
+  --mag-border-strong: rgba(255, 255, 255, 0.12);
+  --mag-surface: rgba(255, 255, 255, 0.04);
+  --mag-surface-elevated: rgba(255, 255, 255, 0.06);
+  --mag-accent-from: #6366f1;
+  --mag-accent-to: #7c3aed;
+  --mag-bg-gradient: radial-gradient(ellipse 120% 85% at 50% -40%, rgba(99, 102, 241, 0.14), transparent 55%),
+    radial-gradient(ellipse 65% 45% at 100% 15%, rgba(124, 58, 237, 0.07), transparent 50%),
+    linear-gradient(180deg, #09090b 0%, #0c0c0f 42%, #09090b 100%);
+  --mag-success: #34d399;
+  --mag-danger: #f87171;
+
+  /* Legacy aliases → new palette */
+  --mag-purple: var(--mag-accent-to);
+  --mag-cyan: var(--mag-accent-from);
+  --mag-muted: var(--mag-fg-muted);
+  --mag-glass: var(--mag-surface);
+  --mag-glass-border: var(--mag-border);
 }
 
 @layer utilities {
@@ -179,20 +200,90 @@
     scrollbar-width: none;
   }
   .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  .mag-text-gradient {
+    background: linear-gradient(135deg, var(--mag-accent-from), var(--mag-accent-to));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .mag-btn-primary {
+    background: linear-gradient(135deg, var(--mag-accent-from), var(--mag-accent-to));
+    color: #fff;
+    transition: filter 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  }
+  .mag-btn-primary:hover {
+    filter: brightness(1.07);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 12px 40px rgba(99, 102, 241, 0.22);
+  }
+
+  .mag-card {
+    background: var(--mag-surface);
+    border: 1px solid var(--mag-border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .mag-panel {
+    background: rgba(0, 0, 0, 0.48);
+    border: 1px solid var(--mag-border-strong);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .mag-section-dim {
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  .mag-eyebrow {
+    color: var(--mag-accent-from);
+  }
+
+  .mag-text-muted {
+    color: var(--mag-fg-muted);
+  }
+
+  .mag-star-rating {
+    color: #c4b5fd;
+  }
+
+  .mag-gradient-fill {
+    background: linear-gradient(135deg, var(--mag-accent-from), var(--mag-accent-to));
+  }
+
+  .mag-gradient-fill-soft {
+    background: linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.22),
+      rgba(124, 58, 237, 0.22)
+    );
+    border: 1px solid rgba(99, 102, 241, 0.35);
+  }
 }
 
 @keyframes blobPulse {
-  0%, 100% { transform: scale(1);    opacity: 0.14; }
-  50%      { transform: scale(1.15); opacity: 0.22; }
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.08); opacity: 0.85; }
 }
 
 .mag-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(100px);
   pointer-events: none;
   z-index: 0;
-  animation: blobPulse 7s ease-in-out infinite;
+  animation: blobPulse 9s ease-in-out infinite;
+}
+
+.mag-blob-a {
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.mag-blob-b {
+  background: rgba(124, 58, 237, 0.09);
 }
 
 /* ===== Clerk Dark Mode Overrides ===== */

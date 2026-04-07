@@ -12,8 +12,8 @@ export function ScrollExpandHero() {
 
     return (
         <section className="relative w-full overflow-hidden pb-10 pt-28 md:pt-34">
-            <div className="mag-blob h-[520px] w-[520px] bg-[#7C3AED]" style={{ left: "-180px", top: "-120px" }} />
-            <div className="mag-blob h-[420px] w-[420px] bg-[#3D6EFA]" style={{ right: "-130px", top: "20px", animationDelay: "3.5s" }} />
+            <div className="mag-blob mag-blob-a h-[520px] w-[520px]" style={{ left: "-180px", top: "-120px" }} />
+            <div className="mag-blob mag-blob-b h-[420px] w-[420px]" style={{ right: "-130px", top: "20px", animationDelay: "3.5s" }} />
 
             <div className="relative z-20 mx-auto w-full max-w-7xl px-6">
                 <motion.div
@@ -48,8 +48,8 @@ export function ScrollExpandHero() {
                         />
                         <Link href="/register" className="shrink-0">
                             <button
-                                className="h-12 w-full rounded-xl px-6 font-dm-sans text-sm font-semibold text-white transition hover:scale-[1.01] md:w-auto"
-                                style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }}
+                                type="button"
+                                className="mag-btn-primary h-12 w-full rounded-xl px-6 font-dm-sans text-sm font-semibold md:w-auto"
                             >
                                 Create Your First Ad
                             </button>
