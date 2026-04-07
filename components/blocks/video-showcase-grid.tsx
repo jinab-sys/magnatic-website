@@ -13,8 +13,8 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
     if (!videos.length) return null
 
     return (
-        <section className="relative z-20 mx-auto w-full max-w-7xl px-6 py-20">
-            <div className="mb-10">
+        <section className="relative z-20 mx-auto -mt-1 w-full max-w-7xl px-6 pb-14 pt-3 md:pt-4">
+            <div className="mb-6 md:mb-8">
                 <p className="mb-3 inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] text-white/70">
                     AI Influencer Content Feed
                 </p>
@@ -26,11 +26,11 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
                 </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+            <div className="no-scrollbar -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2">
                 {videos.map((video) => (
                     <article
                         key={video.src}
-                        className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/40"
+                        className="group relative w-[170px] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 bg-black/40 sm:w-[190px] md:w-[220px]"
                     >
                         <div className="relative aspect-9/16">
                             <video
@@ -46,7 +46,7 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
                             <p className="absolute left-2 top-2 rounded bg-black/65 px-2 py-1 font-space-mono text-[9px] uppercase tracking-wider text-white/80">
                                 AI Generated
                             </p>
-                            <p className="absolute bottom-2 left-2 right-2 line-clamp-2 text-[11px] leading-snug text-white/90">
+                            <p className="absolute bottom-2 left-2 right-2 text-[11px] leading-snug text-white/90">
                                 {video.title}
                             </p>
                         </div>
