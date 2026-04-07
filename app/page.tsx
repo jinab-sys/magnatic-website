@@ -1,5 +1,6 @@
 import { Navbar }              from "@/components/blocks/navbar"
 import { ScrollExpandHero }    from "@/components/blocks/scroll-expansion-hero"
+import { VideoShowcaseGrid }   from "@/components/blocks/video-showcase-grid"
 import { BrandsMarquee }       from "@/components/blocks/brands-marquee"
 import { StatsSection }        from "@/components/blocks/stats-section"
 import { FeaturesSection }     from "@/components/blocks/features-section"
@@ -8,6 +9,8 @@ import { AvatarCarousel }      from "@/components/blocks/avatar-carousel"
 import { TestimonialsSection } from "@/components/blocks/testimonials-section"
 import { VisionStatement }     from "@/components/blocks/vision-statement"
 import { CtaBanner }           from "@/components/blocks/cta-banner"
+import { readdir }             from "node:fs/promises"
+import path                    from "node:path"
 
 const footerCols = [
     {
@@ -36,13 +39,30 @@ const socials = [
     { label: "▶",  title: "YouTube"      },
 ]
 
-export default function Home() {
+export default async function Home() {
+    const videosDir = path.join(process.cwd(), "app/assets/videos")
+
+    let videos: { src: string; title: string }[] = []
+    try {
+        const files = await readdir(videosDir)
+        videos = files
+            .filter((file) => file.toLowerCase().endsWith(".mp4"))
+            .sort((a, b) => a.localeCompare(b))
+            .map((file) => ({
+                src: `/api/video?name=${encodeURIComponent(file)}`,
+                title: file.replace(/\.mp4$/i, "").replace(/[_-]+/g, " ").trim(),
+            }))
+    } catch {
+        videos = []
+    }
+
     return (
         <main className="relative min-h-screen selection:bg-white/20 selection:text-white overflow-x-hidden">
             <Navbar />
 
             <div className="relative w-full">
                 <ScrollExpandHero />
+                <VideoShowcaseGrid videos={videos} />
                 <BrandsMarquee />
                 <StatsSection />
                 <FeaturesSection />
