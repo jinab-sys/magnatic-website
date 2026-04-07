@@ -7,8 +7,8 @@ export default function RegisterPage() {
     const router = useRouter()
 
     const [businessName, setBusinessName] = useState("")
-    const [reachVia, setReachVia]         = useState<"phone" | "email" | "">("")
-    const [contactValue, setContactValue] = useState("")
+    const [email, setEmail]               = useState("")
+    const [phone, setPhone]               = useState("")
     const [message, setMessage]           = useState("")
     const [loading, setLoading]           = useState(false)
     const [error, setError]               = useState("")
@@ -21,7 +21,7 @@ export default function RegisterPage() {
         const res = await fetch("/api/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ businessName, reachVia, contactValue, message }),
+            body: JSON.stringify({ businessName, email, phone, message }),
         })
 
         if (!res.ok) {
@@ -71,69 +71,35 @@ export default function RegisterPage() {
                             />
                         </div>
 
-                        {/* How to reach */}
-                        <div className="flex flex-col gap-2">
+                        {/* Email — required */}
+                        <div className="flex flex-col gap-1.5">
                             <label className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
-                                How would you like to be reached? *
+                                Email Address *
                             </label>
-                            <div className="flex gap-3">
-                                <button
-                                    type="button"
-                                    onClick={() => { setReachVia("phone"); setContactValue("") }}
-                                    className={`flex-1 py-3 rounded-xl text-sm font-medium border transition-all ${
-                                        reachVia === "phone"
-                                            ? "bg-white text-black border-white"
-                                            : "bg-white/5 text-neutral-400 border-white/10 hover:border-white/30"
-                                    }`}
-                                >
-                                    📞 Via Phone
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => { setReachVia("email"); setContactValue("") }}
-                                    className={`flex-1 py-3 rounded-xl text-sm font-medium border transition-all ${
-                                        reachVia === "email"
-                                            ? "bg-white text-black border-white"
-                                            : "bg-white/5 text-neutral-400 border-white/10 hover:border-white/30"
-                                    }`}
-                                >
-                                    ✉️ Via Email
-                                </button>
-                            </div>
+                            <input
+                                type="email"
+                                required
+                                placeholder="you@company.com"
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                className="bg-white/5 border border-white/10 text-white placeholder:text-neutral-600 rounded-xl px-4 py-3 text-sm outline-none focus:border-white/30 transition-colors"
+                            />
                         </div>
 
-                        {/* Contact input — shows after selection */}
-                        {reachVia === "phone" && (
-                            <div className="flex flex-col gap-1.5">
-                                <label className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
-                                    Phone Number *
-                                </label>
-                                <input
-                                    type="tel"
-                                    required
-                                    placeholder="+1 (555) 000-0000"
-                                    value={contactValue}
-                                    onChange={e => setContactValue(e.target.value)}
-                                    className="bg-white/5 border border-white/10 text-white placeholder:text-neutral-600 rounded-xl px-4 py-3 text-sm outline-none focus:border-white/30 transition-colors"
-                                />
-                            </div>
-                        )}
-
-                        {reachVia === "email" && (
-                            <div className="flex flex-col gap-1.5">
-                                <label className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
-                                    Email Address *
-                                </label>
-                                <input
-                                    type="email"
-                                    required
-                                    placeholder="you@company.com"
-                                    value={contactValue}
-                                    onChange={e => setContactValue(e.target.value)}
-                                    className="bg-white/5 border border-white/10 text-white placeholder:text-neutral-600 rounded-xl px-4 py-3 text-sm outline-none focus:border-white/30 transition-colors"
-                                />
-                            </div>
-                        )}
+                        {/* Phone — optional */}
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
+                                Phone Number{" "}
+                                <span className="normal-case text-neutral-600">(optional)</span>
+                            </label>
+                            <input
+                                type="tel"
+                                placeholder="+1 (555) 000-0000"
+                                value={phone}
+                                onChange={e => setPhone(e.target.value)}
+                                className="bg-white/5 border border-white/10 text-white placeholder:text-neutral-600 rounded-xl px-4 py-3 text-sm outline-none focus:border-white/30 transition-colors"
+                            />
+                        </div>
 
                         {/* Optional message */}
                         <div className="flex flex-col gap-1.5">
@@ -154,7 +120,7 @@ export default function RegisterPage() {
 
                         <button
                             type="submit"
-                            disabled={loading || !reachVia || !contactValue}
+                            disabled={loading}
                             className="mt-1 bg-white text-black font-semibold rounded-xl py-3 text-sm hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                             {loading ? "Submitting…" : "Register"}
