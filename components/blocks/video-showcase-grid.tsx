@@ -1,7 +1,8 @@
 "use client"
 
 import { useRef } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react"
+import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react"
 
 type VideoItem = {
     src: string
@@ -14,6 +15,7 @@ type VideoShowcaseGridProps = {
 
 export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
     const railRef = useRef<HTMLDivElement>(null)
+    const [mutedByVideo, setMutedByVideo] = useState<Record<string, boolean>>({})
 
     if (!videos.length) return null
 
@@ -26,6 +28,18 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
             left: direction === "right" ? amount : -amount,
             behavior: "smooth",
         })
+    }
+
+    function isMuted(src: string) {
+        // Browsers block autoplay with sound; default to muted so playback always starts.
+        return mutedByVideo[src] ?? true
+    }
+
+    function toggleMuted(src: string) {
+        setMutedByVideo((prev) => ({
+            ...prev,
+            [src]: !(prev[src] ?? false),
+        }))
     }
 
     return (
@@ -56,13 +70,13 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
                     {videos.map((video) => (
                         <article
                             key={video.src}
-                            className="group relative w-[170px] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 bg-black/40 sm:w-[190px] md:w-[220px]"
+                            className="group relative w-[220px] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 bg-black/40 sm:w-[250px] md:w-[280px]"
                         >
                             <div className="relative aspect-9/16">
                                 <video
                                     src={video.src}
                                     autoPlay
-                                    muted
+                                    muted={isMuted(video.src)}
                                     loop
                                     playsInline
                                     preload="metadata"
@@ -75,6 +89,22 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
                                 <p className="absolute bottom-2 left-2 right-2 text-[11px] leading-snug text-white/90">
                                     {video.title}
                                 </p>
+                                <button
+                                    type="button"
+                                    aria-label={isMuted(video.src) ? "Unmute video" : "Mute video"}
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        e.stopPropagation()
+                                        toggleMuted(video.src)
+                                    }}
+                                    className="absolute bottom-2 right-2 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/65 text-white/90 backdrop-blur-sm transition hover:bg-black/80"
+                                >
+                                    {isMuted(video.src) ? (
+                                        <VolumeX className="h-4 w-4" />
+                                    ) : (
+                                        <Volume2 className="h-4 w-4" />
+                                    )}
+                                </button>
                             </div>
                         </article>
                     ))}
