@@ -16,7 +16,6 @@ export function Navbar() {
         { label: "Features",     href: "#features"      },
         { label: "How It Works", href: "#how-it-works"  },
         { label: "Avatars",      href: "#avatars"        },
-        { label: "Pricing",      href: "#pricing"        },
     ]
 
     return (
@@ -31,9 +30,9 @@ export function Navbar() {
             >
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="font-syne font-bold text-xl tracking-widest"
-                        style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                        MAGNATIC
+                    <Link href="/">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/logo-full-white.svg" alt="Magnatic" className="h-7" />
                     </Link>
 
                     {/* Desktop nav links */}
