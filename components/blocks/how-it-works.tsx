@@ -1,30 +1,42 @@
 "use client"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { influencerPortraitUrl, PUBLIC_INFLUENCERS } from "@/lib/influencers"
 
 /* ── Visual mockups ─────────────────────────────────────────── */
 
 function AvatarGridCard() {
-    const avatars = [
-        { initials: "ZK", grad: "linear-gradient(135deg,#7C3AED,#3D6EFA)" },
-        { initials: "MT", grad: "linear-gradient(135deg,#F96B2A,#FFA040)" },
-        { initials: "LW", grad: "linear-gradient(135deg,#3D6EFA,#7C3AED)" },
-        { initials: "OS", grad: "linear-gradient(135deg,#FFA040,#F96B2A)" },
-        { initials: "PM", grad: "linear-gradient(135deg,#7C3AED,#F96B2A)" },
-        { initials: "JR", grad: "linear-gradient(135deg,#3D6EFA,#FFA040)" },
-    ]
+    const showcase = PUBLIC_INFLUENCERS
     return (
         <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>
-            <p className="font-space-mono text-[10px] tracking-[0.14em] uppercase text-white/65 mb-6 opacity-70">Avatar Studio — 500+ Available</p>
-            <div className="grid grid-cols-3 gap-5">
-                {avatars.map((av) => (
-                    <div key={av.initials} className="flex flex-col items-center gap-2">
-                        <div className="relative w-14 h-14 rounded-full flex items-center justify-center font-syne font-bold text-white text-sm" style={{ background: av.grad }}>
-                            {av.initials}
-                            <span className="absolute -top-1 -right-1 bg-[#F96B2A] font-space-mono text-[6px] text-white px-1 py-0.5 rounded tracking-wider">LIVE</span>
+            <p className="mb-6 font-space-mono text-[10px] uppercase tracking-[0.14em] text-white/65 opacity-70 sm:text-[11px]">
+                Avatar Studio — Ayla · Maaya · Ayzad · Rayan
+            </p>
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+                {showcase.map((inf) => (
+                    <a
+                        key={inf.handle}
+                        href={inf.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col items-center gap-2"
+                    >
+                        <div className="relative h-14 w-14 overflow-hidden rounded-full ring-1 ring-white/20">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={influencerPortraitUrl(inf.imageFile)}
+                                alt=""
+                                className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                            />
+                            <span className="absolute -top-1 -right-1 rounded bg-[#F96B2A] px-1 py-0.5 font-space-mono text-[6px] tracking-wider text-white">
+                                LIVE
+                            </span>
                         </div>
-                        <span className="font-dm-sans text-[11px] text-white/65 text-center">{av.initials}</span>
-                    </div>
+                        <span className="text-center font-syne text-[11px] font-semibold text-white">{inf.niche}</span>
+                        <span className="text-center font-dm-sans text-[10px] text-white/65 underline-offset-2 group-hover:text-white group-hover:underline sm:text-[11px]">
+                            @{inf.handle}
+                        </span>
+                    </a>
                 ))}
             </div>
         </div>
@@ -98,7 +110,7 @@ const rows = [
     {
         tag: "Feature 01",
         title: "AI Influencer Videos",
-        text: "Choose from 500+ hyper-realistic AI avatars or upload your own brand face. We create scroll-stopping UGC-style content for TikTok, Reels, and Shorts — starred by influencers that never sleep, never cancel, and always stay on brand.",
+        text: "Start from our flagship personas — Ayla, Maaya, Ayzad, and Rayan — each with a dedicated look from our library and a live Instagram profile, or bring your own brand face. We produce UGC-style content for TikTok, Reels, and Shorts.",
         visual: <AvatarGridCard />,
         reversed: false,
     },

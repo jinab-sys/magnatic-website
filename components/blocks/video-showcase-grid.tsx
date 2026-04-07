@@ -1,7 +1,6 @@
 "use client"
 
-import { useRef } from "react"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react"
 
 type VideoItem = {
@@ -15,7 +14,16 @@ type VideoShowcaseGridProps = {
 
 export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
     const railRef = useRef<HTMLDivElement>(null)
-    const [mutedByVideo, setMutedByVideo] = useState<Record<string, boolean>>({})
+    const [mutedByVideo, setMutedByVideo] = useState<Record<string, boolean>>(() => {
+        const initial: Record<string, boolean> = {}
+        for (const v of videos) initial[v.src] = true
+        return initial
+    })
+    const [hasMounted, setHasMounted] = useState(false)
+
+    useEffect(() => {
+        setHasMounted(true)
+    }, [])
 
     if (!videos.length) return null
 
@@ -31,14 +39,14 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
     }
 
     function isMuted(src: string) {
-        // Browsers block autoplay with sound; default to muted so playback always starts.
+        if (!hasMounted) return true
         return mutedByVideo[src] ?? true
     }
 
     function toggleMuted(src: string) {
         setMutedByVideo((prev) => ({
             ...prev,
-            [src]: !(prev[src] ?? false),
+            [src]: !(prev[src] ?? true),
         }))
     }
 
@@ -74,6 +82,7 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
                         >
                             <div className="relative aspect-9/16">
                                 <video
+                                    suppressHydrationWarning
                                     src={video.src}
                                     autoPlay
                                     muted={isMuted(video.src)}

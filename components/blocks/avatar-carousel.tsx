@@ -1,17 +1,14 @@
 "use client"
+
 import { useRef } from "react"
 import { motion } from "framer-motion"
-
-const avatars = [
-    { initials: "ZK", name: "Zara K",    tag: "Fashion",   grad: "linear-gradient(135deg,#7C3AED,#3D6EFA)" },
-    { initials: "MT", name: "Marcus T",  tag: "Tech",       grad: "linear-gradient(135deg,#F96B2A,#FFA040)" },
-    { initials: "LW", name: "Lena W",    tag: "Beauty",     grad: "linear-gradient(135deg,#3D6EFA,#7C3AED)" },
-    { initials: "OS", name: "Omar S",    tag: "Fitness",    grad: "linear-gradient(135deg,#FFA040,#F96B2A)" },
-    { initials: "PM", name: "Priya M",   tag: "Food",       grad: "linear-gradient(135deg,#7C3AED,#F96B2A)" },
-    { initials: "JR", name: "Jake R",    tag: "Gaming",     grad: "linear-gradient(135deg,#3D6EFA,#FFA040)" },
-    { initials: "SA", name: "Sofia A",   tag: "Finance",    grad: "linear-gradient(135deg,#F96B2A,#7C3AED)" },
-    { initials: "CL", name: "Chen L",    tag: "E-Commerce", grad: "linear-gradient(135deg,#FFA040,#3D6EFA)" },
-]
+import {
+    gradientForIndex,
+    influencerPortraitUrl,
+    initialsFromHandle,
+    INFLUENCER_COUNT,
+    PUBLIC_INFLUENCERS,
+} from "@/lib/influencers"
 
 const CARD_W = 220 + 24 // card width + gap
 
@@ -21,51 +18,52 @@ export function AvatarCarousel() {
 
     function scroll(dir: 1 | -1) {
         const track = trackRef.current
-        if (!track) return
-        const visible = Math.floor(track.parentElement!.offsetWidth / CARD_W)
-        const max = Math.max(0, avatars.length - visible)
+        if (!track?.parentElement) return
+        const visible = Math.floor(track.parentElement.offsetWidth / CARD_W)
+        const max = Math.max(0, PUBLIC_INFLUENCERS.length - visible)
         indexRef.current = Math.max(0, Math.min(indexRef.current + dir, max))
         track.style.transform = `translateX(-${indexRef.current * CARD_W}px)`
     }
 
     return (
-        <section id="avatars" className="relative w-full z-20 py-20 sm:py-28 overflow-hidden" style={{ background: "rgba(0,0,0,0.2)" }}>
-            {/* Glow blob */}
-            <div className="mag-blob w-[400px] h-[400px] bg-[#7C3AED]"
-                style={{ top: "-60px", right: "8%", animationDelay: "1.5s" }} />
+        <section id="avatars" className="relative z-20 w-full overflow-hidden py-20 sm:py-28" style={{ background: "rgba(0,0,0,0.2)" }}>
+            <div
+                className="mag-blob h-[400px] w-[400px] bg-[#7C3AED]"
+                style={{ top: "-60px", right: "8%", animationDelay: "1.5s" }}
+            />
 
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="mx-auto max-w-7xl px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.65 }}
                     viewport={{ once: true }}
-                    className="text-center mb-12"
+                    className="mb-12 text-center"
                 >
-                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase text-[#3D6EFA] mb-4">AI Influencers</p>
-                    <h2 className="font-syne font-bold text-3xl sm:text-5xl text-white mb-4 tracking-tight">
-                        Meet Your AI Influencers
-                    </h2>
-                    <p className="font-dm-sans text-white/65 text-lg">
-                        500+ hyper-realistic avatars. Every style, every market.
+                    <p className="mb-4 font-space-mono text-[11px] uppercase tracking-[0.15em] text-[#3D6EFA]">AI Influencers</p>
+                    <h2 className="mb-4 font-syne text-3xl font-bold tracking-tight text-white sm:text-5xl">Meet Your AI Influencers</h2>
+                    <p className="font-dm-sans text-lg text-white/65">
+                        {INFLUENCER_COUNT} flagship personas (Ayla, Maaya, Ayzad, Rayan) — open a card to view their Instagram.
                     </p>
                 </motion.div>
 
-                {/* Track */}
-                <div className="overflow-hidden relative">
+                <div className="relative overflow-hidden">
                     <div
                         ref={trackRef}
                         className="flex gap-6"
                         style={{ transition: "transform 0.4s cubic-bezier(0.4,0,0.2,1)" }}
                     >
-                        {avatars.map((av, i) => (
-                            <motion.div
-                                key={av.initials}
+                        {PUBLIC_INFLUENCERS.map((inf, i) => (
+                            <motion.a
+                                key={inf.handle}
+                                href={inf.instagramUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: i * 0.07 }}
+                                transition={{ duration: 0.5, delay: Math.min(i * 0.04, 0.4) }}
                                 viewport={{ once: true }}
-                                className="flex-shrink-0 w-[220px] text-center rounded-2xl p-7 cursor-pointer group"
+                                className="w-[220px] shrink-0 cursor-pointer rounded-2xl p-7 text-center"
                                 style={{
                                     background: "rgba(0,0,0,0.25)",
                                     border: "1px solid rgba(255,255,255,0.15)",
@@ -78,27 +76,46 @@ export function AvatarCarousel() {
                                     boxShadow: "0 20px 50px rgba(124,58,237,0.2)",
                                 }}
                             >
-                                <div className="w-20 h-20 rounded-full flex items-center justify-center font-syne font-bold text-2xl text-white mx-auto mb-4"
-                                    style={{ background: av.grad }}>
-                                    {av.initials}
-                                </div>
-                                <p className="font-syne font-bold text-white text-base mb-2">{av.name}</p>
-                                <span className="font-dm-sans text-xs text-white/65 px-3 py-1 rounded-full inline-block"
-                                    style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)" }}>
-                                    {av.tag}
+                                {inf.imageFile ? (
+                                    <div className="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-full ring-2 ring-white/15">
+                                        {/* eslint-disable-next-line @next/next/no-img-element -- local assets via same-origin API */}
+                                        <img
+                                            src={influencerPortraitUrl(inf.imageFile)}
+                                            alt=""
+                                            className="h-full w-full object-cover"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div
+                                        className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full font-syne text-2xl font-bold text-white"
+                                        style={{ background: gradientForIndex(i) }}
+                                    >
+                                        {initialsFromHandle(inf.handle)}
+                                    </div>
+                                )}
+                                <p className="mb-1 font-syne text-base font-bold text-white">{inf.niche}</p>
+                                <p className="mb-3 font-dm-sans text-sm text-white/60">@{inf.handle}</p>
+                                <span
+                                    className="inline-block rounded-full px-3 py-1 font-dm-sans text-xs text-white/65"
+                                    style={{
+                                        background: "rgba(124,58,237,0.1)",
+                                        border: "1px solid rgba(124,58,237,0.2)",
+                                    }}
+                                >
+                                    View on Instagram
                                 </span>
-                            </motion.div>
+                            </motion.a>
                         ))}
                     </div>
                 </div>
 
-                {/* Arrows */}
-                <div className="flex gap-3 justify-center mt-8">
+                <div className="mt-8 flex justify-center gap-3">
                     {(["←", "→"] as const).map((arrow, i) => (
                         <button
                             key={arrow}
+                            type="button"
                             onClick={() => scroll(i === 0 ? -1 : 1)}
-                            className="w-12 h-12 rounded-full flex items-center justify-center text-lg text-white transition-all duration-300 hover:bg-[rgba(124,58,237,0.2)] hover:border-[rgba(124,58,237,0.5)]"
+                            className="flex h-12 w-12 items-center justify-center rounded-full text-lg text-white transition-all duration-300 hover:bg-[rgba(124,58,237,0.2)] hover:border-[rgba(124,58,237,0.5)]"
                             style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.1)" }}
                         >
                             {arrow}
