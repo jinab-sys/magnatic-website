@@ -6,7 +6,6 @@ import { FeaturesSection }     from "@/components/blocks/features-section"
 import { HowItWorks }          from "@/components/blocks/how-it-works"
 import { AvatarCarousel }      from "@/components/blocks/avatar-carousel"
 import { TestimonialsSection } from "@/components/blocks/testimonials-section"
-import { PricingSection }      from "@/components/blocks/pricing-section"
 import { VisionStatement }     from "@/components/blocks/vision-statement"
 import { CtaBanner }           from "@/components/blocks/cta-banner"
 
@@ -50,7 +49,6 @@ export default function Home() {
                 <HowItWorks />
                 <AvatarCarousel />
                 <TestimonialsSection />
-                <PricingSection />
                 <VisionStatement />
                 <CtaBanner />
 

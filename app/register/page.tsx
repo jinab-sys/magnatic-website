@@ -25,14 +25,18 @@ export default function RegisterPage() {
         })
 
         if (!res.ok) {
-            const data = await res.json()
-            setError(data.error ?? "Something went wrong. Please try again.")
+            let msg = "Something went wrong. Please try again."
+            try {
+                const data = await res.json()
+                if (data?.error) msg = data.error
+            } catch { /* non-JSON error body */ }
+            setError(msg)
             setLoading(false)
             return
         }
 
         document.cookie = "magnatic_registered=true; path=/; max-age=31536000; SameSite=Lax"
-        router.push("/")
+        router.push("/waitlisted")
     }
 
     return (
