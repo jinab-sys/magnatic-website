@@ -1,12 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!
-);
-
 export async function POST(request: Request) {
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!
+  );
   try {
     const { businessName, reachVia, contactValue, message } =
       await request.json();
@@ -20,9 +19,9 @@ export async function POST(request: Request) {
 
     const { error } = await supabase.from("leads").insert({
       business_name: businessName,
-      reach_via:     reachVia,
+      reach_via: reachVia,
       contact_value: contactValue,
-      message:       message || null,
+      message: message || null,
     });
 
     if (error) {
