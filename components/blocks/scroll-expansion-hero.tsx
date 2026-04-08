@@ -1,117 +1,106 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import Link from "next/link"
 
+/** Chunky pixel “greater than” for the hero CTA (7×6 grid). */
+function PixelChevron({ className }: { className?: string }) {
+    const filled = new Set([
+        "0,0", "1,0", "2,0",
+        "2,1", "3,1", "4,1",
+        "4,2", "5,2", "6,2",
+        "4,3", "5,3", "6,3",
+        "2,4", "3,4", "4,4",
+        "0,5", "1,5", "2,5",
+    ])
+    const rects = []
+    for (let y = 0; y < 6; y++) {
+        for (let x = 0; x < 7; x++) {
+            if (filled.has(`${x},${y}`)) {
+                rects.push(
+                    <rect key={`${x}-${y}`} x={x} y={y} width={0.92} height={0.92} fill="currentColor" rx={0.08} />,
+                )
+            }
+        }
+    }
+    return (
+        <svg viewBox="-0.5 -0.5 7 6" className={className} aria-hidden>
+            {rects}
+        </svg>
+    )
+}
+
 export function ScrollExpandHero() {
-    const containerRef = useRef<HTMLDivElement>(null)
-
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
-    })
-
-    // Video window expansion (unchanged)
-    const width        = useTransform(scrollYProgress, [0, 1], ["50%", "100%"])
-    const height       = useTransform(scrollYProgress, [0, 1], ["50vh", "100vh"])
-    const borderRadius = useTransform(scrollYProgress, [0, 1], ["2rem", "0rem"])
-
-    // Headline text slide out (unchanged)
-    const leftX       = useTransform(scrollYProgress, [0, 1], ["0%", "-120%"])
-    const leftOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0])
-    const rightX      = useTransform(scrollYProgress, [0, 1], ["0%", "120%"])
-    const rightOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0])
-
-    // Subheadline / CTA gentle drift
-    const subY = useTransform(scrollYProgress, [0, 0.35], [0, 18])
+    const kpis = [
+        { label: "Models, influencers & creators", value: "AI" },
+        { label: "Accounts we run & grow", value: "IG" },
+        { label: "Product shoots, edited for you", value: "Ads" },
+    ]
 
     return (
-        <div ref={containerRef} className="relative h-[150vh] w-full">
-            <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+        <section className="relative w-full overflow-hidden pb-10 pt-28 md:pt-34">
+            <div className="mag-blob mag-blob-a h-[520px] w-[520px]" style={{ left: "-180px", top: "-120px" }} />
+            <div className="mag-blob mag-blob-b h-[420px] w-[420px]" style={{ right: "-130px", top: "20px", animationDelay: "3.5s" }} />
 
-                {/* Glow blobs */}
-                <div className="mag-blob w-[520px] h-[520px] bg-[#7C3AED]"
-                    style={{ top: "-100px", left: "-160px" }} />
-                <div className="mag-blob w-[400px] h-[400px] bg-[#3D6EFA]"
-                    style={{ bottom: "-60px", right: "-100px", animationDelay: "3.5s" }} />
-
-                {/* ── Eyebrow + Headline group (centered) ── */}
-                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-0 flex flex-col items-center px-6">
-                    {/* Eyebrow label */}
-                    <motion.div style={{ opacity: leftOpacity }} className="mb-4 sm:mb-5 text-center">
-                        <span className="font-space-mono text-[10px] sm:text-[11px] tracking-[0.18em] uppercase text-[#3D6EFA] border border-[#3D6EFA]/25 rounded-full px-4 py-1.5 bg-[#3D6EFA]/5">
-                            AI Video Creation Platform
-                        </span>
-                    </motion.div>
-
-                    {/* Headline — left/right slide */}
-                    <div className="flex flex-wrap justify-center gap-2 sm:gap-4 whitespace-nowrap overflow-hidden">
-                        <motion.div
-                            style={{ x: leftX, opacity: leftOpacity, fontFamily: "var(--font-syne)" }}
-                            className="text-5xl md:text-7xl lg:text-9xl font-bold text-white tracking-tighter drop-shadow-2xl"
-                        >
-                            The New Era
-                        </motion.div>
-                        <motion.div
-                            style={{ x: rightX, opacity: rightOpacity, fontFamily: "var(--font-syne)" }}
-                            className="text-5xl md:text-7xl lg:text-9xl font-bold text-neutral-300 tracking-tighter drop-shadow-2xl"
-                        >
-                            of Marketing
-                        </motion.div>
-                    </div>
-                </div>
-
-                {/* ── Expanding video window ── */}
+            <div className="relative z-20 mx-auto w-full max-w-7xl px-6">
                 <motion.div
-                    style={{ width, height, borderRadius }}
-                    className="relative z-10 overflow-hidden flex items-center justify-center bg-black/40 border border-white/10"
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.55, ease: "easeOut" }}
+                    className="mx-auto max-w-4xl text-center"
                 >
-                    <video
-                        src="https://res.cloudinary.com/dyhthl5ad/video/upload/v1775216313/toyota_1_wrjdll.mp4"
-                        autoPlay muted loop playsInline
-                        className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-60"
-                    />
-                    {/* Dark overlay */}
-                    <div className="absolute inset-0 bg-black/50" />
-
-                    {/* Scroll indicator */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                        className="absolute bottom-12 text-center z-20"
-                    >
-                        <p className="text-neutral-400 text-xs tracking-widest uppercase mb-2 font-space-mono">Scroll to Discover</p>
-                        <div className="w-[1px] h-10 bg-white/30 mx-auto animate-pulse" />
-                    </motion.div>
-                </motion.div>
-
-                {/* ── Subheadline + CTAs (below video, fades with scroll) ── */}
-                <motion.div
-                    style={{ opacity: leftOpacity, y: subY }}
-                    className="absolute bottom-[6%] z-20 text-center px-6 w-full max-w-2xl left-1/2 -translate-x-1/2"
-                >
-                    <p className="font-dm-sans text-white/65 text-base sm:text-lg md:text-xl leading-relaxed mb-6 font-light">
-                        Magnatic turns your brand into scroll-stopping AI video ads and influencer content — no studio, no crew, no limits.
+                    <p className="mx-auto mb-5 inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-1.5 font-space-mono text-[11px] uppercase tracking-[0.2em] text-white/80">
+                        AI Ads That Win
                     </p>
-                    <div className="flex flex-wrap gap-4 justify-center">
-                        {/* ⚠️ DO NOT MODIFY: triggers Supabase registration flow */}
-                        <Link href="/register">
-                            <button
-                                className="font-dm-sans font-medium text-white text-base px-8 py-3.5 rounded-full transition-all duration-300 hover:scale-105"
-                                style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }}
-                            >
-                                Create Your First Video
-                            </button>
-                        </Link>
-                        <button className="font-dm-sans font-medium text-white text-base px-8 py-3.5 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all duration-300">
-                            ▶&nbsp; Watch Demo
-                        </button>
-                    </div>
+                    <h1 className="font-syne text-4xl font-bold leading-[0.95] tracking-tight text-white md:text-6xl lg:text-8xl">
+                        Turn any product
+                        <span className="block text-white/85">into a winning ad</span>
+                    </h1>
+                    <p className="mx-auto mt-5 max-w-2xl font-dm-sans text-base text-white/72 md:text-lg">
+                        Generate influencer-style videos in minutes, launch creative variations, and scale what converts. We can also plan and manage your social media calendars ideas through creation and scheduled posting.
+                    </p>
                 </motion.div>
 
+                <motion.div
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
+                    className="mx-auto mt-10 flex flex-col items-center gap-3"
+                >
+                    <Link
+                        href="/#register"
+                        aria-label="Get Access"
+                        className="relative inline-flex max-w-full items-stretch overflow-hidden rounded-2xl border border-white/10 bg-[#060607] shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] transition duration-300 hover:border-[rgba(163,230,53,0.2)] hover:shadow-[0_24px_72px_rgba(163,230,53,0.1)]"
+                    >
+                        <span
+                            className="relative m-1.5 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--mag-accent-from)] to-[color:var(--mag-accent-to)] shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] ring-1 ring-white/10"
+                            aria-hidden
+                        >
+                            <PixelChevron className="h-[22px] w-[26px] text-white drop-shadow-sm" />
+                        </span>
+                        <span className="flex min-h-[52px] items-center pr-8 pl-3 sm:pr-10">
+                            <span className="font-space-mono text-[12px] font-medium uppercase tracking-[0.28em] text-white sm:text-[13px]">
+                                Get Access
+                            </span>
+                        </span>
+                    </Link>
+                    <p className="font-dm-sans text-xs text-white/50">No credit card required · Join the waitlist</p>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.25 }}
+                    className="mx-auto mt-8 grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3"
+                >
+                    {kpis.map((kpi) => (
+                        <div key={kpi.label} className="rounded-2xl border border-white/12 bg-black/30 px-5 py-4 text-center backdrop-blur-md">
+                            <p className="font-syne text-2xl font-bold text-white md:text-3xl">{kpi.value}</p>
+                            <p className="mt-1 font-space-mono text-[10px] uppercase tracking-[0.18em] text-white/60">{kpi.label}</p>
+                        </div>
+                    ))}
+                </motion.div>
             </div>
-        </div>
+        </section>
     )
 }

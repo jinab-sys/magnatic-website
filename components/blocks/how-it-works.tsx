@@ -1,93 +1,127 @@
 "use client"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { influencerPortraitUrl, PUBLIC_INFLUENCERS } from "@/lib/influencers"
 
 /* ── Visual mockups ─────────────────────────────────────────── */
 
 function AvatarGridCard() {
-    const avatars = [
-        { initials: "ZK", grad: "linear-gradient(135deg,#7C3AED,#3D6EFA)" },
-        { initials: "MT", grad: "linear-gradient(135deg,#F96B2A,#FFA040)" },
-        { initials: "LW", grad: "linear-gradient(135deg,#3D6EFA,#7C3AED)" },
-        { initials: "OS", grad: "linear-gradient(135deg,#FFA040,#F96B2A)" },
-        { initials: "PM", grad: "linear-gradient(135deg,#7C3AED,#F96B2A)" },
-        { initials: "JR", grad: "linear-gradient(135deg,#3D6EFA,#FFA040)" },
-    ]
+    const showcase = PUBLIC_INFLUENCERS
     return (
         <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>
-            <p className="font-space-mono text-[10px] tracking-[0.14em] uppercase text-white/65 mb-6 opacity-70">Avatar Studio — 500+ Available</p>
-            <div className="grid grid-cols-3 gap-5">
-                {avatars.map((av) => (
-                    <div key={av.initials} className="flex flex-col items-center gap-2">
-                        <div className="relative w-14 h-14 rounded-full flex items-center justify-center font-syne font-bold text-white text-sm" style={{ background: av.grad }}>
-                            {av.initials}
-                            <span className="absolute -top-1 -right-1 bg-[#F96B2A] font-space-mono text-[6px] text-white px-1 py-0.5 rounded tracking-wider">LIVE</span>
+            <p className="mb-6 font-space-mono text-[10px] uppercase tracking-[0.14em] text-white/65 opacity-70 sm:text-[11px]">
+                Instagram — Ayla · Maaya · Ayzad · Rayan
+            </p>
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+                {showcase.map((inf) => (
+                    <a
+                        key={inf.handle}
+                        href={inf.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col items-center gap-2"
+                    >
+                        <div className="relative h-14 w-14 overflow-hidden rounded-full ring-1 ring-white/20">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={influencerPortraitUrl(inf.imageFile)}
+                                alt=""
+                                className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                            />
+                            <span className="absolute -top-1 -right-1 rounded bg-[color:var(--mag-accent-to)] px-1 py-0.5 font-space-mono text-[6px] tracking-wider text-white">
+                                LIVE
+                            </span>
                         </div>
-                        <span className="font-dm-sans text-[11px] text-white/65 text-center">{av.initials}</span>
-                    </div>
+                        <span className="text-center font-syne text-[11px] font-semibold text-white">{inf.niche}</span>
+                        <span className="text-center font-dm-sans text-[10px] text-white/65 underline-offset-2 group-hover:text-white group-hover:underline sm:text-[11px]">
+                            @{inf.handle}
+                        </span>
+                    </a>
                 ))}
             </div>
         </div>
     )
 }
 
-function UrlGeneratorCard() {
-    return (
-        <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>
-            <p className="font-space-mono text-[10px] tracking-[0.14em] uppercase text-white/65 mb-6 opacity-70">URL → Video Generator</p>
-            <div className="rounded-xl px-4 py-3 flex items-center gap-2 mb-4" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                <span className="font-space-mono text-[#3D6EFA] text-xs">https://</span>
-                <span className="font-dm-sans text-white/65 text-sm truncate">yourstore.com/products/amazing-product</span>
-            </div>
-            <button className="w-full py-2.5 rounded-xl font-dm-sans font-medium text-white text-sm mb-5" style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }}>
-                Generate 10+ Variations →
-            </button>
-            {/* Animated progress bar */}
-            <div className="rounded-full h-1.5 overflow-hidden mb-3" style={{ background: "rgba(0,0,0,0.2)" }}>
-                <div className="h-full rounded-full" style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)", animation: "progAnim 3.2s ease-in-out infinite" }} />
-            </div>
-            <style>{`@keyframes progAnim { 0%{width:0%} 65%{width:80%} 100%{width:0%} }`}</style>
-            <p className="font-space-mono text-[10px] text-white/65 opacity-60">Analyzing product · Generating scripts · Rendering…</p>
-        </div>
-    )
-}
-
-function PlatformCard() {
-    const platforms = [
-        { name: "TikTok",    color: "#69C9D0", bg: "rgba(105,201,208,0.08)", border: "rgba(105,201,208,0.25)" },
-        { name: "Instagram", color: "#E1306C", bg: "rgba(225,48,108,0.08)",  border: "rgba(225,48,108,0.25)"  },
-        { name: "YouTube",   color: "#FF4444", bg: "rgba(255,68,68,0.08)",   border: "rgba(255,68,68,0.25)"   },
-        { name: "Meta",      color: "#1877F2", bg: "rgba(24,119,242,0.08)",  border: "rgba(24,119,242,0.25)"  },
-        { name: "LinkedIn",  color: "#0A66C2", bg: "rgba(10,102,194,0.08)",  border: "rgba(10,102,194,0.25)"  },
-        { name: "CTV",       color: "#FFA040", bg: "rgba(255,160,64,0.08)",  border: "rgba(255,160,64,0.25)"  },
-    ]
-    const formats = [
-        { ratio: "9:16 · Vertical",   platforms: "TikTok, Reels",     status: "✓ READY",     statusColor: "#7C3AED" },
-        { ratio: "16:9 · Landscape",  platforms: "YouTube, CTV",      status: "✓ READY",     statusColor: "#7C3AED" },
-        { ratio: "1:1 · Square",      platforms: "Instagram, Meta",   status: "⟳ RENDERING", statusColor: "#3D6EFA" },
+function ProductAdStepsCard() {
+    const steps = [
+        {
+            n: "1",
+            title: "Give us your product",
+            body: "Send what you want featured—we’ll build the ad around it.",
+        },
+        {
+            n: "2",
+            title: "Choose your AI model",
+            body: "Pick from our roster or request a custom model tailored to your brand (custom work may cost extra).",
+        },
+        {
+            n: "3",
+            title: "Receive your finished ad",
+            body: "Edited to your brief—ready to promote, with no one from your team on camera.",
+        },
     ]
     return (
-        <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>
-            <p className="font-space-mono text-[10px] tracking-[0.14em] uppercase text-white/65 mb-6 opacity-70">Auto-Format &amp; Publish</p>
-            <div className="flex flex-wrap gap-2 mb-6">
-                {platforms.map((p) => (
-                    <span key={p.name} className="font-dm-sans text-xs font-medium px-3 py-1.5 rounded-full"
-                        style={{ color: p.color, background: p.bg, border: `1px solid ${p.border}` }}>
-                        {p.name}
-                    </span>
-                ))}
-            </div>
-            <div className="flex flex-col gap-2.5">
-                {formats.map((f) => (
-                    <div key={f.ratio} className="flex items-center justify-between px-3.5 py-2.5 rounded-xl" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(0,0,0,0.2)" }}>
+        <div
+            className="rounded-2xl p-6 sm:p-8"
+            style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}
+        >
+            <p className="mb-6 font-space-mono text-[10px] uppercase tracking-[0.14em] text-white/65 opacity-70">
+                Product ad creation
+            </p>
+            <div className="flex flex-col gap-4">
+                {steps.map((s) => (
+                    <div
+                        key={s.n}
+                        className="flex gap-4 rounded-xl border border-white/10 bg-black/20 px-4 py-3 sm:px-5 sm:py-4"
+                    >
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg font-space-mono text-xs font-bold text-white mag-gradient-fill">
+                            {s.n}
+                        </span>
                         <div>
-                            <p className="font-dm-sans text-white text-xs font-medium">{f.ratio}</p>
-                            <p className="font-dm-sans text-white/65 text-[11px]">{f.platforms}</p>
+                            <p className="font-syne text-sm font-semibold text-white sm:text-base">{s.title}</p>
+                            <p className="mt-1 font-dm-sans text-[13px] leading-relaxed text-white/65">{s.body}</p>
                         </div>
-                        <span className="font-space-mono text-[10px]" style={{ color: f.statusColor }}>{f.status}</span>
                     </div>
                 ))}
             </div>
+        </div>
+    )
+}
+
+function SocialCalendarCard() {
+    const days = [
+        { d: "Mon", label: "Idea", tone: "bg-white/[0.07]" },
+        { d: "Tue", label: "Create", tone: "mag-gradient-fill" },
+        { d: "Wed", label: "Review", tone: "bg-white/[0.07]" },
+        { d: "Thu", label: "Publish", tone: "bg-white/[0.07]" },
+    ]
+    return (
+        <div
+            className="rounded-2xl p-6 sm:p-8"
+            style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}
+        >
+            <p className="mb-6 font-space-mono text-[10px] uppercase tracking-[0.14em] text-white/65 opacity-70">
+                Social calendar
+            </p>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-2">
+                {days.map((x) => (
+                    <div
+                        key={x.d}
+                        className="flex flex-col rounded-xl border border-white/10 bg-black/25 px-3 py-3"
+                    >
+                        <p className="font-space-mono text-[9px] uppercase tracking-wider text-white/45">{x.d}</p>
+                        <div
+                            className={`mt-2 flex min-h-[40px] items-center justify-center rounded-lg px-2 py-2 text-center font-dm-sans text-[11px] font-medium text-white ${x.tone}`}
+                        >
+                            {x.label}
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <p className="mt-5 font-dm-sans text-[11px] leading-relaxed text-white/55">
+                From brainstorm to scheduled posts—we handle the loop so you don&apos;t have to.
+            </p>
         </div>
     )
 }
@@ -96,24 +130,21 @@ function PlatformCard() {
 
 const rows = [
     {
-        tag: "Feature 01",
-        title: "AI Influencer Videos",
-        text: "Choose from 500+ hyper-realistic AI avatars or upload your own brand face. We create scroll-stopping UGC-style content for TikTok, Reels, and Shorts — starred by influencers that never sleep, never cancel, and always stay on brand.",
+        title: "AI models & influencers",
+        text: "We run a roster of AI models, influencers, and content creators—and we manage and grow their Instagram accounts. Brands tap that presence for premium promotional content without booking traditional talent or shipping giant PR kits.",
         visual: <AvatarGridCard />,
         reversed: false,
     },
     {
-        tag: "Feature 02",
-        title: "URL to Video in Minutes",
-        text: "Paste your product URL and Magnatic instantly pulls your images, copy, and pricing to generate 10+ ready-to-run video ad variations. No brief. No back-and-forth. Just results.",
-        visual: <UrlGeneratorCard />,
+        title: "Product ad creation",
+        text: "Give us your product, choose any of our AI models (or commission a custom one), and receive a finished ad promoting it—edited based on your needs. No pitching influencers, no heavy branding retainers: one straightforward pipeline from product to polished spot.",
+        visual: <ProductAdStepsCard />,
         reversed: true,
     },
     {
-        tag: "Feature 03",
-        title: "Publish Everywhere, Instantly",
-        text: "Export once, run everywhere. Magnatic auto-formats your videos for Meta, TikTok, YouTube, LinkedIn, and CTV — correct specs, captions, and aspect ratios every time.",
-        visual: <PlatformCard />,
+        title: "Social media calendars",
+        text: "Beyond one-off ads, we can run your social presence on a calendar: ideas, creative production, and posting—managed end to end so content ships on schedule and your team isn’t stuck in spreadsheets.",
+        visual: <SocialCalendarCard />,
         reversed: false,
     },
 ]
@@ -124,16 +155,19 @@ export function HowItWorks() {
             <div className="max-w-7xl mx-auto px-6">
 
                 <div className="text-center mb-16 sm:mb-24">
-                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase text-[#7C3AED] mb-4">How It Works</p>
+                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase mag-eyebrow mb-4">At a glance</p>
                     <h2 className="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight">
-                        From Idea to Live Ad in Minutes
+                        From product to polished ad
                     </h2>
+                    <p className="mx-auto mt-4 max-w-2xl font-dm-sans text-base text-white/65 sm:text-lg">
+                        Premium ads and optional ongoing social calendars—ideation through publishing—without anyone from your team on camera.
+                    </p>
                 </div>
 
                 <div className="flex flex-col gap-20 sm:gap-28">
-                    {rows.map((row, i) => (
+                    {rows.map((row) => (
                         <motion.div
-                            key={row.tag}
+                            key={row.title}
                             initial={{ opacity: 0, y: 32 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -142,13 +176,10 @@ export function HowItWorks() {
                         >
                             {/* Text */}
                             <div>
-                                <p className="font-space-mono text-[11px] tracking-[0.14em] uppercase text-[#7C3AED] mb-3">{row.tag}</p>
                                 <h3 className="font-syne font-bold text-2xl sm:text-3xl md:text-4xl text-white mb-5 leading-tight">{row.title}</h3>
                                 <p className="font-dm-sans text-white/65 text-base sm:text-lg leading-relaxed mb-7">{row.text}</p>
-                                {/* ⚠️ DO NOT MODIFY: triggers Supabase registration flow */}
-                                <Link href="/register">
-                                    <button className="font-dm-sans font-medium text-white text-sm px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_24px_rgba(124,58,237,0.4)]"
-                                        style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }}>
+                                <Link href="/#register">
+                                    <button type="button" className="mag-btn-primary font-dm-sans font-medium text-white text-sm px-6 py-3 rounded-full hover:scale-105">
                                         Try It Free →
                                     </button>
                                 </Link>

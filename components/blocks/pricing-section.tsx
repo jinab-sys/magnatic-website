@@ -37,15 +37,17 @@ const tiers = [
 
 export function PricingSection() {
     return (
-        <section id="pricing" className="relative w-full z-20 py-20 sm:py-28" style={{ background: "rgba(0,0,0,0.25)" }}>
+        <section id="pricing" className="relative w-full z-20 py-20 sm:py-28 mag-section-dim">
             <div className="max-w-7xl mx-auto px-6">
 
                 <div className="text-center mb-14">
-                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase text-[#7C3AED] mb-4">Pricing</p>
+                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase mag-eyebrow mb-4">Pricing</p>
                     <h2 className="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight mb-3">
                         Simple, Transparent Pricing
                     </h2>
-                    <p className="font-dm-sans text-white/65 text-lg">Start free. Scale as you grow. No hidden fees.</p>
+                    <p className="font-dm-sans text-white/65 text-lg">
+                        We onboard brands through the waitlist—final packages depend on product scope, model choice, and custom work.
+                    </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
@@ -54,9 +56,9 @@ export function PricingSection() {
                             key={tier.name}
                             className="relative flex flex-col rounded-2xl p-8"
                             style={tier.featured ? {
-                                background: "rgba(124,58,237,0.07)",
-                                border: "1px solid #7C3AED",
-                                boxShadow: "0 0 40px rgba(124,58,237,0.2)",
+                                background: "rgba(163,230,53,0.05)",
+                                border: "1px solid var(--mag-accent-to)",
+                                boxShadow: "0 0 40px rgba(163,230,53,0.14)",
                                 transform: "scale(1.03)",
                             } : {
                                 background: "rgba(0,0,0,0.28)",
@@ -67,8 +69,7 @@ export function PricingSection() {
                             {/* Badge */}
                             {tier.badge && (
                                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                                    <span className="font-space-mono text-[10px] tracking-[0.1em] uppercase text-white px-4 py-1.5 rounded-full"
-                                        style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }}>
+                                    <span className="mag-gradient-fill font-space-mono text-[10px] tracking-[0.1em] uppercase text-white px-4 py-1.5 rounded-full">
                                         {tier.badge}
                                     </span>
                                 </div>
@@ -78,11 +79,11 @@ export function PricingSection() {
 
                             <div className="flex items-end gap-1 mb-1">
                                 <span
-                                    className="font-syne font-bold leading-none"
-                                    style={tier.featured
-                                        ? { fontSize: tier.price.length > 3 ? "36px" : "50px", background: "linear-gradient(135deg,#7C3AED,#3D6EFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }
-                                        : { fontSize: tier.price.length > 3 ? "36px" : "50px", color: "white" }
-                                    }
+                                    className={`font-syne font-bold leading-none ${tier.featured ? "mag-text-gradient" : ""}`}
+                                    style={{
+                                        fontSize: tier.price.length > 3 ? "36px" : "50px",
+                                        ...(tier.featured ? {} : { color: "white" }),
+                                    }}
                                 >
                                     {tier.price}
                                 </span>
@@ -98,7 +99,7 @@ export function PricingSection() {
                                 {tier.features.map((f) => (
                                     <li key={f} className="flex items-center gap-3 font-dm-sans text-white/65 text-sm">
                                         <span className="w-4.5 h-4.5 rounded-full flex items-center justify-center text-[10px] flex-shrink-0"
-                                            style={{ background: "rgba(124,58,237,0.2)", border: "1px solid rgba(124,58,237,0.4)", color: "#7C3AED" }}>
+                                            style={{ background: "rgba(163,230,53,0.12)", border: "1px solid rgba(163,230,53,0.3)", color: "var(--mag-accent-from)" }}>
                                             ✓
                                         </span>
                                         {f}
@@ -106,12 +107,9 @@ export function PricingSection() {
                                 ))}
                             </ul>
 
-                            {/* CTA — Pro card is wired to Supabase registration flow */}
                             {tier.supabaseFlow ? (
-                                /* ⚠️ DO NOT MODIFY: triggers Supabase registration flow */
-                                <Link href="/register">
-                                    <button className="w-full font-dm-sans font-medium text-white py-3 rounded-full text-sm transition-all duration-300 hover:scale-105 hover:shadow-[0_0_24px_rgba(124,58,237,0.4)]"
-                                        style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }}>
+                                <Link href="/#register">
+                                    <button type="button" className="mag-btn-primary w-full font-dm-sans font-medium text-white py-3 rounded-full text-sm hover:scale-105">
                                         {tier.cta}
                                     </button>
                                 </Link>

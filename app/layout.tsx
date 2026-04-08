@@ -26,8 +26,9 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Magnatic | AI-Powered Marketing",
-  description: "Magnetic Ads, Made by AI",
+  title: "Magnatic | AI Models, Influencers & Product Ads",
+  description:
+    "Premium product ads with AI models and influencers—no one on camera. We manage creator Instagram accounts, shoot and edit ads end-to-end, and can run your social media calendars from ideation through scheduled posting. Join the waitlist.",
   icons: {
     icon: "/icon-white.svg",
   }
@@ -40,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${outfit.variable} ${syne.variable} ${dmSans.variable} ${spaceMono.variable} font-sans antialiased text-white`}>
+      <body className={`${outfit.variable} ${syne.variable} ${dmSans.variable} ${spaceMono.variable} font-sans antialiased text-[color:var(--mag-fg)]`}>
         {children}
       </body>
     </html>

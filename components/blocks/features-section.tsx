@@ -1,39 +1,51 @@
 "use client"
 
-import { Sparkles, Cpu, Users, Layers, BarChart3, Shield } from "lucide-react"
+import { Sparkles, Package, Clock, VideoOff, Palette, CircleCheck, CalendarDays } from "lucide-react"
 import { FeatureCard } from "@/components/ui/grid-feature-cards"
 
 const features = [
     {
-        title: "AI Influencers",
-        description: "Virtual creators that build authentic audiences and drive real engagement for your brand.",
-        icon: <Sparkles className="w-5 h-5" />
+        title: "AI models & influencers",
+        description:
+            "A roster of AI models, influencers, and content creators—each with Instagram accounts we manage and grow on your behalf.",
+        icon: <Sparkles className="w-5 h-5" />,
     },
     {
-        title: "Smart Workflows",
-        description: "Automated content pipelines powered by AI that adapt and optimize in real-time.",
-        icon: <Cpu className="w-5 h-5" />
+        title: "Product ad creation",
+        description:
+            "Send us your product, choose an AI model from our lineup (or commission a custom one), and receive a finished ad edited to your requirements.",
+        icon: <Package className="w-5 h-5" />,
     },
     {
-        title: "Human Expertise",
-        description: "A dedicated team of strategists and creatives ensuring every campaign hits the mark.",
-        icon: <Users className="w-5 h-5" />
+        title: "No human delays",
+        description:
+            "Production isn’t held up by talent schedules or back-and-forth. We move from concept to edited delivery without the usual bottlenecks.",
+        icon: <Clock className="w-5 h-5" />,
     },
     {
-        title: "Content at Scale",
-        description: "Generate hundreds of high-quality ad variations in minutes, not weeks.",
-        icon: <Layers className="w-5 h-5" />
+        title: "Camera-shy friendly",
+        description:
+            "Perfect if you want to promote your product but don’t want to be on camera—no awkward shoots, no waiting on creators.",
+        icon: <VideoOff className="w-5 h-5" />,
     },
     {
-        title: "Performance Analytics",
-        description: "Deep insights into what works, powered by machine learning and real data.",
-        icon: <BarChart3 className="w-5 h-5" />
+        title: "Custom AI models",
+        description:
+            "Start with our existing roster or work with us on a tailored AI model for your brand (custom work may incur additional fees).",
+        icon: <Palette className="w-5 h-5" />,
     },
     {
-        title: "Brand Safety",
-        description: "Every piece of content reviewed and approved before it goes live.",
-        icon: <Shield className="w-5 h-5" />
-    }
+        title: "End-to-end delivery",
+        description:
+            "Full handling from concept through editing—you get a polished ad ready to run, without chasing influencers or shipping giant PR boxes.",
+        icon: <CircleCheck className="w-5 h-5" />,
+    },
+    {
+        title: "Social calendars & posting",
+        description:
+            "We can plan and manage your social media calendars—ideation through creation, plus scheduling and publishing—so your channels stay consistent without your team living in planning tools.",
+        icon: <CalendarDays className="w-5 h-5" />,
+    },
 ]
 
 export function FeaturesSection() {
@@ -42,14 +54,14 @@ export function FeaturesSection() {
             <div className="max-w-7xl mx-auto px-6 w-full">
 
                 <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-24">
-                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase text-[#7C3AED] mb-4">
-                        Platform Features
+                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase mag-eyebrow mb-4">
+                        Services
                     </p>
                     <h2 className="font-syne font-bold text-3xl sm:text-5xl text-white mb-6 tracking-tight">
-                        Everything You Need to Dominate
+                        What we offer
                     </h2>
                     <p className="font-dm-sans text-lg text-white/65 font-light">
-                        AI-powered tools and human expertise, working together.
+                        AI talent, product ads, and optional full social calendar management—without traditional influencer outreach.
                     </p>
                 </div>
 

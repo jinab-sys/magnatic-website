@@ -4,7 +4,7 @@ import { Navbar } from "@/components/blocks/navbar"
 
 export default function SignUpPage() {
     return (
-        <main className="relative min-h-screen selection:bg-white/30 selection:text-white flex flex-col items-center justify-center pt-20 overflow-hidden">
+        <main className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden">
             <div className="fixed inset-0 z-0 bg-black pointer-events-none">
                 <ShaderAnimation />
             </div>

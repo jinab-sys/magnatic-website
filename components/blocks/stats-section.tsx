@@ -2,10 +2,10 @@
 import { motion } from "framer-motion"
 
 const stats = [
-    { num: "2.4M+",  label: "Videos Created"       },
-    { num: "8,700+", label: "Brands Powered"        },
-    { num: "340%",   label: "Avg. Engagement Lift"  },
-    { num: "18 min", label: "Time to First Video"   },
+    { num: "AI", label: "Models, influencers & creators" },
+    { num: "Ads", label: "Product spots, edited end-to-end" },
+    { num: "Cal", label: "Social calendars & posting" },
+    { num: "You", label: "No on-camera talent required" },
 ]
 
 export function StatsSection() {
@@ -26,10 +26,7 @@ export function StatsSection() {
                             {i < stats.length - 1 && (
                                 <div className="hidden md:block absolute top-[20%] right-0 h-[60%] w-px bg-white/8" />
                             )}
-                            <div
-                                className="font-syne font-bold text-4xl sm:text-5xl md:text-[56px] leading-none mb-3"
-                                style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
-                            >
+                            <div className="font-syne font-bold text-4xl sm:text-5xl md:text-[56px] leading-none mb-3 mag-text-gradient">
                                 {s.num}
                             </div>
                             <div className="font-dm-sans text-sm text-white/65 font-medium">

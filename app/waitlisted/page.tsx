@@ -10,31 +10,30 @@ export default function WaitlistedPage() {
                     <img src="/logo-full-white.svg" alt="Magnatic" className="h-8" />
                 </div>
 
-                <div className="border border-white/20 bg-black/50 backdrop-blur-2xl rounded-3xl p-10 shadow-2xl flex flex-col items-center gap-6">
+                <div className="mag-panel rounded-3xl p-10 shadow-2xl flex flex-col items-center gap-6">
 
-                    <div className="w-16 h-16 rounded-full flex items-center justify-center text-3xl"
-                        style={{ background: "linear-gradient(135deg,rgba(124,58,237,0.25),rgba(61,110,250,0.25))", border: "1px solid rgba(124,58,237,0.4)" }}>
+                    <div className="mag-gradient-fill-soft w-16 h-16 rounded-full flex items-center justify-center text-3xl">
                         🎉
                     </div>
 
                     <div>
                         <h1 className="text-2xl font-bold text-white mb-2">You&apos;re on the waitlist!</h1>
-                        <p className="text-neutral-400 text-sm leading-relaxed">
-                            Congratulations! We&apos;ve received your request and you&apos;re now on the Magnatic waitlist.
-                            We&apos;ll reach out to you soon with next steps.
+                        <p className="mag-text-muted text-sm leading-relaxed">
+                            You&apos;re on the list for our premium service—AI-led product ads and managed creator accounts.
+                            We&apos;ll email you when we&apos;re ready with next steps.
                         </p>
                     </div>
 
                     <div className="w-full h-px bg-white/10" />
 
-                    <p className="text-neutral-500 text-xs">
+                    <p className="text-[color:var(--mag-fg-subtle)] text-xs">
                         Keep an eye on your inbox — we&apos;re excited to get you started.
                     </p>
 
                     <Link href="/" className="w-full">
                         <button
-                            className="w-full font-dm-sans font-semibold text-sm text-white py-3 rounded-xl transition-all duration-300 hover:scale-[1.02]"
-                            style={{ background: "linear-gradient(135deg,#7C3AED,#3D6EFA)" }}
+                            type="button"
+                            className="mag-btn-primary w-full font-dm-sans font-semibold text-sm text-white py-3 rounded-xl hover:scale-[1.02]"
                         >
                             Back to Home
                         </button>
