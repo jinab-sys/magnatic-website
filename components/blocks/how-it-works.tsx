@@ -143,7 +143,7 @@ export function HowItWorks() {
                 </div>
 
                 <div className="flex flex-col gap-20 sm:gap-28">
-                    {rows.map((row, i) => (
+                    {rows.map((row) => (
                         <motion.div
                             key={row.tag}
                             initial={{ opacity: 0, y: 32 }}

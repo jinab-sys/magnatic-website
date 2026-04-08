@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState, useSyncExternalStore } from "react"
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react"
 
 type VideoItem = {
@@ -12,6 +12,8 @@ type VideoShowcaseGridProps = {
     videos: VideoItem[]
 }
 
+const noopSubscribe = () => () => {}
+
 export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
     const railRef = useRef<HTMLDivElement>(null)
     const [mutedByVideo, setMutedByVideo] = useState<Record<string, boolean>>(() => {
@@ -19,11 +21,7 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
         for (const v of videos) initial[v.src] = true
         return initial
     })
-    const [hasMounted, setHasMounted] = useState(false)
-
-    useEffect(() => {
-        setHasMounted(true)
-    }, [])
+    const hasMounted = useSyncExternalStore(noopSubscribe, () => true, () => false)
 
     if (!videos.length) return null
 

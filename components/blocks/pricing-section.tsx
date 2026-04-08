@@ -67,7 +67,7 @@ export function PricingSection() {
                             {/* Badge */}
                             {tier.badge && (
                                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                                    <span className="mag-btn-primary font-space-mono text-[10px] tracking-[0.1em] uppercase text-white px-4 py-1.5 rounded-full">
+                                    <span className="mag-gradient-fill font-space-mono text-[10px] tracking-[0.1em] uppercase text-white px-4 py-1.5 rounded-full">
                                         {tier.badge}
                                     </span>
                                 </div>

@@ -51,7 +51,7 @@ export default function RegisterPage() {
                 <div className="mag-panel rounded-3xl p-8 shadow-2xl">
                     <h1 className="text-2xl font-bold text-white mb-1">Get Access</h1>
                     <p className="mag-text-muted text-sm mb-8">
-                        Tell us about your business and we'll reach out.
+                        Tell us about your business and we&apos;ll reach out.
                     </p>
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
