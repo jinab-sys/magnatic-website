@@ -43,27 +43,6 @@ function AvatarGridCard() {
     )
 }
 
-function UrlGeneratorCard() {
-    return (
-        <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>
-            <p className="font-space-mono text-[10px] tracking-[0.14em] uppercase text-white/65 mb-6 opacity-70">URL → Video Generator</p>
-            <div className="rounded-xl px-4 py-3 flex items-center gap-2 mb-4" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                <span className="font-space-mono mag-eyebrow text-xs">https://</span>
-                <span className="font-dm-sans text-white/65 text-sm truncate">yourstore.com/products/amazing-product</span>
-            </div>
-            <button type="button" className="mag-btn-primary w-full py-2.5 rounded-xl font-dm-sans font-medium text-white text-sm mb-5">
-                Generate 10+ Variations →
-            </button>
-            {/* Animated progress bar */}
-            <div className="rounded-full h-1.5 overflow-hidden mb-3" style={{ background: "rgba(0,0,0,0.2)" }}>
-                <div className="mag-gradient-fill h-full rounded-full" style={{ animation: "progAnim 3.2s ease-in-out infinite" }} />
-            </div>
-            <style>{`@keyframes progAnim { 0%{width:0%} 65%{width:80%} 100%{width:0%} }`}</style>
-            <p className="font-space-mono text-[10px] text-white/65 opacity-60">Analyzing product · Generating scripts · Rendering…</p>
-        </div>
-    )
-}
-
 function PlatformCard() {
     const platforms = [
         { name: "TikTok",    color: "#69C9D0", bg: "rgba(105,201,208,0.08)", border: "rgba(105,201,208,0.25)" },
@@ -108,25 +87,16 @@ function PlatformCard() {
 
 const rows = [
     {
-        tag: "Feature 01",
         title: "AI Influencer Videos",
         text: "Start from our flagship personas — Ayla, Maaya, Ayzad, and Rayan — each with a dedicated look from our library and a live Instagram profile, or bring your own brand face. We produce UGC-style content for TikTok, Reels, and Shorts.",
         visual: <AvatarGridCard />,
         reversed: false,
     },
     {
-        tag: "Feature 02",
-        title: "URL to Video in Minutes",
-        text: "Paste your product URL and Magnatic instantly pulls your images, copy, and pricing to generate 10+ ready-to-run video ad variations. No brief. No back-and-forth. Just results.",
-        visual: <UrlGeneratorCard />,
-        reversed: true,
-    },
-    {
-        tag: "Feature 03",
         title: "Publish Everywhere, Instantly",
         text: "Export once, run everywhere. Magnatic auto-formats your videos for Meta, TikTok, YouTube, LinkedIn, and CTV — correct specs, captions, and aspect ratios every time.",
         visual: <PlatformCard />,
-        reversed: false,
+        reversed: true,
     },
 ]
 
@@ -145,7 +115,7 @@ export function HowItWorks() {
                 <div className="flex flex-col gap-20 sm:gap-28">
                     {rows.map((row) => (
                         <motion.div
-                            key={row.tag}
+                            key={row.title}
                             initial={{ opacity: 0, y: 32 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -154,7 +124,6 @@ export function HowItWorks() {
                         >
                             {/* Text */}
                             <div>
-                                <p className="font-space-mono text-[11px] tracking-[0.14em] uppercase mag-eyebrow mb-3">{row.tag}</p>
                                 <h3 className="font-syne font-bold text-2xl sm:text-3xl md:text-4xl text-white mb-5 leading-tight">{row.title}</h3>
                                 <p className="font-dm-sans text-white/65 text-base sm:text-lg leading-relaxed mb-7">{row.text}</p>
                                 <Link href="/#register">
