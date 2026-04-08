@@ -3,6 +3,33 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 
+/** Chunky pixel “greater than” for the hero CTA (7×6 grid). */
+function PixelChevron({ className }: { className?: string }) {
+    const filled = new Set([
+        "0,0", "1,0", "2,0",
+        "2,1", "3,1", "4,1",
+        "4,2", "5,2", "6,2",
+        "4,3", "5,3", "6,3",
+        "2,4", "3,4", "4,4",
+        "0,5", "1,5", "2,5",
+    ])
+    const rects = []
+    for (let y = 0; y < 6; y++) {
+        for (let x = 0; x < 7; x++) {
+            if (filled.has(`${x},${y}`)) {
+                rects.push(
+                    <rect key={`${x}-${y}`} x={x} y={y} width={0.92} height={0.92} fill="currentColor" rx={0.08} />,
+                )
+            }
+        }
+    }
+    return (
+        <svg viewBox="-0.5 -0.5 7 6" className={className} aria-hidden>
+            {rects}
+        </svg>
+    )
+}
+
 export function ScrollExpandHero() {
     const kpis = [
         { label: "Ads Analyzed", value: "20M+" },
@@ -38,24 +65,26 @@ export function ScrollExpandHero() {
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
-                    className="mx-auto mt-8 max-w-3xl rounded-2xl border border-white/15 bg-black/35 p-3 shadow-[0_20px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl"
+                    className="mx-auto mt-10 flex flex-col items-center gap-3"
                 >
-                    <div className="flex flex-col gap-3 md:flex-row">
-                        <input
-                            type="text"
-                            placeholder="Paste a product URL to generate ad concepts..."
-                            className="h-12 w-full rounded-xl border border-white/10 bg-white/5 px-4 font-dm-sans text-sm text-white placeholder:text-white/45 outline-none focus:border-white/30"
-                        />
-                        <Link href="/register" className="shrink-0">
-                            <button
-                                type="button"
-                                className="mag-btn-primary h-12 w-full rounded-xl px-6 font-dm-sans text-sm font-semibold md:w-auto"
-                            >
-                                Create Your First Ad
-                            </button>
-                        </Link>
-                    </div>
-                    <p className="px-1 pt-2 font-dm-sans text-xs text-white/55">No credit card required. Instant preview generation.</p>
+                    <Link
+                        href="/register"
+                        aria-label="Get Access"
+                        className="relative inline-flex max-w-full items-stretch overflow-hidden rounded-2xl border border-white/10 bg-[#060607] shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] transition duration-300 hover:border-white/15 hover:shadow-[0_24px_72px_rgba(99,102,241,0.12)]"
+                    >
+                        <span
+                            className="relative m-1.5 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--mag-accent-from)] to-[color:var(--mag-accent-to)] shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] ring-1 ring-white/10"
+                            aria-hidden
+                        >
+                            <PixelChevron className="h-[22px] w-[26px] text-white drop-shadow-sm" />
+                        </span>
+                        <span className="flex min-h-[52px] items-center pr-8 pl-3 sm:pr-10">
+                            <span className="font-space-mono text-[12px] font-medium uppercase tracking-[0.28em] text-white sm:text-[13px]">
+                                Get Access
+                            </span>
+                        </span>
+                    </Link>
+                    <p className="font-dm-sans text-xs text-white/50">No credit card required · Join the waitlist</p>
                 </motion.div>
 
                 <motion.div
