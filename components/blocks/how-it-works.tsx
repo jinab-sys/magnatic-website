@@ -89,6 +89,43 @@ function ProductAdStepsCard() {
     )
 }
 
+function SocialCalendarCard() {
+    const days = [
+        { d: "Mon", label: "Idea", tone: "bg-white/[0.07]" },
+        { d: "Tue", label: "Create", tone: "mag-gradient-fill" },
+        { d: "Wed", label: "Review", tone: "bg-white/[0.07]" },
+        { d: "Thu", label: "Publish", tone: "bg-white/[0.07]" },
+    ]
+    return (
+        <div
+            className="rounded-2xl p-6 sm:p-8"
+            style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}
+        >
+            <p className="mb-6 font-space-mono text-[10px] uppercase tracking-[0.14em] text-white/65 opacity-70">
+                Social calendar
+            </p>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-2">
+                {days.map((x) => (
+                    <div
+                        key={x.d}
+                        className="flex flex-col rounded-xl border border-white/10 bg-black/25 px-3 py-3"
+                    >
+                        <p className="font-space-mono text-[9px] uppercase tracking-wider text-white/45">{x.d}</p>
+                        <div
+                            className={`mt-2 flex min-h-[40px] items-center justify-center rounded-lg px-2 py-2 text-center font-dm-sans text-[11px] font-medium text-white ${x.tone}`}
+                        >
+                            {x.label}
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <p className="mt-5 font-dm-sans text-[11px] leading-relaxed text-white/55">
+                From brainstorm to scheduled posts—we handle the loop so you don&apos;t have to.
+            </p>
+        </div>
+    )
+}
+
 /* ── Section rows ──────────────────────────────────────────── */
 
 const rows = [
@@ -104,6 +141,12 @@ const rows = [
         visual: <ProductAdStepsCard />,
         reversed: true,
     },
+    {
+        title: "Social media calendars",
+        text: "Beyond one-off ads, we can run your social presence on a calendar: ideas, creative production, and posting—managed end to end so content ships on schedule and your team isn’t stuck in spreadsheets.",
+        visual: <SocialCalendarCard />,
+        reversed: false,
+    },
 ]
 
 export function HowItWorks() {
@@ -117,7 +160,7 @@ export function HowItWorks() {
                         From product to polished ad
                     </h2>
                     <p className="mx-auto mt-4 max-w-2xl font-dm-sans text-base text-white/65 sm:text-lg">
-                        Premium ads and promotional content without anyone from your team on camera—end to end, on your timeline.
+                        Premium ads and optional ongoing social calendars—ideation through publishing—without anyone from your team on camera.
                     </p>
                 </div>
 

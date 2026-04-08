@@ -28,7 +28,7 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   title: "Magnatic | AI Models, Influencers & Product Ads",
   description:
-    "Premium product ads with AI models and influencers—no one on camera. We manage creator Instagram accounts, shoot and edit your ads end-to-end, and deliver finished spots. Join the waitlist.",
+    "Premium product ads with AI models and influencers—no one on camera. We manage creator Instagram accounts, shoot and edit ads end-to-end, and can run your social media calendars from ideation through scheduled posting. Join the waitlist.",
   icons: {
     icon: "/icon-white.svg",
   }

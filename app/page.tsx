@@ -86,7 +86,7 @@ export default async function Home() {
                                     MAGNATIC
                                 </p>
                                 <p className="font-dm-sans text-white/60 text-sm leading-relaxed max-w-[200px]">
-                                    AI models and influencers for premium product ads—no one on camera, end-to-end delivery.
+                                    AI models and influencers, premium product ads, and social calendar management—ideation to publishing.
                                 </p>
                             </div>
 

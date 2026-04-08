@@ -3,8 +3,8 @@ import { motion } from "framer-motion"
 
 const stats = [
     { num: "AI", label: "Models, influencers & creators" },
-    { num: "E2E", label: "Concept through edited delivery" },
-    { num: "IG", label: "Creator accounts we manage" },
+    { num: "Ads", label: "Product spots, edited end-to-end" },
+    { num: "Cal", label: "Social calendars & posting" },
     { num: "You", label: "No on-camera talent required" },
 ]
 

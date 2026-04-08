@@ -57,7 +57,7 @@ export function ScrollExpandHero() {
                         <span className="block text-white/85">into a winning ad</span>
                     </h1>
                     <p className="mx-auto mt-5 max-w-2xl font-dm-sans text-base text-white/72 md:text-lg">
-                        Generate influencer-style videos in minutes, launch creative variations, and scale what converts.
+                        Generate influencer-style videos in minutes, launch creative variations, and scale what converts. We can also plan and manage your social media calendars ideas through creation and scheduled posting.
                     </p>
                 </motion.div>
 

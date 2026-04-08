@@ -1,6 +1,6 @@
 "use client"
 
-import { Sparkles, Package, Clock, VideoOff, Palette, CircleCheck } from "lucide-react"
+import { Sparkles, Package, Clock, VideoOff, Palette, CircleCheck, CalendarDays } from "lucide-react"
 import { FeatureCard } from "@/components/ui/grid-feature-cards"
 
 const features = [
@@ -40,6 +40,12 @@ const features = [
             "Full handling from concept through editing—you get a polished ad ready to run, without chasing influencers or shipping giant PR boxes.",
         icon: <CircleCheck className="w-5 h-5" />,
     },
+    {
+        title: "Social calendars & posting",
+        description:
+            "We can plan and manage your social media calendars—ideation through creation, plus scheduling and publishing—so your channels stay consistent without your team living in planning tools.",
+        icon: <CalendarDays className="w-5 h-5" />,
+    },
 ]
 
 export function FeaturesSection() {
@@ -55,7 +61,7 @@ export function FeaturesSection() {
                         What we offer
                     </h2>
                     <p className="font-dm-sans text-lg text-white/65 font-light">
-                        A premium service built around AI talent and product ads—no traditional influencer outreach required.
+                        AI talent, product ads, and optional full social calendar management—without traditional influencer outreach.
                     </p>
                 </div>
 
