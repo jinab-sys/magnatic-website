@@ -50,7 +50,7 @@ export function AvatarCarousel() {
                 <div className="relative overflow-hidden">
                     <div
                         ref={trackRef}
-                        className="flex gap-6"
+                        className="flex gap-6 py-4"
                         style={{ transition: "transform 0.4s cubic-bezier(0.4,0,0.2,1)" }}
                     >
                         {PUBLIC_INFLUENCERS.map((inf, i) => (
