@@ -48,8 +48,7 @@ export function Navbar() {
 
                     {/* Desktop CTA */}
                     <div className="hidden md:flex items-center">
-                        {/* ⚠️ DO NOT MODIFY: Supabase-connected registration link */}
-                        <Link href="/register">
+                        <Link href="/#register">
                             <button
                                 type="button"
                                 className="mag-btn-primary font-dm-sans font-medium text-sm text-white px-6 py-2.5 rounded-full hover:scale-105"
@@ -85,8 +84,7 @@ export function Navbar() {
                             </li>
                         ))}
                     </ul>
-                    {/* ⚠️ DO NOT MODIFY: Supabase-connected registration link */}
-                    <Link href="/register" onClick={() => setMenuOpen(false)}>
+                    <Link href="/#register" onClick={() => setMenuOpen(false)}>
                         <button
                             type="button"
                             className="mag-btn-primary font-dm-sans font-medium text-sm text-white w-full py-3 rounded-full"

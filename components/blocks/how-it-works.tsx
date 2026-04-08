@@ -157,8 +157,7 @@ export function HowItWorks() {
                                 <p className="font-space-mono text-[11px] tracking-[0.14em] uppercase mag-eyebrow mb-3">{row.tag}</p>
                                 <h3 className="font-syne font-bold text-2xl sm:text-3xl md:text-4xl text-white mb-5 leading-tight">{row.title}</h3>
                                 <p className="font-dm-sans text-white/65 text-base sm:text-lg leading-relaxed mb-7">{row.text}</p>
-                                {/* ⚠️ DO NOT MODIFY: triggers Supabase registration flow */}
-                                <Link href="/register">
+                                <Link href="/#register">
                                     <button type="button" className="mag-btn-primary font-dm-sans font-medium text-white text-sm px-6 py-3 rounded-full hover:scale-105">
                                         Try It Free →
                                     </button>

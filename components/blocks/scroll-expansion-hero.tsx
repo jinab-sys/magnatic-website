@@ -68,7 +68,7 @@ export function ScrollExpandHero() {
                     className="mx-auto mt-10 flex flex-col items-center gap-3"
                 >
                     <Link
-                        href="/register"
+                        href="/#register"
                         aria-label="Get Access"
                         className="relative inline-flex max-w-full items-stretch overflow-hidden rounded-2xl border border-white/10 bg-[#060607] shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] transition duration-300 hover:border-[rgba(163,230,53,0.2)] hover:shadow-[0_24px_72px_rgba(163,230,53,0.1)]"
                     >

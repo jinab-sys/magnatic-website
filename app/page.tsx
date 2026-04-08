@@ -9,6 +9,7 @@ import { AvatarCarousel }      from "@/components/blocks/avatar-carousel"
 import { TestimonialsSection } from "@/components/blocks/testimonials-section"
 import { VisionStatement }     from "@/components/blocks/vision-statement"
 import { CtaBanner }           from "@/components/blocks/cta-banner"
+import { RegisterSection }     from "@/components/blocks/register-section"
 import { readdir }             from "node:fs/promises"
 import path                    from "node:path"
 
@@ -71,6 +72,7 @@ export default async function Home() {
                 <TestimonialsSection />
                 <VisionStatement />
                 <CtaBanner />
+                <RegisterSection />
 
                 {/* ── Footer ── */}
                 <footer className="relative z-20 border-t border-white/10 mag-section-dim backdrop-blur-md">

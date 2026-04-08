@@ -105,10 +105,8 @@ export function PricingSection() {
                                 ))}
                             </ul>
 
-                            {/* CTA — Pro card is wired to Supabase registration flow */}
                             {tier.supabaseFlow ? (
-                                /* ⚠️ DO NOT MODIFY: triggers Supabase registration flow */
-                                <Link href="/register">
+                                <Link href="/#register">
                                     <button type="button" className="mag-btn-primary w-full font-dm-sans font-medium text-white py-3 rounded-full text-sm hover:scale-105">
                                         {tier.cta}
                                     </button>
