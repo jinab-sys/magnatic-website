@@ -72,8 +72,8 @@ export function AvatarCarousel() {
                                 }}
                                 whileHover={{
                                     y: -8,
-                                    borderColor: "rgba(99,102,241,0.45)",
-                                    boxShadow: "0 20px 50px rgba(99,102,241,0.18)",
+                                    borderColor: "rgba(163,230,53,0.38)",
+                                    boxShadow: "0 20px 50px rgba(163,230,53,0.12)",
                                 }}
                             >
                                 {inf.imageFile ? (
@@ -98,8 +98,8 @@ export function AvatarCarousel() {
                                 <span
                                     className="inline-block rounded-full px-3 py-1 font-dm-sans text-xs text-white/65"
                                     style={{
-                                        background: "rgba(99,102,241,0.1)",
-                                        border: "1px solid rgba(99,102,241,0.22)",
+                                        background: "rgba(163,230,53,0.09)",
+                                        border: "1px solid rgba(163,230,53,0.22)",
                                     }}
                                 >
                                     View on Instagram
@@ -115,7 +115,7 @@ export function AvatarCarousel() {
                             key={arrow}
                             type="button"
                             onClick={() => scroll(i === 0 ? -1 : 1)}
-                            className="flex h-12 w-12 items-center justify-center rounded-full text-lg text-white transition-all duration-300 hover:bg-[rgba(99,102,241,0.18)] hover:border-[rgba(99,102,241,0.4)]"
+                            className="flex h-12 w-12 items-center justify-center rounded-full text-lg text-white transition-all duration-300 hover:bg-[rgba(163,230,53,0.14)] hover:border-[rgba(163,230,53,0.35)]"
                             style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.1)" }}
                         >
                             {arrow}

@@ -54,9 +54,9 @@ export function PricingSection() {
                             key={tier.name}
                             className="relative flex flex-col rounded-2xl p-8"
                             style={tier.featured ? {
-                                background: "rgba(99,102,241,0.06)",
+                                background: "rgba(163,230,53,0.05)",
                                 border: "1px solid var(--mag-accent-to)",
-                                boxShadow: "0 0 40px rgba(99,102,241,0.18)",
+                                boxShadow: "0 0 40px rgba(163,230,53,0.14)",
                                 transform: "scale(1.03)",
                             } : {
                                 background: "rgba(0,0,0,0.28)",
@@ -97,7 +97,7 @@ export function PricingSection() {
                                 {tier.features.map((f) => (
                                     <li key={f} className="flex items-center gap-3 font-dm-sans text-white/65 text-sm">
                                         <span className="w-4.5 h-4.5 rounded-full flex items-center justify-center text-[10px] flex-shrink-0"
-                                            style={{ background: "rgba(99,102,241,0.18)", border: "1px solid rgba(99,102,241,0.35)", color: "var(--mag-accent-to)" }}>
+                                            style={{ background: "rgba(163,230,53,0.12)", border: "1px solid rgba(163,230,53,0.3)", color: "var(--mag-accent-from)" }}>
                                             ✓
                                         </span>
                                         {f}

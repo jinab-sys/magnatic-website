@@ -70,7 +70,7 @@ export function ScrollExpandHero() {
                     <Link
                         href="/register"
                         aria-label="Get Access"
-                        className="relative inline-flex max-w-full items-stretch overflow-hidden rounded-2xl border border-white/10 bg-[#060607] shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] transition duration-300 hover:border-white/15 hover:shadow-[0_24px_72px_rgba(99,102,241,0.12)]"
+                        className="relative inline-flex max-w-full items-stretch overflow-hidden rounded-2xl border border-white/10 bg-[#060607] shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] transition duration-300 hover:border-[rgba(163,230,53,0.2)] hover:shadow-[0_24px_72px_rgba(163,230,53,0.1)]"
                     >
                         <span
                             className="relative m-1.5 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--mag-accent-from)] to-[color:var(--mag-accent-to)] shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] ring-1 ring-white/10"

@@ -3,7 +3,7 @@ import { CtaGlowButton } from "@/components/blocks/cta-glow-button"
 export function CtaBanner() {
     return (
         <section className="relative w-full z-20 py-24 sm:py-32 overflow-hidden text-center">
-            {/* Radial purple glow */}
+            {/* Ambient lime glow */}
             <div className="mag-blob mag-blob-a w-[700px] h-[500px]"
                 style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%)" }} />
 

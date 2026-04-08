@@ -71,12 +71,12 @@ function PlatformCard() {
         { name: "YouTube",   color: "#FF4444", bg: "rgba(255,68,68,0.08)",   border: "rgba(255,68,68,0.25)"   },
         { name: "Meta",      color: "#1877F2", bg: "rgba(24,119,242,0.08)",  border: "rgba(24,119,242,0.25)"  },
         { name: "LinkedIn",  color: "#0A66C2", bg: "rgba(10,102,194,0.08)",  border: "rgba(10,102,194,0.25)"  },
-        { name: "CTV",       color: "#a78bfa", bg: "rgba(167,139,250,0.08)", border: "rgba(167,139,250,0.25)" },
+        { name: "CTV",       color: "#a3d636", bg: "rgba(163,230,53,0.08)", border: "rgba(163,230,53,0.22)" },
     ]
     const formats = [
-        { ratio: "9:16 · Vertical",   platforms: "TikTok, Reels",     status: "✓ READY",     statusColor: "#7c3aed" },
-        { ratio: "16:9 · Landscape",  platforms: "YouTube, CTV",      status: "✓ READY",     statusColor: "#7c3aed" },
-        { ratio: "1:1 · Square",      platforms: "Instagram, Meta",   status: "⟳ RENDERING", statusColor: "#6366f1" },
+        { ratio: "9:16 · Vertical",   platforms: "TikTok, Reels",     status: "✓ READY",     statusColor: "#4d7c0f" },
+        { ratio: "16:9 · Landscape",  platforms: "YouTube, CTV",      status: "✓ READY",     statusColor: "#4d7c0f" },
+        { ratio: "1:1 · Square",      platforms: "Instagram, Meta",   status: "⟳ RENDERING", statusColor: "#65a30d" },
     ]
     return (
         <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>

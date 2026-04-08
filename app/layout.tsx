@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${outfit.variable} ${syne.variable} ${dmSans.variable} ${spaceMono.variable} font-sans antialiased text-white`}>
+      <body className={`${outfit.variable} ${syne.variable} ${dmSans.variable} ${spaceMono.variable} font-sans antialiased text-[color:var(--mag-fg)]`}>
         {children}
       </body>
     </html>

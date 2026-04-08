@@ -4,27 +4,27 @@ import { motion } from "framer-motion"
 const testimonials = [
     {
         quote: "We went from 0 to 40 video ads in a single afternoon. Our TikTok ROAS tripled in week one.",
-        name: "Sarah L.",   role: "Head of Growth · NovaSkin",    initials: "SL", grad: "linear-gradient(135deg, #6366f1, #7c3aed)",
+        name: "Sarah L.",   role: "Head of Growth · NovaSkin",    initials: "SL", grad: "linear-gradient(135deg, #bef264, #4d7c0f)",
     },
     {
         quote: "The AI avatars look insanely real. Engagement went through the roof and our CPM dropped 60%.",
-        name: "James M.",  role: "CMO · PeakFit",                 initials: "JM", grad: "linear-gradient(135deg, #818cf8, #6366f1)",
+        name: "James M.",  role: "CMO · PeakFit",                 initials: "JM", grad: "linear-gradient(135deg, #d9f99d, #65a30d)",
     },
     {
         quote: "Magnatic cut our video production costs by 90%. We ship 3x more creative every month now.",
-        name: "Aisha R.",  role: "Marketing Director · Lumora Beauty", initials: "AR", grad: "linear-gradient(135deg, #7c3aed, #a78bfa)",
+        name: "Aisha R.",  role: "Marketing Director · Lumora Beauty", initials: "AR", grad: "linear-gradient(135deg, #a3e635, #3f6212)",
     },
     {
         quote: "Finally a tool that just works. URL in, video out. Our whole team uses it every single day.",
-        name: "Tom H.",    role: "Founder · Driftly",              initials: "TH", grad: "linear-gradient(135deg, #4f46e5, #8b5cf6)",
+        name: "Tom H.",    role: "Founder · Driftly",              initials: "TH", grad: "linear-gradient(135deg, #84cc16, #365314)",
     },
     {
         quote: "The multi-platform export alone is worth every penny. No more manual resizing at 2am.",
-        name: "Nina C.",   role: "Social Media Lead · UrbanKicks", initials: "NC", grad: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+        name: "Nina C.",   role: "Social Media Lead · UrbanKicks", initials: "NC", grad: "linear-gradient(135deg, #bef264, #65a30d)",
     },
     {
         quote: "We tested 50 ad variations in one week, found our winner, and ROAS went up 280%.",
-        name: "Raj P.",    role: "Performance Lead · ZestBox",     initials: "RP", grad: "linear-gradient(135deg, #a78bfa, #6366f1)",
+        name: "Raj P.",    role: "Performance Lead · ZestBox",     initials: "RP", grad: "linear-gradient(135deg, #d4e877, #3d5a1f)",
     },
 ]
 
@@ -61,7 +61,7 @@ export function TestimonialsSection() {
                                 backdropFilter: "blur(12px)",
                                 transition: "transform 0.3s ease, border-color 0.3s ease",
                             }}
-                            whileHover={{ y: -4, borderColor: "rgba(99,102,241,0.28)" }}
+                            whileHover={{ y: -4, borderColor: "rgba(163,230,53,0.26)" }}
                         >
                             <div className="mag-star-rating text-base tracking-widest mb-4">★★★★★</div>
                             <p className="font-dm-sans text-white text-[15px] leading-relaxed italic flex-1 mb-6">

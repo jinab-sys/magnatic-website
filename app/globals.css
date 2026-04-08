@@ -109,7 +109,7 @@
   --chart-5: oklch(0.269 0 0);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: oklch(0.72 0.16 125);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
@@ -131,7 +131,7 @@
   }
 
   html.dark ::selection {
-    background-color: rgba(99, 102, 241, 0.35);
+    background-color: rgba(163, 230, 53, 0.32);
     color: var(--mag-fg);
   }
 
@@ -165,25 +165,26 @@
   }
 }
 
-/* ===== Magnatic Design System (unified dark UI) ===== */
+/* ===== Magnatic Design System — premium lime on black ===== */
 :root {
-  --mag-bg-base: #09090b;
-  --mag-fg: #fafafa;
-  --mag-fg-muted: #a1a1aa;
-  --mag-fg-subtle: #71717a;
-  --mag-border: rgba(255, 255, 255, 0.08);
-  --mag-border-strong: rgba(255, 255, 255, 0.12);
-  --mag-surface: rgba(255, 255, 255, 0.04);
-  --mag-surface-elevated: rgba(255, 255, 255, 0.06);
-  --mag-accent-from: #6366f1;
-  --mag-accent-to: #7c3aed;
-  --mag-bg-gradient: radial-gradient(ellipse 120% 85% at 50% -40%, rgba(99, 102, 241, 0.14), transparent 55%),
-    radial-gradient(ellipse 65% 45% at 100% 15%, rgba(124, 58, 237, 0.07), transparent 50%),
-    linear-gradient(180deg, #09090b 0%, #0c0c0f 42%, #09090b 100%);
-  --mag-success: #34d399;
+  --mag-bg-base: #070807;
+  --mag-fg: #f4f5f0;
+  --mag-fg-muted: #a9ab9f;
+  --mag-fg-subtle: #6d7066;
+  --mag-border: rgba(255, 255, 255, 0.065);
+  --mag-border-strong: rgba(212, 232, 160, 0.12);
+  --mag-surface: rgba(255, 255, 255, 0.035);
+  --mag-surface-elevated: rgba(255, 255, 255, 0.055);
+  /* Bright chartreuse → deep olive (luxury contrast on black) */
+  --mag-accent-from: #d4e877;
+  --mag-accent-to: #3d5a1f;
+  --mag-bg-gradient: radial-gradient(ellipse 120% 88% at 50% -42%, rgba(190, 242, 100, 0.1), transparent 56%),
+    radial-gradient(ellipse 58% 42% at 100% 12%, rgba(45, 74, 28, 0.18), transparent 50%),
+    linear-gradient(180deg, #070807 0%, #0a0d08 44%, #070807 100%);
+  --mag-success: #86efac;
   --mag-danger: #f87171;
 
-  /* Legacy aliases → new palette */
+  /* Legacy aliases → accent family */
   --mag-purple: var(--mag-accent-to);
   --mag-cyan: var(--mag-accent-from);
   --mag-muted: var(--mag-fg-muted);
@@ -211,13 +212,14 @@
 
   .mag-btn-primary {
     background: linear-gradient(135deg, var(--mag-accent-from), var(--mag-accent-to));
-    color: #fff;
+    color: #fafdf5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
     transition: filter 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset;
   }
   .mag-btn-primary:hover {
-    filter: brightness(1.07);
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 12px 40px rgba(99, 102, 241, 0.22);
+    filter: brightness(1.06);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset, 0 14px 44px rgba(163, 230, 53, 0.2);
   }
 
   .mag-card {
@@ -247,7 +249,7 @@
   }
 
   .mag-star-rating {
-    color: #c4b5fd;
+    color: #c5d97a;
   }
 
   .mag-gradient-fill {
@@ -255,12 +257,8 @@
   }
 
   .mag-gradient-fill-soft {
-    background: linear-gradient(
-      135deg,
-      rgba(99, 102, 241, 0.22),
-      rgba(124, 58, 237, 0.22)
-    );
-    border: 1px solid rgba(99, 102, 241, 0.35);
+    background: linear-gradient(135deg, rgba(190, 242, 100, 0.16), rgba(61, 90, 31, 0.28));
+    border: 1px solid rgba(163, 230, 53, 0.28);
   }
 }
 
@@ -279,11 +277,11 @@
 }
 
 .mag-blob-a {
-  background: rgba(99, 102, 241, 0.12);
+  background: rgba(190, 242, 100, 0.085);
 }
 
 .mag-blob-b {
-  background: rgba(124, 58, 237, 0.09);
+  background: rgba(45, 74, 28, 0.14);
 }
 
 /* ===== Clerk Dark Mode Overrides ===== */
@@ -332,15 +330,18 @@
   color: inherit !important;
 }
 
-/* Keep primary buttons black text on white bg */
+/* Primary — lime gradient (matches marketing CTAs) */
 .cl-formButtonPrimary,
 .cl-formButtonPrimary * {
-  color: #000000 !important;
-  background-color: #ffffff !important;
+  color: #0c0f08 !important;
+  background: linear-gradient(135deg, #d4e877, #4a6b28) !important;
+  border: none !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset !important;
 }
 
 .cl-formButtonPrimary:hover {
-  background-color: #e5e5e5 !important;
+  filter: brightness(1.06) !important;
+  background: linear-gradient(135deg, #dce88a, #558b2f) !important;
 }
 
 /* Input fields */

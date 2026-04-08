@@ -20,12 +20,12 @@ export function FeatureCard({ title, description, icon, index }: { title: string
             }}
             whileHover={{
                 y: -6,
-                borderColor: "rgba(99,102,241,0.45)",
-                boxShadow: "0 20px 40px rgba(99,102,241,0.12)",
+                borderColor: "rgba(163,230,53,0.38)",
+                boxShadow: "0 20px 40px rgba(163,230,53,0.1)",
             }}
         >
             {/* Hover gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-br from-lime-400/[0.07] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
             {/* Grid pattern */}
             <div className="absolute inset-0 z-0 opacity-[0.03] overflow-hidden transition-opacity duration-700 group-hover:opacity-[0.06]">
@@ -40,7 +40,7 @@ export function FeatureCard({ title, description, icon, index }: { title: string
             </div>
 
             <div className="relative z-10">
-                <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-xl text-white transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.22)]"
+                <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-xl text-white transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(163,230,53,0.18)]"
                     style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.10)" }}>
                     {icon}
                 </div>
