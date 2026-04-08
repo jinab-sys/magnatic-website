@@ -26,8 +26,9 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Magnatic | AI-Powered Marketing",
-  description: "Magnetic Ads, Made by AI",
+  title: "Magnatic | AI Models, Influencers & Product Ads",
+  description:
+    "Premium product ads with AI models and influencers—no one on camera. We manage creator Instagram accounts, shoot and edit your ads end-to-end, and deliver finished spots. Join the waitlist.",
   icons: {
     icon: "/icon-white.svg",
   }

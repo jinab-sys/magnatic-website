@@ -10,7 +10,7 @@ function AvatarGridCard() {
     return (
         <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>
             <p className="mb-6 font-space-mono text-[10px] uppercase tracking-[0.14em] text-white/65 opacity-70 sm:text-[11px]">
-                Avatar Studio — Ayla · Maaya · Ayzad · Rayan
+                Instagram — Ayla · Maaya · Ayzad · Rayan
             </p>
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
                 {showcase.map((inf) => (
@@ -43,39 +43,45 @@ function AvatarGridCard() {
     )
 }
 
-function PlatformCard() {
-    const platforms = [
-        { name: "TikTok",    color: "#69C9D0", bg: "rgba(105,201,208,0.08)", border: "rgba(105,201,208,0.25)" },
-        { name: "Instagram", color: "#E1306C", bg: "rgba(225,48,108,0.08)",  border: "rgba(225,48,108,0.25)"  },
-        { name: "YouTube",   color: "#FF4444", bg: "rgba(255,68,68,0.08)",   border: "rgba(255,68,68,0.25)"   },
-        { name: "Meta",      color: "#1877F2", bg: "rgba(24,119,242,0.08)",  border: "rgba(24,119,242,0.25)"  },
-        { name: "LinkedIn",  color: "#0A66C2", bg: "rgba(10,102,194,0.08)",  border: "rgba(10,102,194,0.25)"  },
-        { name: "CTV",       color: "#a3d636", bg: "rgba(163,230,53,0.08)", border: "rgba(163,230,53,0.22)" },
-    ]
-    const formats = [
-        { ratio: "9:16 · Vertical",   platforms: "TikTok, Reels",     status: "✓ READY",     statusColor: "#4d7c0f" },
-        { ratio: "16:9 · Landscape",  platforms: "YouTube, CTV",      status: "✓ READY",     statusColor: "#4d7c0f" },
-        { ratio: "1:1 · Square",      platforms: "Instagram, Meta",   status: "⟳ RENDERING", statusColor: "#65a30d" },
+function ProductAdStepsCard() {
+    const steps = [
+        {
+            n: "1",
+            title: "Give us your product",
+            body: "Send what you want featured—we’ll build the ad around it.",
+        },
+        {
+            n: "2",
+            title: "Choose your AI model",
+            body: "Pick from our roster or request a custom model tailored to your brand (custom work may cost extra).",
+        },
+        {
+            n: "3",
+            title: "Receive your finished ad",
+            body: "Edited to your brief—ready to promote, with no one from your team on camera.",
+        },
     ]
     return (
-        <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>
-            <p className="font-space-mono text-[10px] tracking-[0.14em] uppercase text-white/65 mb-6 opacity-70">Auto-Format &amp; Publish</p>
-            <div className="flex flex-wrap gap-2 mb-6">
-                {platforms.map((p) => (
-                    <span key={p.name} className="font-dm-sans text-xs font-medium px-3 py-1.5 rounded-full"
-                        style={{ color: p.color, background: p.bg, border: `1px solid ${p.border}` }}>
-                        {p.name}
-                    </span>
-                ))}
-            </div>
-            <div className="flex flex-col gap-2.5">
-                {formats.map((f) => (
-                    <div key={f.ratio} className="flex items-center justify-between px-3.5 py-2.5 rounded-xl" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(0,0,0,0.2)" }}>
+        <div
+            className="rounded-2xl p-6 sm:p-8"
+            style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}
+        >
+            <p className="mb-6 font-space-mono text-[10px] uppercase tracking-[0.14em] text-white/65 opacity-70">
+                Product ad creation
+            </p>
+            <div className="flex flex-col gap-4">
+                {steps.map((s) => (
+                    <div
+                        key={s.n}
+                        className="flex gap-4 rounded-xl border border-white/10 bg-black/20 px-4 py-3 sm:px-5 sm:py-4"
+                    >
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg font-space-mono text-xs font-bold text-white mag-gradient-fill">
+                            {s.n}
+                        </span>
                         <div>
-                            <p className="font-dm-sans text-white text-xs font-medium">{f.ratio}</p>
-                            <p className="font-dm-sans text-white/65 text-[11px]">{f.platforms}</p>
+                            <p className="font-syne text-sm font-semibold text-white sm:text-base">{s.title}</p>
+                            <p className="mt-1 font-dm-sans text-[13px] leading-relaxed text-white/65">{s.body}</p>
                         </div>
-                        <span className="font-space-mono text-[10px]" style={{ color: f.statusColor }}>{f.status}</span>
                     </div>
                 ))}
             </div>
@@ -87,15 +93,15 @@ function PlatformCard() {
 
 const rows = [
     {
-        title: "AI Influencer Videos",
-        text: "Start from our flagship personas — Ayla, Maaya, Ayzad, and Rayan — each with a dedicated look from our library and a live Instagram profile, or bring your own brand face. We produce UGC-style content for TikTok, Reels, and Shorts.",
+        title: "AI models & influencers",
+        text: "We run a roster of AI models, influencers, and content creators—and we manage and grow their Instagram accounts. Brands tap that presence for premium promotional content without booking traditional talent or shipping giant PR kits.",
         visual: <AvatarGridCard />,
         reversed: false,
     },
     {
-        title: "Publish Everywhere, Instantly",
-        text: "Export once, run everywhere. Magnatic auto-formats your videos for Meta, TikTok, YouTube, LinkedIn, and CTV — correct specs, captions, and aspect ratios every time.",
-        visual: <PlatformCard />,
+        title: "Product ad creation",
+        text: "Give us your product, choose any of our AI models (or commission a custom one), and receive a finished ad promoting it—edited based on your needs. No pitching influencers, no heavy branding retainers: one straightforward pipeline from product to polished spot.",
+        visual: <ProductAdStepsCard />,
         reversed: true,
     },
 ]
@@ -106,10 +112,13 @@ export function HowItWorks() {
             <div className="max-w-7xl mx-auto px-6">
 
                 <div className="text-center mb-16 sm:mb-24">
-                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase mag-eyebrow mb-4">How It Works</p>
+                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase mag-eyebrow mb-4">At a glance</p>
                     <h2 className="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight">
-                        From Idea to Live Ad in Minutes
+                        From product to polished ad
                     </h2>
+                    <p className="mx-auto mt-4 max-w-2xl font-dm-sans text-base text-white/65 sm:text-lg">
+                        Premium ads and promotional content without anyone from your team on camera—end to end, on your timeline.
+                    </p>
                 </div>
 
                 <div className="flex flex-col gap-20 sm:gap-28">

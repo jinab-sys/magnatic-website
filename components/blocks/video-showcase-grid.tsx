@@ -52,13 +52,13 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
         <section className="relative z-20 mx-auto -mt-1 w-full max-w-7xl px-6 pb-14 pt-3 md:pt-4">
             <div className="mb-6 md:mb-8">
                 <p className="mb-3 inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] text-white/70">
-                    AI Influencer Content Feed
+                    Sample work
                 </p>
                 <h2 className="font-syne text-3xl font-bold tracking-tight text-white md:text-5xl">
-                    Viral-style ad concepts generated with AI
+                    AI-led ads &amp; concepts
                 </h2>
                 <p className="mt-3 max-w-2xl font-dm-sans text-sm text-neutral-300 md:text-base">
-                    A curated grid of short-form influencer-style creatives, placed right after the hero so users instantly see output quality.
+                    Examples of the kind of premium, influencer-style spots we produce around real products—no on-camera talent required from your team.
                 </p>
             </div>
 

@@ -2,10 +2,10 @@
 import { motion } from "framer-motion"
 
 const stats = [
-    { num: "2.4M+",  label: "Videos Created"       },
-    { num: "8,700+", label: "Brands Powered"        },
-    { num: "340%",   label: "Avg. Engagement Lift"  },
-    { num: "18 min", label: "Time to First Video"   },
+    { num: "AI", label: "Models, influencers & creators" },
+    { num: "E2E", label: "Concept through edited delivery" },
+    { num: "IG", label: "Creator accounts we manage" },
+    { num: "You", label: "No on-camera talent required" },
 ]
 
 export function StatsSection() {

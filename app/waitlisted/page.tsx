@@ -19,8 +19,8 @@ export default function WaitlistedPage() {
                     <div>
                         <h1 className="text-2xl font-bold text-white mb-2">You&apos;re on the waitlist!</h1>
                         <p className="mag-text-muted text-sm leading-relaxed">
-                            Congratulations! We&apos;ve received your request and you&apos;re now on the Magnatic waitlist.
-                            We&apos;ll reach out to you soon with next steps.
+                            You&apos;re on the list for our premium service—AI-led product ads and managed creator accounts.
+                            We&apos;ll email you when we&apos;re ready with next steps.
                         </p>
                     </div>
 

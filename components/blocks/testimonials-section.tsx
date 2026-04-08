@@ -15,11 +15,11 @@ const testimonials = [
         name: "Aisha R.",  role: "Marketing Director · Lumora Beauty", initials: "AR", grad: "linear-gradient(135deg, #a3e635, #3f6212)",
     },
     {
-        quote: "Finally a tool that just works. URL in, video out. Our whole team uses it every single day.",
+        quote: "We shipped our product, picked a creator from their roster, and got a finished ad—no shoot, no one from our side on camera.",
         name: "Tom H.",    role: "Founder · Driftly",              initials: "TH", grad: "linear-gradient(135deg, #84cc16, #365314)",
     },
     {
-        quote: "The multi-platform export alone is worth every penny. No more manual resizing at 2am.",
+        quote: "Finally an alternative to cold-DMing influencers and sending massive PR boxes. Magnatic feels like a real production partner.",
         name: "Nina C.",   role: "Social Media Lead · UrbanKicks", initials: "NC", grad: "linear-gradient(135deg, #bef264, #65a30d)",
     },
     {

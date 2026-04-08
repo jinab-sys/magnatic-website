@@ -14,7 +14,7 @@ export function RegisterSection() {
                         Request access
                     </h2>
                     <p className="mx-auto mt-3 max-w-md font-dm-sans text-sm text-white/65">
-                        Join the waitlist—share a few details and we&apos;ll get back to you.
+                        We&apos;re opening registration for our waitlist. Sign up to be notified when spots open for our premium service.
                     </p>
                 </div>
                 <RegisterForm embedded />

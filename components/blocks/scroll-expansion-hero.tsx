@@ -32,9 +32,9 @@ function PixelChevron({ className }: { className?: string }) {
 
 export function ScrollExpandHero() {
     const kpis = [
-        { label: "Ads Analyzed", value: "20M+" },
-        { label: "Videos Created", value: "10M+" },
-        { label: "Campaign Spend", value: "$650M+" },
+        { label: "Models, influencers & creators", value: "AI" },
+        { label: "Accounts we run & grow", value: "IG" },
+        { label: "Product shoots, edited for you", value: "Ads" },
     ]
 
     return (
@@ -50,14 +50,14 @@ export function ScrollExpandHero() {
                     className="mx-auto max-w-4xl text-center"
                 >
                     <p className="mx-auto mb-5 inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-1.5 font-space-mono text-[11px] uppercase tracking-[0.2em] text-white/80">
-                        AI Ads That Win
+                        AI models · Influencers · Content
                     </p>
                     <h1 className="font-syne text-4xl font-bold leading-[0.95] tracking-tight text-white md:text-6xl lg:text-8xl">
-                        Turn any product
-                        <span className="block text-white/85">into a winning ad</span>
+                        Premium ads
+                        <span className="block text-white/85">without anyone on camera</span>
                     </h1>
                     <p className="mx-auto mt-5 max-w-2xl font-dm-sans text-base text-white/72 md:text-lg">
-                        Generate influencer-style videos in minutes, launch creative variations, and scale what converts.
+                        We operate AI models and influencers, manage their Instagram presence, and produce edited product ads for brands—no talent on set, no scheduling delays.
                     </p>
                 </motion.div>
 

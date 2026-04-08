@@ -40,10 +40,10 @@ export function AvatarCarousel() {
                     viewport={{ once: true }}
                     className="mb-12 text-center"
                 >
-                    <p className="mb-4 font-space-mono text-[11px] uppercase tracking-[0.15em] mag-eyebrow">AI Influencers</p>
-                    <h2 className="mb-4 font-syne text-3xl font-bold tracking-tight text-white sm:text-5xl">Meet Your AI Influencers</h2>
+                    <p className="mb-4 font-space-mono text-[11px] uppercase tracking-[0.15em] mag-eyebrow">Our roster</p>
+                    <h2 className="mb-4 font-syne text-3xl font-bold tracking-tight text-white sm:text-5xl">Meet the AI creators</h2>
                     <p className="font-dm-sans text-lg text-white/65">
-                        {INFLUENCER_COUNT} flagship personas (Ayla, Maaya, Ayzad, Rayan) — open a card to view their Instagram.
+                        {INFLUENCER_COUNT} flagship personas we showcase (Ayla, Maaya, Ayzad, Rayan)—each with a live Instagram presence we help run. Open a card to view their profiles.
                     </p>
                 </motion.div>
 

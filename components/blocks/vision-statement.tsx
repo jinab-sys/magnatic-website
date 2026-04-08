@@ -25,7 +25,7 @@ export function VisionStatement() {
                 <div className="mag-gradient-fill w-16 h-1 rounded-full mx-auto mb-8" />
 
                 <p className="font-syne font-bold text-2xl md:text-3xl text-white leading-relaxed">
-                    We deploy AI influencers, intelligent workflows, and a dedicated human team to craft content that converts. Your brand deserves more than templates — it deserves{" "}
+                    Magnatic runs AI models, influencers, and creators—and the Instagram accounts behind them—so brands can ship premium ads without anyone on camera. Skip the talent hunt and the delays: your product, your look,{" "}
                     <span className="mag-text-gradient">
                         Magnatic.
                     </span>

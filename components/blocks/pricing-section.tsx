@@ -45,7 +45,9 @@ export function PricingSection() {
                     <h2 className="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight mb-3">
                         Simple, Transparent Pricing
                     </h2>
-                    <p className="font-dm-sans text-white/65 text-lg">Start free. Scale as you grow. No hidden fees.</p>
+                    <p className="font-dm-sans text-white/65 text-lg">
+                        We onboard brands through the waitlist—final packages depend on product scope, model choice, and custom work.
+                    </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">

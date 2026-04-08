@@ -86,7 +86,7 @@ export default async function Home() {
                                     MAGNATIC
                                 </p>
                                 <p className="font-dm-sans text-white/60 text-sm leading-relaxed max-w-[200px]">
-                                    AI video creation for the next generation of brands.
+                                    AI models and influencers for premium product ads—no one on camera, end-to-end delivery.
                                 </p>
                             </div>
 

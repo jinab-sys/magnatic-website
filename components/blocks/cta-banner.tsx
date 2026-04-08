@@ -12,20 +12,19 @@ export function CtaBanner() {
                     Ready to Start?
                 </p>
                 <h2 className="font-syne font-bold text-3xl sm:text-5xl md:text-[56px] text-white leading-tight mb-5 tracking-tight">
-                    Your competitors are already<br />
+                    Ready for ads that don&apos;t need<br />
                     <span className="mag-text-gradient">
-                        using AI.
-                    </span>{" "}Are you?
+                        a film crew?
+                    </span>
                 </h2>
                 <p className="font-dm-sans text-white/65 text-lg sm:text-xl mb-10">
-                    Join 8,700+ brands creating scroll-stopping content with Magnatic.
+                    Join the waitlist for our premium service—product ads with AI talent, edited end-to-end.
                 </p>
 
-                {/* ⚠️ DO NOT MODIFY: triggers Supabase registration flow */}
                 <CtaGlowButton />
 
                 <p className="font-dm-sans text-white/65 text-sm mt-5 opacity-60">
-                    No credit card required · Cancel anytime · First video in 18 minutes
+                    No pitching influencers · No heavy PR packages · Waitlist registration on the site
                 </p>
             </div>
         </section>
