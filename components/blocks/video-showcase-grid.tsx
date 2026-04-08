@@ -12,7 +12,7 @@ type VideoShowcaseGridProps = {
     videos: VideoItem[]
 }
 
-const noopSubscribe = () => () => {}
+const noopSubscribe = () => () => { }
 
 export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
     const railRef = useRef<HTMLDivElement>(null)
@@ -93,9 +93,9 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
                                 <p className="absolute left-2 top-2 rounded bg-black/65 px-2 py-1 font-space-mono text-[9px] uppercase tracking-wider text-white/80">
                                     AI Generated
                                 </p>
-                                <p className="absolute bottom-2 left-2 right-2 text-[11px] leading-snug text-white/90">
+                                {/* <p className="absolute bottom-2 left-2 right-2 text-[11px] leading-snug text-white/90">
                                     {video.title}
-                                </p>
+                                </p> */}
                                 <button
                                     type="button"
                                     aria-label={isMuted(video.src) ? "Unmute video" : "Mute video"}
