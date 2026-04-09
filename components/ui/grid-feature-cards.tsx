@@ -19,13 +19,18 @@ export function FeatureCard({ title, description, icon, index }: { title: string
                 transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
             }}
             whileHover={{
-                y: -6,
-                borderColor: "rgba(163,230,53,0.38)",
-                boxShadow: "0 20px 40px rgba(163,230,53,0.1)",
+                y: -8,
+                borderColor: "rgba(255,215,0,0.45)",
+                boxShadow: "0 20px 40px rgba(255,215,0,0.08)",
             }}
         >
             {/* Hover gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-lime-400/[0.07] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: "linear-gradient(135deg, rgba(255,215,0,0.05) 0%, transparent 60%)" }} />
+
+            {/* Top accent line */}
+            <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: "#FFD700" }} />
 
             {/* Grid pattern */}
             <div className="absolute inset-0 z-0 opacity-[0.03] overflow-hidden transition-opacity duration-700 group-hover:opacity-[0.06]">
@@ -40,8 +45,18 @@ export function FeatureCard({ title, description, icon, index }: { title: string
             </div>
 
             <div className="relative z-10">
-                <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-xl text-white transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(163,230,53,0.18)]"
-                    style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.10)" }}>
+                <div
+                    className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-xl text-white transition-all duration-500 group-hover:scale-110 group-hover:text-black"
+                    style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.10)" }}
+                    onMouseEnter={e => {
+                        (e.currentTarget as HTMLElement).style.background = "#FFD700"
+                        ;(e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(255,215,0,0.25)"
+                    }}
+                    onMouseLeave={e => {
+                        (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)"
+                        ;(e.currentTarget as HTMLElement).style.boxShadow = "none"
+                    }}
+                >
                     {icon}
                 </div>
                 <h3 className="font-syne font-bold text-xl text-white mb-3 tracking-wide">{title}</h3>

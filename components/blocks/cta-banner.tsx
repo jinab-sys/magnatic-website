@@ -18,7 +18,7 @@ export function CtaBanner() {
                     </span>
                 </h2>
                 <p className="font-dm-sans text-white/65 text-lg sm:text-xl mb-10">
-                    Join the waitlist for our premium service—product ads with AI talent, edited end-to-end.
+                    Contact us to get started with product ads powered by AI talent, edited end-to-end.
                 </p>
 
                 <CtaGlowButton />

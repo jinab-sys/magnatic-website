@@ -7,7 +7,7 @@ const features = [
     {
         title: "AI models & influencers",
         description:
-            "A roster of AI models, influencers, and content creators—each with Instagram accounts we manage and grow on your behalf.",
+            "A roster of AI models, influencers, and content creators—each with social media accounts we manage and grow on your behalf.",
         icon: <Sparkles className="w-5 h-5" />,
     },
     {

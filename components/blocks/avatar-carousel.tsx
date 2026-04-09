@@ -43,7 +43,7 @@ export function AvatarCarousel() {
                     <p className="mb-4 font-space-mono text-[11px] uppercase tracking-[0.15em] mag-eyebrow">Our roster</p>
                     <h2 className="mb-4 font-syne text-3xl font-bold tracking-tight text-white sm:text-5xl">Meet the AI creators</h2>
                     <p className="font-dm-sans text-lg text-white/65">
-                        {INFLUENCER_COUNT} flagship personas we showcase (Ayla, Maaya, Ayzad, Rayan)—each with a live Instagram presence we help run. Open a card to view their profiles.
+                        {INFLUENCER_COUNT} flagship personas — Ayla, Maaya, Ayzad, Rayan — active across Instagram · TikTok · YouTube · X. Open a card to view their profiles.
                     </p>
                 </motion.div>
 
@@ -72,12 +72,12 @@ export function AvatarCarousel() {
                                 }}
                                 whileHover={{
                                     y: -8,
-                                    borderColor: "rgba(163,230,53,0.38)",
-                                    boxShadow: "0 20px 50px rgba(163,230,53,0.12)",
+                                    borderColor: "rgba(255,215,0,0.45)",
+                                    boxShadow: "0 20px 50px rgba(255,215,0,0.1)",
                                 }}
                             >
                                 {inf.imageFile ? (
-                                    <div className="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-full ring-2 ring-white/15">
+                                    <div className="mx-auto mb-4 h-28 w-28 overflow-hidden rounded-full ring-2 ring-white/15">
                                         {/* eslint-disable-next-line @next/next/no-img-element -- local assets via same-origin API */}
                                         <img
                                             src={influencerPortraitUrl(inf.imageFile)}
@@ -87,7 +87,7 @@ export function AvatarCarousel() {
                                     </div>
                                 ) : (
                                     <div
-                                        className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full font-syne text-2xl font-bold text-white"
+                                        className="mx-auto mb-4 flex h-28 w-28 items-center justify-center rounded-full font-syne text-2xl font-bold text-white"
                                         style={{ background: gradientForIndex(i) }}
                                     >
                                         {initialsFromHandle(inf.handle)}
@@ -96,13 +96,13 @@ export function AvatarCarousel() {
                                 <p className="mb-1 font-syne text-base font-bold text-white">{inf.niche}</p>
                                 <p className="mb-3 font-dm-sans text-sm text-white/60">@{inf.handle}</p>
                                 <span
-                                    className="inline-block rounded-full px-3 py-1 font-dm-sans text-xs text-white/65"
+                                    className="inline-block rounded-full px-3 py-1 font-dm-sans text-xs text-black font-medium"
                                     style={{
-                                        background: "rgba(163,230,53,0.09)",
-                                        border: "1px solid rgba(163,230,53,0.22)",
+                                        background: "rgba(255,215,0,0.9)",
+                                        border: "1px solid rgba(255,215,0,0.6)",
                                     }}
                                 >
-                                    View on Instagram
+                                    View Profile
                                 </span>
                             </motion.a>
                         ))}
@@ -115,8 +115,16 @@ export function AvatarCarousel() {
                             key={arrow}
                             type="button"
                             onClick={() => scroll(i === 0 ? -1 : 1)}
-                            className="flex h-12 w-12 items-center justify-center rounded-full text-lg text-white transition-all duration-300 hover:bg-[rgba(163,230,53,0.14)] hover:border-[rgba(163,230,53,0.35)]"
+                            className="flex h-12 w-12 items-center justify-center rounded-full text-lg text-white transition-all duration-300 hover:text-black"
                             style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.1)" }}
+                            onMouseEnter={e => {
+                                (e.currentTarget as HTMLElement).style.background = "#FFD700"
+                                ;(e.currentTarget as HTMLElement).style.borderColor = "#FFD700"
+                            }}
+                            onMouseLeave={e => {
+                                (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.2)"
+                                ;(e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)"
+                            }}
                         >
                             {arrow}
                         </button>

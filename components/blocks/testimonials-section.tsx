@@ -4,27 +4,27 @@ import { motion } from "framer-motion"
 const testimonials = [
     {
         quote: "We went from 0 to 40 video ads in a single afternoon. Our TikTok ROAS tripled in week one.",
-        name: "Sarah L.",   role: "Head of Growth · NovaSkin",    initials: "SL", grad: "linear-gradient(135deg, #bef264, #4d7c0f)",
+        name: "Sarah L.",   role: "Head of Growth · NovaSkin",    initials: "SL", grad: "#FFD700",
     },
     {
         quote: "The AI avatars look insanely real. Engagement went through the roof and our CPM dropped 60%.",
-        name: "James M.",  role: "CMO · PeakFit",                 initials: "JM", grad: "linear-gradient(135deg, #d9f99d, #65a30d)",
+        name: "James M.",  role: "CMO · PeakFit",                 initials: "JM", grad: "#E6C200",
     },
     {
         quote: "Magnatic cut our video production costs by 90%. We ship 3x more creative every month now.",
-        name: "Aisha R.",  role: "Marketing Director · Lumora Beauty", initials: "AR", grad: "linear-gradient(135deg, #a3e635, #3f6212)",
+        name: "Aisha R.",  role: "Marketing Director · Lumora Beauty", initials: "AR", grad: "#FFD700",
     },
     {
         quote: "We shipped our product, picked a creator from their roster, and got a finished ad—no shoot, no one from our side on camera.",
-        name: "Tom H.",    role: "Founder · Driftly",              initials: "TH", grad: "linear-gradient(135deg, #84cc16, #365314)",
+        name: "Tom H.",    role: "Founder · Driftly",              initials: "TH", grad: "#B8A000",
     },
     {
         quote: "Finally an alternative to cold-DMing influencers and sending massive PR boxes. Magnatic feels like a real production partner.",
-        name: "Nina C.",   role: "Social Media Lead · UrbanKicks", initials: "NC", grad: "linear-gradient(135deg, #bef264, #65a30d)",
+        name: "Nina C.",   role: "Social Media Lead · UrbanKicks", initials: "NC", grad: "#FFD700",
     },
     {
         quote: "We tested 50 ad variations in one week, found our winner, and ROAS went up 280%.",
-        name: "Raj P.",    role: "Performance Lead · ZestBox",     initials: "RP", grad: "linear-gradient(135deg, #d4e877, #3d5a1f)",
+        name: "Raj P.",    role: "Performance Lead · ZestBox",     initials: "RP", grad: "#E6C200",
     },
 ]
 
@@ -61,14 +61,14 @@ export function TestimonialsSection() {
                                 backdropFilter: "blur(12px)",
                                 transition: "transform 0.3s ease, border-color 0.3s ease",
                             }}
-                            whileHover={{ y: -4, borderColor: "rgba(163,230,53,0.26)" }}
+                            whileHover={{ y: -4, borderColor: "rgba(255,215,0,0.35)" }}
                         >
                             <div className="mag-star-rating text-base tracking-widest mb-4">★★★★★</div>
                             <p className="font-dm-sans text-white text-[15px] leading-relaxed italic flex-1 mb-6">
                                 &ldquo;{t.quote}&rdquo;
                             </p>
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full flex items-center justify-center font-syne font-bold text-sm text-white flex-shrink-0"
+                                <div className="w-10 h-10 rounded-full flex items-center justify-center font-syne font-bold text-sm text-black flex-shrink-0"
                                     style={{ background: t.grad }}>
                                     {t.initials}
                                 </div>

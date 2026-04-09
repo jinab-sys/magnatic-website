@@ -53,7 +53,7 @@ export function Navbar() {
                                 type="button"
                                 className="mag-btn-primary font-dm-sans font-medium text-sm text-white px-6 py-2.5 rounded-full hover:scale-105"
                             >
-                                Get Access
+                                Contact Us
                             </button>
                         </Link>
                     </div>
@@ -89,7 +89,7 @@ export function Navbar() {
                             type="button"
                             className="mag-btn-primary font-dm-sans font-medium text-sm text-white w-full py-3 rounded-full"
                         >
-                            Get Access
+                            Contact Us
                         </button>
                     </Link>
                 </div>

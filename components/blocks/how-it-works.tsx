@@ -10,7 +10,7 @@ function AvatarGridCard() {
     return (
         <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>
             <p className="mb-6 font-space-mono text-[10px] uppercase tracking-[0.14em] text-white/65 opacity-70 sm:text-[11px]">
-                Instagram — Ayla · Maaya · Ayzad · Rayan
+                Instagram · TikTok · YouTube · X — Ayla · Maaya · Ayzad · Rayan
             </p>
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
                 {showcase.map((inf) => (
@@ -21,7 +21,7 @@ function AvatarGridCard() {
                         rel="noopener noreferrer"
                         className="group flex flex-col items-center gap-2"
                     >
-                        <div className="relative h-14 w-14 overflow-hidden rounded-full ring-1 ring-white/20">
+                        <div className="relative h-20 w-20 overflow-hidden rounded-full ring-1 ring-white/20">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={influencerPortraitUrl(inf.imageFile)}
@@ -179,8 +179,8 @@ export function HowItWorks() {
                                 <h3 className="font-syne font-bold text-2xl sm:text-3xl md:text-4xl text-white mb-5 leading-tight">{row.title}</h3>
                                 <p className="font-dm-sans text-white/65 text-base sm:text-lg leading-relaxed mb-7">{row.text}</p>
                                 <Link href="/#register">
-                                    <button type="button" className="mag-btn-primary font-dm-sans font-medium text-white text-sm px-6 py-3 rounded-full hover:scale-105">
-                                        Try It Free →
+                                    <button type="button" className="mag-btn-primary font-dm-sans font-medium text-black text-sm px-6 py-3 rounded-full hover:scale-105">
+                                        Contact Us →
                                     </button>
                                 </Link>
                             </div>

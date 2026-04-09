@@ -8,7 +8,7 @@ export function CtaGlowButton() {
                 type="button"
                 className="mag-btn-primary font-dm-sans font-medium text-white text-base sm:text-lg px-10 py-4 rounded-full hover:scale-105"
             >
-                Join the waitlist →
+                Contact Us →
             </button>
         </Link>
     )
