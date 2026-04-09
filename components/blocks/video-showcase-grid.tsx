@@ -76,7 +76,7 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
                     {videos.map((video) => (
                         <article
                             key={video.src}
-                            className="group relative w-[220px] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 bg-black/40 sm:w-[250px] md:w-[280px]"
+                            className="group relative w-[260px] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 bg-black/40 sm:w-[300px] md:w-[340px]"
                         >
                             <div className="relative aspect-9/16">
                                 <video

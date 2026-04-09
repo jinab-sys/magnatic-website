@@ -1,6 +1,7 @@
 import { Navbar }              from "@/components/blocks/navbar"
 import { ScrollExpandHero }    from "@/components/blocks/scroll-expansion-hero"
 import { VideoShowcaseGrid }   from "@/components/blocks/video-showcase-grid"
+import { VideoRotatingMarquee } from "@/components/blocks/video-rotating-marquee"
 import { BrandsMarquee }       from "@/components/blocks/brands-marquee"
 import { StatsSection }        from "@/components/blocks/stats-section"
 import { FeaturesSection }     from "@/components/blocks/features-section"
@@ -70,6 +71,7 @@ export default async function Home() {
                 <HowItWorks />
                 <AvatarCarousel />
                 <TestimonialsSection />
+                <VideoRotatingMarquee videos={videos} />
                 <VisionStatement />
                 <CtaBanner />
                 <RegisterSection />
