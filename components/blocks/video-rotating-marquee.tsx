@@ -57,8 +57,9 @@ function cellTransformForAngle(
 
     const d = minArcDistanceToFront(slotAngleDeg + rotationDeg)
     const u = Math.min(d, 100) / 100
-    const scale = 0.34 + 0.66 * Math.cos(u * (Math.PI / 2))
-    const zBoost = (1 - Math.min(d, 68) / 68) * 68
+    // Slightly below 1 at the front so cards stay inside the clipped stage.
+    const scale = 0.3 + 0.62 * Math.cos(u * (Math.PI / 2))
+    const zBoost = (1 - Math.min(d, 68) / 68) * 42
     const opacity = 0.52 + (1 - u) * 0.48
 
     const zIndex = Math.round(40 + 960 * (1 + facing) / 2)
@@ -161,10 +162,10 @@ export function VideoRotatingMarquee({ videos }: VideoRotatingMarqueeProps) {
     const lastTRef = useRef<number | null>(null)
     const videoElsRef = useRef<(HTMLVideoElement | null)[]>([])
     const cellElsRef = useRef<(HTMLDivElement | null)[]>([])
-    const layoutRef = useRef({ radius: 400, cardW: 200 })
+    const layoutRef = useRef({ radius: 360, cardW: 176 })
     const pausedByHoverRef = useRef(false)
 
-    const [layout, setLayout] = useState({ radius: 400, cardW: 200 })
+    const [layout, setLayout] = useState({ radius: 360, cardW: 176 })
     const [reduceMotion, setReduceMotion] = useState(false)
 
     useEffect(() => {
@@ -184,9 +185,10 @@ export function VideoRotatingMarquee({ videos }: VideoRotatingMarqueeProps) {
         if (!el) return
         const ro = new ResizeObserver(() => {
             const w = el.clientWidth
-            const cardW = Math.min(280, Math.max(168, w * 0.245))
+            // Keep cards smaller vs viewport so 3D edges don’t clip under overflow-hidden.
+            const cardW = Math.min(216, Math.max(128, w * 0.175))
             const sin = Math.sin(Math.PI / n)
-            const radius = sin > 0.001 ? (cardW * 0.94) / (2 * sin) + cardW * 0.28 : 400
+            const radius = sin > 0.001 ? (cardW * 0.92) / (2 * sin) + cardW * 0.22 : 360
             setLayout({ radius, cardW })
         })
         ro.observe(el)
@@ -299,7 +301,7 @@ export function VideoRotatingMarquee({ videos }: VideoRotatingMarqueeProps) {
 
     if (!videos.length) return null
 
-    const sceneH = layout.cardW * (16 / 9) + 64
+    const sceneH = layout.cardW * (16 / 9) + 88
 
     return (
         <section
