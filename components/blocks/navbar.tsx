@@ -51,7 +51,7 @@ export function Navbar() {
                         <Link href="/#register">
                             <button
                                 type="button"
-                                className="mag-btn-primary font-dm-sans font-medium text-sm text-white px-6 py-2.5 rounded-full hover:scale-105"
+                                className="mag-btn-primary font-dm-sans font-medium text-sm px-6 py-2.5 rounded-full hover:scale-105"
                             >
                                 Contact Us
                             </button>
@@ -87,7 +87,7 @@ export function Navbar() {
                     <Link href="/#register" onClick={() => setMenuOpen(false)}>
                         <button
                             type="button"
-                            className="mag-btn-primary font-dm-sans font-medium text-sm text-white w-full py-3 rounded-full"
+                            className="mag-btn-primary font-dm-sans font-medium text-sm w-full py-3 rounded-full"
                         >
                             Contact Us
                         </button>

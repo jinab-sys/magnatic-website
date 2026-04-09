@@ -20,17 +20,17 @@ export function FeatureCard({ title, description, icon, index }: { title: string
             }}
             whileHover={{
                 y: -8,
-                borderColor: "rgba(255,215,0,0.45)",
-                boxShadow: "0 20px 40px rgba(255,215,0,0.08)",
+                borderColor: "rgba(179,255,118,0.45)",
+                boxShadow: "0 20px 40px rgba(179,255,118,0.1)",
             }}
         >
             {/* Hover gradient overlay */}
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: "linear-gradient(135deg, rgba(255,215,0,0.05) 0%, transparent 60%)" }} />
+                style={{ background: "linear-gradient(135deg, rgba(179,255,118,0.06) 0%, transparent 60%)" }} />
 
             {/* Top accent line */}
             <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ background: "#FFD700" }} />
+                style={{ background: "var(--mag-accent)" }} />
 
             {/* Grid pattern */}
             <div className="absolute inset-0 z-0 opacity-[0.03] overflow-hidden transition-opacity duration-700 group-hover:opacity-[0.06]">
@@ -49,8 +49,8 @@ export function FeatureCard({ title, description, icon, index }: { title: string
                     className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-xl text-white transition-all duration-500 group-hover:scale-110 group-hover:text-black"
                     style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.10)" }}
                     onMouseEnter={e => {
-                        (e.currentTarget as HTMLElement).style.background = "#FFD700"
-                        ;(e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(255,215,0,0.25)"
+                        (e.currentTarget as HTMLElement).style.background = "var(--mag-accent)"
+                        ;(e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(179,255,118,0.25)"
                     }}
                     onMouseLeave={e => {
                         (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)"

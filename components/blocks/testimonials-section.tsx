@@ -4,27 +4,27 @@ import { motion } from "framer-motion"
 const testimonials = [
     {
         quote: "We went from 0 to 40 video ads in a single afternoon. Our TikTok ROAS tripled in week one.",
-        name: "Sarah L.",   role: "Head of Growth · NovaSkin",    initials: "SL", grad: "#FFD700",
+        name: "Sarah L.",   role: "Head of Growth · NovaSkin",    initials: "SL", grad: "#b3ff76",
     },
     {
         quote: "The AI avatars look insanely real. Engagement went through the roof and our CPM dropped 60%.",
-        name: "James M.",  role: "CMO · PeakFit",                 initials: "JM", grad: "#E6C200",
+        name: "James M.",  role: "CMO · PeakFit",                 initials: "JM", grad: "#9fe860",
     },
     {
         quote: "Magnatic cut our video production costs by 90%. We ship 3x more creative every month now.",
-        name: "Aisha R.",  role: "Marketing Director · Lumora Beauty", initials: "AR", grad: "#FFD700",
+        name: "Aisha R.",  role: "Marketing Director · Lumora Beauty", initials: "AR", grad: "#b3ff76",
     },
     {
         quote: "We shipped our product, picked a creator from their roster, and got a finished ad—no shoot, no one from our side on camera.",
-        name: "Tom H.",    role: "Founder · Driftly",              initials: "TH", grad: "#B8A000",
+        name: "Tom H.",    role: "Founder · Driftly",              initials: "TH", grad: "#8fd65a",
     },
     {
         quote: "Finally an alternative to cold-DMing influencers and sending massive PR boxes. Magnatic feels like a real production partner.",
-        name: "Nina C.",   role: "Social Media Lead · UrbanKicks", initials: "NC", grad: "#FFD700",
+        name: "Nina C.",   role: "Social Media Lead · UrbanKicks", initials: "NC", grad: "#b3ff76",
     },
     {
         quote: "We tested 50 ad variations in one week, found our winner, and ROAS went up 280%.",
-        name: "Raj P.",    role: "Performance Lead · ZestBox",     initials: "RP", grad: "#E6C200",
+        name: "Raj P.",    role: "Performance Lead · ZestBox",     initials: "RP", grad: "#c4f090",
     },
 ]
 
@@ -61,7 +61,7 @@ export function TestimonialsSection() {
                                 backdropFilter: "blur(12px)",
                                 transition: "transform 0.3s ease, border-color 0.3s ease",
                             }}
-                            whileHover={{ y: -4, borderColor: "rgba(255,215,0,0.35)" }}
+                            whileHover={{ y: -4, borderColor: "rgba(179,255,118,0.35)" }}
                         >
                             <div className="mag-star-rating text-base tracking-widest mb-4">★★★★★</div>
                             <p className="font-dm-sans text-white text-[15px] leading-relaxed italic flex-1 mb-6">

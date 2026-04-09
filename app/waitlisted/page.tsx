@@ -33,7 +33,7 @@ export default function WaitlistedPage() {
                     <Link href="/" className="w-full">
                         <button
                             type="button"
-                            className="mag-btn-primary w-full font-dm-sans font-semibold text-sm text-white py-3 rounded-xl hover:scale-[1.02]"
+                            className="mag-btn-primary w-full font-dm-sans font-semibold text-sm py-3 rounded-xl hover:scale-[1.02]"
                         >
                             Back to Home
                         </button>

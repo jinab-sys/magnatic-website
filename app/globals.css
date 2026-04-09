@@ -131,7 +131,7 @@
   }
 
   html.dark ::selection {
-    background-color: rgba(255, 215, 0, 0.32);
+    background-color: rgba(179, 255, 118, 0.32);
     color: var(--mag-fg);
   }
 
@@ -166,21 +166,23 @@
   }
 }
 
-/* ===== Magnatic Design System — yellow on black ===== */
+/* ===== Magnatic Design System — premium lime on black ===== */
 :root {
   --mag-bg-base: #070807;
   --mag-fg: #f4f5f0;
   --mag-fg-muted: #a9ab9f;
   --mag-fg-subtle: #6d7066;
   --mag-border: rgba(255, 255, 255, 0.065);
-  --mag-border-strong: rgba(255, 215, 0, 0.12);
+  --mag-border-strong: rgba(179, 255, 118, 0.14);
   --mag-surface: rgba(255, 255, 255, 0.035);
   --mag-surface-elevated: rgba(255, 255, 255, 0.055);
-  /* Solid yellow accent */
-  --mag-accent-from: #FFD700;
-  --mag-accent-to: #FFD700;
-  --mag-bg-gradient: radial-gradient(ellipse 120% 88% at 50% -42%, rgba(255, 215, 0, 0.06), transparent 56%),
-    radial-gradient(ellipse 58% 42% at 100% 12%, rgba(180, 140, 0, 0.08), transparent 50%),
+  /* Primary accent — chartreuse / lime (no multi-stop marketing gradients) */
+  --mag-accent: #b3ff76;
+  --mag-accent-from: #b3ff76;
+  --mag-accent-to: #b3ff76;
+  --mag-accent-on-accent: #0a0d08;
+  --mag-bg-gradient: radial-gradient(ellipse 120% 88% at 50% -42%, rgba(179, 255, 118, 0.07), transparent 56%),
+    radial-gradient(ellipse 58% 42% at 100% 12%, rgba(100, 140, 55, 0.07), transparent 50%),
     linear-gradient(180deg, #070807 0%, #0a0d08 44%, #070807 100%);
   --mag-success: #86efac;
   --mag-danger: #f87171;
@@ -204,18 +206,18 @@
   .no-scrollbar::-webkit-scrollbar { display: none; }
 
   .mag-text-gradient {
-    color: #FFD700;
+    color: var(--mag-accent);
   }
 
   .mag-btn-primary {
-    background: #FFD700;
-    color: #000000;
+    background: var(--mag-accent);
+    color: var(--mag-accent-on-accent) !important;
     transition: filter 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.18) inset;
   }
   .mag-btn-primary:hover {
     filter: brightness(1.06);
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset, 0 14px 44px rgba(255, 215, 0, 0.25);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset, 0 14px 44px rgba(179, 255, 118, 0.22);
   }
 
   .mag-card {
@@ -245,16 +247,17 @@
   }
 
   .mag-star-rating {
-    color: #FFD700;
+    color: var(--mag-accent);
   }
 
   .mag-gradient-fill {
-    background: #FFD700;
+    background: var(--mag-accent);
+    color: var(--mag-accent-on-accent);
   }
 
   .mag-gradient-fill-soft {
-    background: rgba(255, 215, 0, 0.1);
-    border: 1px solid rgba(255, 215, 0, 0.28);
+    background: rgba(179, 255, 118, 0.1);
+    border: 1px solid rgba(179, 255, 118, 0.28);
   }
 }
 
@@ -273,11 +276,11 @@
 }
 
 .mag-blob-a {
-  background: rgba(255, 215, 0, 0.07);
+  background: rgba(179, 255, 118, 0.07);
 }
 
 .mag-blob-b {
-  background: rgba(180, 140, 0, 0.1);
+  background: rgba(120, 160, 70, 0.1);
 }
 
 /* ===== Clerk Dark Mode Overrides ===== */
@@ -324,18 +327,18 @@
   color: inherit !important;
 }
 
-/* Primary — solid yellow */
+/* Primary — lime accent */
 .cl-formButtonPrimary,
 .cl-formButtonPrimary * {
-  color: #000000 !important;
-  background: #FFD700 !important;
+  color: #0a0d08 !important;
+  background: #b3ff76 !important;
   border: none !important;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.18) inset !important;
 }
 
 .cl-formButtonPrimary:hover {
   filter: brightness(1.06) !important;
-  background: #FFD700 !important;
+  background: #b3ff76 !important;
 }
 
 /* Input fields */

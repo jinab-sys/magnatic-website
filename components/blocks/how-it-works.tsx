@@ -1,151 +1,84 @@
 "use client"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { influencerPortraitUrl, PUBLIC_INFLUENCERS } from "@/lib/influencers"
 
-/* ── Visual mockups ─────────────────────────────────────────── */
+const problems = [
+    "Camera shy",
+    "Don't have time to edit",
+    "Tired of paying hefty amounts to influencers",
+    "Don't know how to work with AI influencers",
+]
 
-function AvatarGridCard() {
-    const showcase = PUBLIC_INFLUENCERS
-    return (
-        <div className="rounded-2xl p-6 sm:p-8" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}>
-            <p className="mb-6 font-space-mono text-[10px] uppercase tracking-[0.14em] text-white/65 opacity-70 sm:text-[11px]">
-                Instagram · TikTok · YouTube · X — Ayla · Maaya · Ayzad · Rayan
-            </p>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
-                {showcase.map((inf) => (
-                    <a
-                        key={inf.handle}
-                        href={inf.instagramUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex flex-col items-center gap-2"
-                    >
-                        <div className="relative h-20 w-20 overflow-hidden rounded-full ring-1 ring-white/20">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                                src={influencerPortraitUrl(inf.imageFile)}
-                                alt=""
-                                className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-                            />
-                            <span className="absolute -top-1 -right-1 rounded bg-[color:var(--mag-accent-to)] px-1 py-0.5 font-space-mono text-[6px] tracking-wider text-white">
-                                LIVE
-                            </span>
-                        </div>
-                        <span className="text-center font-syne text-[11px] font-semibold text-white">{inf.niche}</span>
-                        <span className="text-center font-dm-sans text-[10px] text-white/65 underline-offset-2 group-hover:text-white group-hover:underline sm:text-[11px]">
-                            @{inf.handle}
-                        </span>
-                    </a>
-                ))}
-            </div>
-        </div>
-    )
-}
-
-function ProductAdStepsCard() {
-    const steps = [
-        {
-            n: "1",
-            title: "Give us your product",
-            body: "Send what you want featured—we’ll build the ad around it.",
-        },
-        {
-            n: "2",
-            title: "Choose your AI model",
-            body: "Pick from our roster or request a custom model tailored to your brand (custom work may cost extra).",
-        },
-        {
-            n: "3",
-            title: "Receive your finished ad",
-            body: "Edited to your brief—ready to promote, with no one from your team on camera.",
-        },
-    ]
-    return (
-        <div
-            className="rounded-2xl p-6 sm:p-8"
-            style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}
-        >
-            <p className="mb-6 font-space-mono text-[10px] uppercase tracking-[0.14em] text-white/65 opacity-70">
-                Product ad creation
-            </p>
-            <div className="flex flex-col gap-4">
-                {steps.map((s) => (
-                    <div
-                        key={s.n}
-                        className="flex gap-4 rounded-xl border border-white/10 bg-black/20 px-4 py-3 sm:px-5 sm:py-4"
-                    >
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg font-space-mono text-xs font-bold text-white mag-gradient-fill">
-                            {s.n}
-                        </span>
-                        <div>
-                            <p className="font-syne text-sm font-semibold text-white sm:text-base">{s.title}</p>
-                            <p className="mt-1 font-dm-sans text-[13px] leading-relaxed text-white/65">{s.body}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
-}
-
-function SocialCalendarCard() {
-    const days = [
-        { d: "Mon", label: "Idea", tone: "bg-white/[0.07]" },
-        { d: "Tue", label: "Create", tone: "mag-gradient-fill" },
-        { d: "Wed", label: "Review", tone: "bg-white/[0.07]" },
-        { d: "Thu", label: "Publish", tone: "bg-white/[0.07]" },
-    ]
-    return (
-        <div
-            className="rounded-2xl p-6 sm:p-8"
-            style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}
-        >
-            <p className="mb-6 font-space-mono text-[10px] uppercase tracking-[0.14em] text-white/65 opacity-70">
-                Social calendar
-            </p>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-2">
-                {days.map((x) => (
-                    <div
-                        key={x.d}
-                        className="flex flex-col rounded-xl border border-white/10 bg-black/25 px-3 py-3"
-                    >
-                        <p className="font-space-mono text-[9px] uppercase tracking-wider text-white/45">{x.d}</p>
-                        <div
-                            className={`mt-2 flex min-h-[40px] items-center justify-center rounded-lg px-2 py-2 text-center font-dm-sans text-[11px] font-medium text-white ${x.tone}`}
-                        >
-                            {x.label}
-                        </div>
-                    </div>
-                ))}
-            </div>
-            <p className="mt-5 font-dm-sans text-[11px] leading-relaxed text-white/55">
-                From brainstorm to scheduled posts—we handle the loop so you don&apos;t have to.
-            </p>
-        </div>
-    )
-}
-
-/* ── Section rows ──────────────────────────────────────────── */
-
-const rows = [
+const steps = [
     {
-        title: "AI models & influencers",
-        text: "We run a roster of AI models, influencers, and content creators—and we manage and grow their Instagram accounts. Brands tap that presence for premium promotional content without booking traditional talent or shipping giant PR kits.",
-        visual: <AvatarGridCard />,
-        reversed: false,
+        n: "01",
+        title: "Input your URL",
+        body: "Drop your website link and our AI learns your brand in minutes.",
+        preview: (
+            <div className="rounded-2xl border border-white/10 bg-black/35 p-4">
+                <div className="mb-3 flex items-center gap-2">
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/30" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[rgba(179,255,118,0.75)]" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/30" />
+                </div>
+                <div className="rounded-xl border border-[rgba(179,255,118,0.5)] bg-black/60 px-4 py-3 font-dm-sans text-sm text-white/80">
+                    www.yourbrand.com
+                </div>
+                <div className="mt-3 grid grid-cols-5 gap-2">
+                    {Array.from({ length: 5 }).map((_, idx) => (
+                        <div key={idx} className="h-8 rounded-md border border-white/10 bg-white/5" />
+                    ))}
+                </div>
+            </div>
+        ),
     },
     {
-        title: "Product ad creation",
-        text: "Give us your product, choose any of our AI models (or commission a custom one), and receive a finished ad promoting it—edited based on your needs. No pitching influencers, no heavy branding retainers: one straightforward pipeline from product to polished spot.",
-        visual: <ProductAdStepsCard />,
-        reversed: true,
+        n: "02",
+        title: "Swipe ideas",
+        body: "Get fresh content directions daily and pick what fits your campaign goals.",
+        preview: (
+            <div className="rounded-2xl border border-white/10 bg-black/35 p-4">
+                <div className="h-40 rounded-xl border border-white/10 bg-white/5 p-3">
+                    <div className="h-4 w-24 rounded-full bg-white/15" />
+                    <div className="mt-3 h-20 rounded-lg border border-white/10 bg-black/25" />
+                </div>
+                <div className="mt-4 flex items-center gap-3">
+                    <div className="rounded-full border border-white/15 px-4 py-1.5 text-xs text-white/70">Skip</div>
+                    <div className="rounded-full border border-[rgba(179,255,118,0.48)] bg-[rgba(179,255,118,0.16)] px-4 py-1.5 text-xs text-[rgba(225,255,204,0.96)]">
+                        Keep
+                    </div>
+                </div>
+            </div>
+        ),
     },
     {
-        title: "Social media calendars",
-        text: "Beyond one-off ads, we can run your social presence on a calendar: ideas, creative production, and posting—managed end to end so content ships on schedule and your team isn’t stuck in spreadsheets.",
-        visual: <SocialCalendarCard />,
-        reversed: false,
+        n: "03",
+        title: "Edit & customize",
+        body: "Change copy, visuals, and direction with simple controls. No design skills needed.",
+        preview: (
+            <div className="rounded-2xl border border-white/10 bg-black/35 p-4">
+                <div className="grid grid-cols-[1.4fr_1fr] gap-3">
+                    <div className="h-32 rounded-xl border border-white/10 bg-white/5" />
+                    <div className="space-y-3">
+                        <div className="h-9 rounded-lg border border-white/10 bg-white/5" />
+                        <div className="h-9 rounded-lg border border-white/10 bg-white/5" />
+                        <div className="h-9 rounded-lg border border-[rgba(179,255,118,0.42)] bg-[rgba(179,255,118,0.14)]" />
+                    </div>
+                </div>
+            </div>
+        ),
+    },
+    {
+        n: "04",
+        title: "Download & publish",
+        body: "Launch more content faster across socials, ads, and outbound campaigns.",
+        preview: (
+            <div className="rounded-2xl border border-white/10 bg-black/35 p-4">
+                <div className="h-12 rounded-xl border border-[rgba(179,255,118,0.45)] bg-[rgba(179,255,118,0.13)]" />
+                <div className="mt-3 h-8 w-3/4 rounded-lg border border-white/10 bg-white/5" />
+                <div className="mt-2 h-8 w-2/3 rounded-lg border border-white/10 bg-white/5" />
+            </div>
+        ),
     },
 ]
 
@@ -153,43 +86,74 @@ export function HowItWorks() {
     return (
         <section id="how-it-works" className="relative w-full z-20 py-20 sm:py-28">
             <div className="max-w-7xl mx-auto px-6">
-
-                <div className="text-center mb-16 sm:mb-24">
-                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase mag-eyebrow mb-4">At a glance</p>
-                    <h2 className="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight">
-                        From product to polished ad
+                <div className="mx-auto mb-16 max-w-4xl rounded-3xl border border-white/10 bg-black/30 p-7 sm:p-10">
+                    <p className="font-space-mono text-[11px] uppercase tracking-[0.15em] text-[rgba(179,255,118,0.82)]">
+                        AI Social Presence
+                    </p>
+                    <h2 className="mt-4 font-syne text-3xl font-bold tracking-tight text-white sm:text-5xl">
+                        You don&apos;t have a social media presence?
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl font-dm-sans text-base text-white/65 sm:text-lg">
-                        Premium ads and optional ongoing social calendars—ideation through publishing—without anyone from your team on camera.
+                    <div className="mt-6 space-y-3">
+                        {problems.map((point, index) => (
+                            <p key={point} className="font-dm-sans text-base text-white/75 sm:text-lg">
+                                <span className="mr-2 text-[rgba(179,255,118,0.94)]">{index + 1}.</span>
+                                {point}
+                            </p>
+                        ))}
+                    </div>
+                    <p className="mt-7 inline-flex rounded-full border border-[rgba(179,255,118,0.46)] bg-[rgba(179,255,118,0.13)] px-5 py-2 font-syne text-sm font-semibold tracking-wide text-[rgba(225,255,204,0.96)]">
+                        WE GOT YOU !!
                     </p>
                 </div>
 
-                <div className="flex flex-col gap-20 sm:gap-28">
-                    {rows.map((row) => (
-                        <motion.div
-                            key={row.title}
-                            initial={{ opacity: 0, y: 32 }}
+                <div className="text-center mb-14 sm:mb-20">
+                    <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase text-[rgba(179,255,118,0.82)] mb-4">
+                        How It Works
+                    </p>
+                    <h3 className="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight">
+                        Build content in 4 steps
+                    </h3>
+                    <p className="mx-auto mt-4 max-w-2xl font-dm-sans text-base text-white/65 sm:text-lg">
+                        Inspired by the same simple workflow style: fast setup, fast output, premium results.
+                    </p>
+                </div>
+
+                <div className="relative mx-auto max-w-5xl space-y-10">
+                    <div className="absolute left-[26px] top-2 hidden h-[calc(100%-1rem)] w-px bg-[rgba(179,255,118,0.45)] sm:block" />
+                    {steps.map((step) => (
+                        <motion.article
+                            key={step.n}
+                            initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, ease: "easeOut" }}
+                            transition={{ duration: 0.55, ease: "easeOut" }}
                             viewport={{ once: true, margin: "-80px" }}
-                            className={`grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center ${row.reversed ? "md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1" : ""}`}
+                            className="grid grid-cols-1 items-start gap-6 sm:grid-cols-[auto_1fr]"
                         >
-                            {/* Text */}
-                            <div>
-                                <h3 className="font-syne font-bold text-2xl sm:text-3xl md:text-4xl text-white mb-5 leading-tight">{row.title}</h3>
-                                <p className="font-dm-sans text-white/65 text-base sm:text-lg leading-relaxed mb-7">{row.text}</p>
-                                <Link href="/#register">
-                                    <button type="button" className="mag-btn-primary font-dm-sans font-medium text-black text-sm px-6 py-3 rounded-full hover:scale-105">
-                                        Contact Us →
-                                    </button>
-                                </Link>
+                            <div className="flex items-center gap-4 sm:gap-5">
+                                <div className="z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[rgba(179,255,118,0.5)] bg-black font-space-mono text-sm font-bold text-[rgba(225,255,204,0.96)]">
+                                    {step.n}
+                                </div>
                             </div>
-                            {/* Visual */}
-                            <div>{row.visual}</div>
-                        </motion.div>
+                            <div className="rounded-2xl border border-white/10 bg-black/30 p-5 sm:p-6">
+                                <div className="grid grid-cols-1 gap-5 md:grid-cols-[1.1fr_1fr] md:items-center">
+                                    <div>
+                                        <h4 className="font-syne text-2xl font-bold text-white">{step.title}</h4>
+                                        <p className="mt-2 font-dm-sans text-white/65">{step.body}</p>
+                                    </div>
+                                    <div>{step.preview}</div>
+                                </div>
+                            </div>
+                        </motion.article>
                     ))}
                 </div>
 
+                <div className="mt-14 flex justify-center">
+                    <Link href="/#register">
+                        <button type="button" className="mag-btn-primary px-7 py-3 font-dm-sans text-sm font-semibold rounded-full hover:scale-[1.02]">
+                            Start your content engine
+                        </button>
+                    </Link>
+                </div>
             </div>
         </section>
     )

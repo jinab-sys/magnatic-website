@@ -6,7 +6,7 @@ export function CtaGlowButton() {
         <Link href="/#register">
             <button
                 type="button"
-                className="mag-btn-primary font-dm-sans font-medium text-white text-base sm:text-lg px-10 py-4 rounded-full hover:scale-105"
+                className="mag-btn-primary font-dm-sans font-medium text-base sm:text-lg px-10 py-4 rounded-full hover:scale-105"
             >
                 Contact Us →
             </button>

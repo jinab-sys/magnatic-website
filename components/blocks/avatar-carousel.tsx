@@ -72,8 +72,8 @@ export function AvatarCarousel() {
                                 }}
                                 whileHover={{
                                     y: -8,
-                                    borderColor: "rgba(255,215,0,0.45)",
-                                    boxShadow: "0 20px 50px rgba(255,215,0,0.1)",
+                                    borderColor: "rgba(179,255,118,0.45)",
+                                    boxShadow: "0 20px 50px rgba(179,255,118,0.1)",
                                 }}
                             >
                                 {inf.imageFile ? (
@@ -98,8 +98,8 @@ export function AvatarCarousel() {
                                 <span
                                     className="inline-block rounded-full px-3 py-1 font-dm-sans text-xs text-black font-medium"
                                     style={{
-                                        background: "rgba(255,215,0,0.9)",
-                                        border: "1px solid rgba(255,215,0,0.6)",
+                                        background: "rgba(179,255,118,0.9)",
+                                        border: "1px solid rgba(179,255,118,0.55)",
                                     }}
                                 >
                                     View Profile
@@ -118,8 +118,8 @@ export function AvatarCarousel() {
                             className="flex h-12 w-12 items-center justify-center rounded-full text-lg text-white transition-all duration-300 hover:text-black"
                             style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.1)" }}
                             onMouseEnter={e => {
-                                (e.currentTarget as HTMLElement).style.background = "#FFD700"
-                                ;(e.currentTarget as HTMLElement).style.borderColor = "#FFD700"
+                                (e.currentTarget as HTMLElement).style.background = "var(--mag-accent)"
+                                ;(e.currentTarget as HTMLElement).style.borderColor = "var(--mag-accent)"
                             }}
                             onMouseLeave={e => {
                                 (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.2)"

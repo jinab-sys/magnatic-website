@@ -12,7 +12,7 @@ export default function DashboardPage() {
                         Thank you for joining Magnatic. We&apos;re onboarding waitlisted brands and building out the full experience around our AI creators and product-ad production. You&apos;ll hear from us as soon as your access is ready.
                     </p>
                     <div className="mt-8 pt-8 border-t border-white/10 flex items-center justify-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
+                        <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "var(--mag-accent)" }} />
                         <p className="text-sm text-neutral-500 uppercase tracking-widest font-semibold mt-1">Dashboard Loading</p>
                     </div>
                 </div>

@@ -117,7 +117,7 @@ export default async function Home() {
                             <div className="flex gap-2">
                                 {socials.map((s) => (
                                     <a key={s.title} href="#" title={s.title}
-                                        className="w-9 h-9 rounded-lg flex items-center justify-center mag-text-muted text-sm font-semibold transition-all duration-300 hover:text-white hover:bg-[rgba(163,230,53,0.12)] hover:border-[rgba(163,230,53,0.28)] border border-white/8 bg-white/6">
+                                        className="w-9 h-9 rounded-lg flex items-center justify-center mag-text-muted text-sm font-semibold transition-all duration-300 hover:text-white hover:bg-[rgba(179,255,118,0.12)] hover:border-[rgba(179,255,118,0.28)] border border-white/8 bg-white/6">
                                         {s.label}
                                     </a>
                                 ))}
