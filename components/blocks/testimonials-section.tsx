@@ -4,27 +4,27 @@ import { motion } from "framer-motion"
 const testimonials = [
     {
         quote: "We went from 0 to 40 video ads in a single afternoon. Our TikTok ROAS tripled in week one.",
-        name: "Sarah L.",   role: "Head of Growth · NovaSkin",    initials: "SL", grad: "#b3ff76",
+        name: "Sarah L.",   role: "Head of Growth · NovaSkin",    initials: "SL",
     },
     {
         quote: "The AI avatars look insanely real. Engagement went through the roof and our CPM dropped 60%.",
-        name: "James M.",  role: "CMO · PeakFit",                 initials: "JM", grad: "#9fe860",
+        name: "James M.",  role: "CMO · PeakFit",                 initials: "JM",
     },
     {
         quote: "Magnatic cut our video production costs by 90%. We ship 3x more creative every month now.",
-        name: "Aisha R.",  role: "Marketing Director · Lumora Beauty", initials: "AR", grad: "#b3ff76",
+        name: "Aisha R.",  role: "Marketing Director · Lumora Beauty", initials: "AR",
     },
     {
         quote: "We shipped our product, picked a creator from their roster, and got a finished ad—no shoot, no one from our side on camera.",
-        name: "Tom H.",    role: "Founder · Driftly",              initials: "TH", grad: "#8fd65a",
+        name: "Tom H.",    role: "Founder · Driftly",              initials: "TH",
     },
     {
         quote: "Finally an alternative to cold-DMing influencers and sending massive PR boxes. Magnatic feels like a real production partner.",
-        name: "Nina C.",   role: "Social Media Lead · UrbanKicks", initials: "NC", grad: "#b3ff76",
+        name: "Nina C.",   role: "Social Media Lead · UrbanKicks", initials: "NC",
     },
     {
         quote: "We tested 50 ad variations in one week, found our winner, and ROAS went up 280%.",
-        name: "Raj P.",    role: "Performance Lead · ZestBox",     initials: "RP", grad: "#c4f090",
+        name: "Raj P.",    role: "Performance Lead · ZestBox",     initials: "RP",
     },
 ]
 
@@ -68,8 +68,10 @@ export function TestimonialsSection() {
                                 &ldquo;{t.quote}&rdquo;
                             </p>
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full flex items-center justify-center font-syne font-bold text-sm text-black flex-shrink-0"
-                                    style={{ background: t.grad }}>
+                                <div
+                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-syne text-sm font-bold text-(--mag-accent-on-accent) ring-1 ring-[rgba(179,255,118,0.35)]"
+                                    style={{ background: "var(--mag-accent)" }}
+                                >
                                     {t.initials}
                                 </div>
                                 <div>
