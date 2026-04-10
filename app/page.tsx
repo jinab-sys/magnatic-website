@@ -1,5 +1,6 @@
-import { Navbar }              from "@/components/blocks/navbar"
-import { ScrollExpandHero }    from "@/components/blocks/scroll-expansion-hero"
+import { Navbar }                from "@/components/blocks/navbar"
+import { ScrollExpandHero }      from "@/components/blocks/scroll-expansion-hero"
+import { SocialPresenceSection } from "@/components/blocks/social-presence-section"
 import { VideoShowcaseGrid }   from "@/components/blocks/video-showcase-grid"
 import { VideoRotatingMarquee } from "@/components/blocks/video-rotating-marquee"
 import { BrandsMarquee }       from "@/components/blocks/brands-marquee"
@@ -64,6 +65,7 @@ export default async function Home() {
 
             <div className="relative w-full">
                 <ScrollExpandHero />
+                <SocialPresenceSection />
                 <VideoShowcaseGrid videos={videos} />
                 <BrandsMarquee />
                 <StatsSection />

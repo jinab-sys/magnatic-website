@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 
-/** Chunky pixel “greater than” for the hero CTA (7×6 grid). */
+/** Chunky pixel "greater than" for the hero CTA (7×6 grid). */
 function PixelChevron({ className }: { className?: string }) {
     const filled = new Set([
         "0,0", "1,0", "2,0",
@@ -46,31 +46,13 @@ export function ScrollExpandHero() {
                 <motion.div
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.55, ease: "easeOut" }}
-                    className="mx-auto max-w-4xl text-center"
-                >
-                    <p className="mx-auto mb-5 inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-1.5 font-space-mono text-[11px] uppercase tracking-[0.2em] text-white/80">
-                        AI Ads That Win
-                    </p>
-                    <h1 className="font-syne text-4xl font-bold leading-[0.95] tracking-tight text-white md:text-6xl lg:text-8xl">
-                        Turn any product
-                        <span className="block text-white/85">into a winning ad</span>
-                    </h1>
-                    <p className="mx-auto mt-5 max-w-2xl font-dm-sans text-base text-white/72 md:text-lg">
-                        Generate influencer-style videos in minutes, launch creative variations, and scale what converts. We can also plan and manage your social media calendars ideas through creation and scheduled posting.
-                    </p>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
-                    className="mx-auto mt-10 flex flex-col items-center gap-3"
+                    className="mx-auto flex flex-col items-center gap-3"
                 >
                     <Link
-                        href="/#register"
+                        href="/register"
                         aria-label="Contact Us"
-                        className="relative inline-flex max-w-full items-stretch overflow-hidden rounded-2xl border border-white/10 bg-[#060607] shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] transition duration-300 hover:border-[rgba(179,255,118,0.32)] hover:shadow-[0_24px_72px_rgba(179,255,118,0.1)]"
+                        className="relative inline-flex max-w-full items-stretch overflow-hidden rounded-2xl border border-white/10 bg-[#060607] shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] transition duration-300 hover:border-[rgba(255,215,0,0.3)] hover:shadow-[0_24px_72px_rgba(255,215,0,0.1)]"
                     >
                         <span
                             className="relative m-1.5 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--mag-accent-from)] to-[color:var(--mag-accent-to)] shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] ring-1 ring-white/10"

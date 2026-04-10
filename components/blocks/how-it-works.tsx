@@ -2,13 +2,6 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 
-const problems = [
-    "Camera shy",
-    "Don't have time to edit",
-    "Tired of paying hefty amounts to influencers",
-    "Don't know how to work with AI influencers",
-]
-
 const steps = [
     {
         n: "01",
@@ -86,26 +79,6 @@ export function HowItWorks() {
     return (
         <section id="how-it-works" className="relative w-full z-20 py-20 sm:py-28">
             <div className="max-w-7xl mx-auto px-6">
-                <div className="mx-auto mb-16 max-w-4xl rounded-3xl border border-white/10 bg-black/30 p-7 sm:p-10">
-                    <p className="font-space-mono text-[11px] uppercase tracking-[0.15em] text-[rgba(179,255,118,0.82)]">
-                        AI Social Presence
-                    </p>
-                    <h2 className="mt-4 font-syne text-3xl font-bold tracking-tight text-white sm:text-5xl">
-                        You don&apos;t have a social media presence?
-                    </h2>
-                    <div className="mt-6 space-y-3">
-                        {problems.map((point, index) => (
-                            <p key={point} className="font-dm-sans text-base text-white/75 sm:text-lg">
-                                <span className="mr-2 text-[rgba(179,255,118,0.94)]">{index + 1}.</span>
-                                {point}
-                            </p>
-                        ))}
-                    </div>
-                    <p className="mt-8 text-center font-syne text-2xl sm:text-3xl font-bold tracking-wide" style={{ color: "var(--mag-accent-from)" }}>
-                        WE GOT YOU !!
-                    </p>
-                </div>
-
                 <div className="text-center mb-14 sm:mb-20">
                     <p className="font-space-mono text-[11px] tracking-[0.15em] uppercase text-[rgba(179,255,118,0.82)] mb-4">
                         How It Works
