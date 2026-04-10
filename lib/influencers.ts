@@ -56,7 +56,7 @@ export const PUBLIC_INFLUENCERS: PublicInfluencer[] = [
         niche: "Rayan",
         handle: "re_verse06",
         instagramUrl: "https://www.instagram.com/re_verse06",
-        imageFile: "Rayan/Gemini_Generated_Image_lojz14lojz14lojz.png",
+        imageFile: "Rayan/Gemini_Generated_Image_lojz14lojz14lojz copy.png",
     },
     {
         niche: "Araiz",
