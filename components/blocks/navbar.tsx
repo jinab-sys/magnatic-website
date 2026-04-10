@@ -2,6 +2,12 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 
+function scrollTo(id: string) {
+    const el = document.getElementById(id)
+    if (!el) return
+    el.scrollIntoView({ behavior: "smooth", block: "start" })
+}
+
 export function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
@@ -13,18 +19,16 @@ export function Navbar() {
     }, [])
 
     const navLinks = [
-        { label: "Features",     href: "#features"      },
-        { label: "How It Works", href: "#how-it-works"  },
-        { label: "Avatars",      href: "#avatars"        },
+        { label: "Features",     id: "features"      },
+        { label: "How It Works", id: "how-it-works"  },
+        { label: "Avatars",      id: "avatars"        },
     ]
 
     return (
         <>
             <nav
                 className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 backdrop-blur-xl ${
-                    scrolled
-                        ? "border-white/15"
-                        : "border-white/8"
+                    scrolled ? "border-white/15" : "border-white/8"
                 }`}
                 style={{ background: scrolled ? "rgba(0,0,0,0.55)" : "rgba(0,0,0,0.25)" }}
             >
@@ -39,16 +43,20 @@ export function Navbar() {
                     <ul className="hidden md:flex items-center gap-8 list-none">
                         {navLinks.map(l => (
                             <li key={l.label}>
-                                <a href={l.href} className="text-white/70 hover:text-white text-sm font-medium transition-colors duration-200 font-dm-sans">
+                                <button
+                                    type="button"
+                                    onClick={() => scrollTo(l.id)}
+                                    className="text-white/70 hover:text-white text-sm font-medium transition-colors duration-200 font-dm-sans bg-transparent border-none cursor-pointer"
+                                >
                                     {l.label}
-                                </a>
+                                </button>
                             </li>
                         ))}
                     </ul>
 
                     {/* Desktop CTA */}
                     <div className="hidden md:flex items-center">
-                        <Link href="/#register">
+                        <Link href="/register">
                             <button
                                 type="button"
                                 className="mag-btn-primary font-dm-sans font-medium text-sm px-6 py-2.5 rounded-full hover:scale-105"
@@ -77,14 +85,17 @@ export function Navbar() {
                     <ul className="list-none flex flex-col gap-5 mb-6">
                         {navLinks.map(l => (
                             <li key={l.label}>
-                                <a href={l.href} onClick={() => setMenuOpen(false)}
-                                    className="text-white/70 hover:text-white text-lg font-medium transition-colors font-dm-sans">
+                                <button
+                                    type="button"
+                                    onClick={() => { scrollTo(l.id); setMenuOpen(false) }}
+                                    className="text-white/70 hover:text-white text-lg font-medium transition-colors font-dm-sans bg-transparent border-none cursor-pointer w-full text-left"
+                                >
                                     {l.label}
-                                </a>
+                                </button>
                             </li>
                         ))}
                     </ul>
-                    <Link href="/#register" onClick={() => setMenuOpen(false)}>
+                    <Link href="/register" onClick={() => setMenuOpen(false)}>
                         <button
                             type="button"
                             className="mag-btn-primary font-dm-sans font-medium text-sm w-full py-3 rounded-full"
