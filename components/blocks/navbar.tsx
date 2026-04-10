@@ -1,6 +1,8 @@
 "use client"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
+import { queueScrollToRegisterAfterLandingOnHome, scrollToRegisterForm } from "@/lib/scroll-to-register"
 
 function scrollTo(id: string) {
     const el = document.getElementById(id)
@@ -9,8 +11,20 @@ function scrollTo(id: string) {
 }
 
 export function Navbar() {
+    const pathname = usePathname()
+    const router = useRouter()
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
+
+    function onContactUs() {
+        setMenuOpen(false)
+        if (pathname === "/") {
+            scrollToRegisterForm()
+            return
+        }
+        queueScrollToRegisterAfterLandingOnHome()
+        router.push("/")
+    }
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 50)
@@ -56,14 +70,13 @@ export function Navbar() {
 
                     {/* Desktop CTA */}
                     <div className="hidden md:flex items-center">
-                        <Link href="/register">
-                            <button
-                                type="button"
-                                className="mag-btn-primary font-dm-sans font-medium text-sm px-6 py-2.5 rounded-full hover:scale-105"
-                            >
-                                Contact Us
-                            </button>
-                        </Link>
+                        <button
+                            type="button"
+                            onClick={onContactUs}
+                            className="mag-btn-primary font-dm-sans font-medium text-sm px-6 py-2.5 rounded-full hover:scale-105"
+                        >
+                            Contact Us
+                        </button>
                     </div>
 
                     {/* Hamburger */}
@@ -95,14 +108,13 @@ export function Navbar() {
                             </li>
                         ))}
                     </ul>
-                    <Link href="/register" onClick={() => setMenuOpen(false)}>
-                        <button
-                            type="button"
-                            className="mag-btn-primary font-dm-sans font-medium text-sm w-full py-3 rounded-full"
-                        >
-                            Contact Us
-                        </button>
-                    </Link>
+                    <button
+                        type="button"
+                        onClick={onContactUs}
+                        className="mag-btn-primary font-dm-sans font-medium text-sm w-full py-3 rounded-full"
+                    >
+                        Contact Us
+                    </button>
                 </div>
             )}
         </>

@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import Link from "next/link"
+import { scrollToRegisterForm } from "@/lib/scroll-to-register"
 
 const steps = [
     {
@@ -121,11 +121,13 @@ export function HowItWorks() {
                 </div>
 
                 <div className="mt-14 flex justify-center">
-                    <Link href="/#register">
-                        <button type="button" className="mag-btn-primary px-7 py-3 font-dm-sans text-sm font-semibold rounded-full hover:scale-[1.02]">
-                            Start your content engine
-                        </button>
-                    </Link>
+                    <button
+                        type="button"
+                        onClick={() => scrollToRegisterForm()}
+                        className="mag-btn-primary px-7 py-3 font-dm-sans text-sm font-semibold rounded-full hover:scale-[1.02]"
+                    >
+                        Start your content engine
+                    </button>
                 </div>
             </div>
         </section>

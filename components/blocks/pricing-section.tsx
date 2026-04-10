@@ -1,4 +1,6 @@
-import Link from "next/link"
+"use client"
+
+import { scrollToRegisterForm } from "@/lib/scroll-to-register"
 
 const tiers = [
     {
@@ -108,11 +110,13 @@ export function PricingSection() {
                             </ul>
 
                             {tier.supabaseFlow ? (
-                                <Link href="/#register">
-                                    <button type="button" className="mag-btn-primary w-full font-dm-sans font-medium py-3 rounded-full text-sm hover:scale-105">
-                                        {tier.cta}
-                                    </button>
-                                </Link>
+                                <button
+                                    type="button"
+                                    onClick={() => scrollToRegisterForm()}
+                                    className="mag-btn-primary w-full font-dm-sans font-medium py-3 rounded-full text-sm hover:scale-105"
+                                >
+                                    {tier.cta}
+                                </button>
                             ) : (
                                 <button className="w-full font-dm-sans font-medium text-white py-3 rounded-full text-sm border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all duration-300">
                                     {tier.cta}

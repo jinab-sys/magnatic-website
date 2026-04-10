@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/blocks/navbar"
 import { ScrollExpandHero } from "@/components/blocks/scroll-expansion-hero"
+import { ScrollToRegisterOnHomeLoad } from "@/components/scroll-to-register-on-home-load"
 import dynamic from "next/dynamic"
 import { readdir } from "node:fs/promises"
 import path from "node:path"
@@ -120,6 +121,7 @@ export default async function Home() {
 
     return (
         <main className="relative min-h-screen overflow-x-hidden">
+            <ScrollToRegisterOnHomeLoad />
             <Navbar />
 
             <div className="relative w-full">

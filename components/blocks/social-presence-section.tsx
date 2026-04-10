@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Link from "next/link"
+import { scrollToRegisterForm } from "@/lib/scroll-to-register"
 
 const painPoints = [
     {
@@ -190,15 +190,14 @@ export function SocialPresenceSection() {
                 <p className="font-dm-sans text-sm max-w-[340px]" style={{ color: "#444" }}>
                     Let us handle the content — you focus on growing your business.
                 </p>
-                <Link href="/#register">
-                    <button
-                        type="button"
-                        className="mt-2 font-dm-sans font-extrabold text-[13px] uppercase tracking-[0.06em] px-9 py-3.5 rounded-full transition-all duration-150 hover:opacity-85 hover:scale-[1.04]"
-                        style={{ background: "var(--mag-accent-from)", color: "#0c0c0c" }}
-                    >
-                        Get Started Today
-                    </button>
-                </Link>
+                <button
+                    type="button"
+                    onClick={() => scrollToRegisterForm()}
+                    className="mt-2 cursor-pointer font-dm-sans font-extrabold text-[13px] uppercase tracking-[0.06em] px-9 py-3.5 rounded-full transition-all duration-150 hover:opacity-85 hover:scale-[1.04]"
+                    style={{ background: "var(--mag-accent-from)", color: "#0c0c0c" }}
+                >
+                    Get Started Today
+                </button>
             </motion.div>
         </section>
     )

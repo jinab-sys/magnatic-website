@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Link from "next/link"
+import { scrollToRegisterForm } from "@/lib/scroll-to-register"
 
 /** Chunky pixel "greater than" for the hero CTA (7×6 grid). */
 function PixelChevron({ className }: { className?: string }) {
@@ -38,24 +38,32 @@ export function ScrollExpandHero() {
     ]
 
     return (
-        <section className="relative w-full overflow-hidden pb-10 pt-28 md:pt-34">
+        <section className="relative w-full overflow-hidden pb-14 pt-28 md:pb-16 md:pt-34">
             <div className="mag-blob mag-blob-a h-[520px] w-[520px]" style={{ left: "-180px", top: "-120px" }} />
             <div className="mag-blob mag-blob-b h-[420px] w-[420px]" style={{ right: "-130px", top: "20px", animationDelay: "3.5s" }} />
 
+            {/* Soft spotlight behind hero content */}
+            <div
+                className="pointer-events-none absolute left-1/2 top-[28%] z-10 h-[min(520px,85vw)] w-[min(900px,120%)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(179,255,118,0.07)_0%,transparent_62%)]"
+                aria-hidden
+            />
+
             <div className="relative z-20 mx-auto w-full max-w-7xl px-6">
+                {/* Primary CTA + microcopy */}
                 <motion.div
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
-                    className="mx-auto flex flex-col items-center gap-3"
+                    className="mx-auto flex max-w-lg flex-col items-center gap-4 text-center"
                 >
-                    <Link
-                        href="/register"
+                    <button
+                        type="button"
                         aria-label="Contact Us"
-                        className="relative inline-flex max-w-full items-stretch overflow-hidden rounded-2xl border border-white/10 bg-[#060607] shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] transition duration-300 hover:border-[rgba(255,215,0,0.3)] hover:shadow-[0_24px_72px_rgba(255,215,0,0.1)]"
+                        onClick={() => scrollToRegisterForm()}
+                        className="group relative inline-flex max-w-full cursor-pointer items-stretch overflow-hidden rounded-2xl border border-white/10 bg-[#060607]/90 text-left shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md transition duration-300 hover:border-[rgba(179,255,118,0.35)] hover:shadow-[0_24px_72px_rgba(179,255,118,0.12)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgba(179,255,118,0.5)]"
                     >
                         <span
-                            className="relative m-1.5 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--mag-accent-from)] to-[color:var(--mag-accent-to)] shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] ring-1 ring-white/10"
+                            className="relative m-1.5 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-(--mag-accent-from) to-(--mag-accent-to) shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-[1.02]"
                             aria-hidden
                         >
                             <PixelChevron className="h-[22px] w-[26px] text-black drop-shadow-sm" />
@@ -65,22 +73,58 @@ export function ScrollExpandHero() {
                                 Contact Us
                             </span>
                         </span>
-                    </Link>
-                    <p className="font-dm-sans text-xs text-white/50">No credit card required · Get in touch</p>
+                    </button>
+                    <p className="max-w-[280px] font-dm-sans text-xs leading-relaxed text-white/50">
+                        No credit card required · Get in touch
+                    </p>
                 </motion.div>
 
+                {/* KPI cards */}
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.25 }}
-                    className="mx-auto mt-8 grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3"
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.55, delay: 0.28, ease: "easeOut" }}
+                    className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-3 sm:gap-3"
                 >
-                    {kpis.map((kpi) => (
-                        <div key={kpi.label} className="rounded-2xl border border-white/12 bg-black/30 px-5 py-4 text-center backdrop-blur-md">
-                            <p className="font-syne text-2xl font-bold text-white md:text-3xl">{kpi.value}</p>
-                            <p className="mt-1 font-space-mono text-[10px] uppercase tracking-[0.18em] text-white/60">{kpi.label}</p>
-                        </div>
+                    {kpis.map((kpi, i) => (
+                        <motion.div
+                            key={kpi.label}
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.45, delay: 0.35 + i * 0.07, ease: "easeOut" }}
+                            className="group relative overflow-hidden rounded-2xl border border-white/12 bg-linear-to-b from-white/7 to-black/25 px-5 py-5 text-center shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-md transition duration-300 hover:border-[rgba(179,255,118,0.22)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.45)] md:py-5"
+                        >
+                            <div
+                                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[rgba(179,255,118,0.35)] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                                aria-hidden
+                            />
+                            <div
+                                className="absolute left-0 top-0 h-full w-[3px] bg-white/10 transition-colors duration-300 group-hover:bg-(--mag-accent-from)"
+                                aria-hidden
+                            />
+                            <p className="font-syne text-2xl font-bold tracking-tight text-white md:text-3xl">{kpi.value}</p>
+                            <p className="mt-2 font-space-mono text-[10px] uppercase leading-snug tracking-[0.18em] text-white/60">
+                                {kpi.label}
+                            </p>
+                        </motion.div>
                     ))}
+                </motion.div>
+
+                {/* Secondary CTA — same destination, calmer treatment */}
+                <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.58, ease: "easeOut" }}
+                    className="mx-auto mt-10 flex flex-col items-center sm:mt-12"
+                >
+                    <button
+                        type="button"
+                        aria-label="Contact Us"
+                        onClick={() => scrollToRegisterForm()}
+                        className="inline-flex cursor-pointer items-center justify-center rounded-full border border-white/18 bg-white/4 px-9 py-3.5 font-space-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-white/90 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-sm transition duration-300 hover:border-[rgba(179,255,118,0.35)] hover:bg-[rgba(179,255,118,0.08)] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgba(179,255,118,0.45)]"
+                    >
+                        Contact Us
+                    </button>
                 </motion.div>
             </div>
         </section>
