@@ -2,39 +2,84 @@
 import { motion } from "framer-motion"
 
 const stats = [
-    { num: "AI", label: "Models, influencers & creators" },
-    { num: "Ads", label: "Product spots, edited end-to-end" },
-    { num: "Cal", label: "Social calendars & posting" },
-    { num: "You", label: "No on-camera talent required" },
+    {
+        value: "300+",
+        label: "Ads Created",
+        detail: "High-converting, influencer-style ad films produced and published",
+    },
+    {
+        value: "100+",
+        label: "Brands & Businesses",
+        detail: "From early-stage startups to established consumer brands",
+    },
+    {
+        value: "1,000+",
+        label: "AI Creator Avatars",
+        detail: "Unique social media personas built, managed, and grown",
+    },
 ]
 
 export function StatsSection() {
     return (
-        <section id="stats" className="relative w-full z-20 py-16 border-t border-white/5">
+        <section id="stats" className="relative w-full z-20 py-20 sm:py-28 border-t border-white/5 overflow-hidden">
+
+            {/* subtle background glow */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255,215,0,0.04), transparent 70%)",
+                }}
+            />
+
             <div className="max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
+
+                {/* eyebrow */}
+                <motion.p
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="font-space-mono text-[11px] tracking-[0.22em] uppercase text-center mb-16 sm:mb-20"
+                    style={{ color: "var(--mag-accent-from)" }}
+                >
+                    By the numbers
+                </motion.p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/8">
                     {stats.map((s, i) => (
                         <motion.div
                             key={s.label}
-                            initial={{ opacity: 0, y: 24 }}
+                            initial={{ opacity: 0, y: 28 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: i * 0.1 }}
+                            transition={{ duration: 0.65, delay: i * 0.12, ease: "easeOut" }}
                             viewport={{ once: true, margin: "-60px" }}
-                            className="text-center px-6 py-10 relative"
+                            className="flex flex-col items-center text-center px-14 py-12 sm:py-4 gap-4"
                         >
-                            {/* Vertical separator */}
-                            {i < stats.length - 1 && (
-                                <div className="hidden md:block absolute top-[20%] right-0 h-[60%] w-px bg-white/8" />
-                            )}
-                            <div className="font-syne font-bold text-4xl sm:text-5xl md:text-[56px] leading-none mb-3 mag-text-gradient">
-                                {s.num}
-                            </div>
-                            <div className="font-dm-sans text-sm text-white/65 font-medium">
+                            {/* big number */}
+                            <span
+                                className="font-syne font-black leading-none tracking-tight"
+                                style={{
+                                    fontSize: "clamp(2.5rem, 4.5vw, 4rem)",
+                                    color: "var(--mag-accent-from)",
+                                    textShadow: "0 0 60px rgba(255,215,0,0.18)",
+                                }}
+                            >
+                                {s.value}
+                            </span>
+
+                            {/* label */}
+                            <span className="font-syne font-bold text-white text-lg sm:text-xl tracking-wide">
                                 {s.label}
-                            </div>
+                            </span>
+
+                            {/* detail */}
+                            <span className="font-dm-sans text-sm text-white/50 leading-relaxed max-w-[220px]">
+                                {s.detail}
+                            </span>
                         </motion.div>
                     ))}
                 </div>
+
             </div>
         </section>
     )

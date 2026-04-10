@@ -1,6 +1,6 @@
 "use client"
 
-import { Sparkles, Package, Clock, VideoOff, Palette, CircleCheck, CalendarDays } from "lucide-react"
+import { Sparkles, Package, Clock, Palette, CircleCheck, CalendarDays } from "lucide-react"
 import { FeatureCard } from "@/components/ui/grid-feature-cards"
 
 const features = [
@@ -23,10 +23,10 @@ const features = [
         icon: <Clock className="w-5 h-5" />,
     },
     {
-        title: "Camera-shy friendly",
+        title: "Social calendars & posting",
         description:
-            "Perfect if you want to promote your product but don’t want to be on camera—no awkward shoots, no waiting on creators.",
-        icon: <VideoOff className="w-5 h-5" />,
+            "We can plan and manage your social media calendars—ideation through creation, plus scheduling and publishing—so your channels stay consistent without your team living in planning tools.",
+        icon: <CalendarDays className="w-5 h-5" />,
     },
     {
         title: "Custom AI models",
@@ -39,12 +39,6 @@ const features = [
         description:
             "Full handling from concept through editing—you get a polished ad ready to run, without chasing influencers or shipping giant PR boxes.",
         icon: <CircleCheck className="w-5 h-5" />,
-    },
-    {
-        title: "Social calendars & posting",
-        description:
-            "We can plan and manage your social media calendars—ideation through creation, plus scheduling and publishing—so your channels stay consistent without your team living in planning tools.",
-        icon: <CalendarDays className="w-5 h-5" />,
     },
 ]
 

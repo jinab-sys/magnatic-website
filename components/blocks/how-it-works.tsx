@@ -101,7 +101,7 @@ export function HowItWorks() {
                             </p>
                         ))}
                     </div>
-                    <p className="mt-7 inline-flex rounded-full border border-[rgba(179,255,118,0.46)] bg-[rgba(179,255,118,0.13)] px-5 py-2 font-syne text-sm font-semibold tracking-wide text-[rgba(225,255,204,0.96)]">
+                    <p className="mt-8 text-center font-syne text-2xl sm:text-3xl font-bold tracking-wide" style={{ color: "var(--mag-accent-from)" }}>
                         WE GOT YOU !!
                     </p>
                 </div>
