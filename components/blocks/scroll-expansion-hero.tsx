@@ -50,34 +50,6 @@ export function ScrollExpandHero() {
 
             <div className="relative z-20 mx-auto w-full max-w-7xl px-6">
                 {/* Primary CTA + microcopy */}
-                <motion.div
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
-                    className="mx-auto flex max-w-lg flex-col items-center gap-4 text-center"
-                >
-                    <button
-                        type="button"
-                        aria-label="Contact Us"
-                        onClick={() => scrollToRegisterForm()}
-                        className="group relative inline-flex max-w-full cursor-pointer items-stretch overflow-hidden rounded-2xl border border-white/10 bg-[#060607]/90 text-left shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md transition duration-300 hover:border-[rgba(179,255,118,0.35)] hover:shadow-[0_24px_72px_rgba(179,255,118,0.12)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgba(179,255,118,0.5)]"
-                    >
-                        <span
-                            className="relative m-1.5 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-(--mag-accent-from) to-(--mag-accent-to) shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-[1.02]"
-                            aria-hidden
-                        >
-                            <PixelChevron className="h-[22px] w-[26px] text-black drop-shadow-sm" />
-                        </span>
-                        <span className="flex min-h-[52px] items-center pr-8 pl-3 sm:pr-10">
-                            <span className="font-space-mono text-[12px] font-medium uppercase tracking-[0.28em] text-white sm:text-[13px]">
-                                Contact Us
-                            </span>
-                        </span>
-                    </button>
-                    <p className="max-w-[280px] font-dm-sans text-xs leading-relaxed text-white/50">
-                        No credit card required · Get in touch
-                    </p>
-                </motion.div>
 
                 {/* KPI cards */}
                 <motion.div
@@ -117,14 +89,34 @@ export function ScrollExpandHero() {
                     transition={{ duration: 0.5, delay: 0.58, ease: "easeOut" }}
                     className="mx-auto mt-10 flex flex-col items-center sm:mt-12"
                 >
-                    <button
-                        type="button"
-                        aria-label="Contact Us"
-                        onClick={() => scrollToRegisterForm()}
-                        className="inline-flex cursor-pointer items-center justify-center rounded-full border border-white/18 bg-white/4 px-9 py-3.5 font-space-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-white/90 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-sm transition duration-300 hover:border-[rgba(179,255,118,0.35)] hover:bg-[rgba(179,255,118,0.08)] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgba(179,255,118,0.45)]"
+                    <motion.div
+                        initial={{ opacity: 0, y: 18 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
+                        className="mx-auto flex max-w-lg flex-col items-center gap-4 text-center"
                     >
-                        Contact Us
-                    </button>
+                        <button
+                            type="button"
+                            aria-label="Contact Us"
+                            onClick={() => scrollToRegisterForm()}
+                            className="group relative inline-flex max-w-full cursor-pointer items-stretch overflow-hidden rounded-2xl border border-white/10 bg-[#060607]/90 text-left shadow-[0_20px_60px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md transition duration-300 hover:border-[rgba(179,255,118,0.35)] hover:shadow-[0_24px_72px_rgba(179,255,118,0.12)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgba(179,255,118,0.5)]"
+                        >
+                            <span
+                                className="relative m-1.5 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-(--mag-accent-from) to-(--mag-accent-to) shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-[1.02]"
+                                aria-hidden
+                            >
+                                <PixelChevron className="h-[22px] w-[26px] text-black drop-shadow-sm" />
+                            </span>
+                            <span className="flex min-h-[52px] items-center pr-8 pl-3 sm:pr-10">
+                                <span className="font-space-mono text-[12px] font-medium uppercase tracking-[0.28em] text-white sm:text-[13px]">
+                                    Contact Us
+                                </span>
+                            </span>
+                        </button>
+                        <p className="max-w-[280px] font-dm-sans text-xs leading-relaxed text-white/50">
+                            No credit card required · Get in touch
+                        </p>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>
