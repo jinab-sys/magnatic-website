@@ -1,19 +1,78 @@
-import { Navbar }                from "@/components/blocks/navbar"
-import { ScrollExpandHero }      from "@/components/blocks/scroll-expansion-hero"
-import { SocialPresenceSection } from "@/components/blocks/social-presence-section"
-import { VideoShowcaseGrid }   from "@/components/blocks/video-showcase-grid"
-import { VideoRotatingMarquee } from "@/components/blocks/video-rotating-marquee"
-import { BrandsMarquee }       from "@/components/blocks/brands-marquee"
-import { StatsSection }        from "@/components/blocks/stats-section"
-import { FeaturesSection }     from "@/components/blocks/features-section"
-import { HowItWorks }          from "@/components/blocks/how-it-works"
-import { AvatarCarousel }      from "@/components/blocks/avatar-carousel"
-import { TestimonialsSection } from "@/components/blocks/testimonials-section"
-import { VisionStatement }     from "@/components/blocks/vision-statement"
-import { CtaBanner }           from "@/components/blocks/cta-banner"
-import { RegisterSection }     from "@/components/blocks/register-section"
-import { readdir }             from "node:fs/promises"
-import path                    from "node:path"
+import { Navbar } from "@/components/blocks/navbar"
+import { ScrollExpandHero } from "@/components/blocks/scroll-expansion-hero"
+import dynamic from "next/dynamic"
+import { readdir } from "node:fs/promises"
+import path from "node:path"
+
+function LazyBlock({ minH }: { minH: string }) {
+    return (
+        <div
+            className={`mx-auto w-full max-w-7xl px-6 ${minH} rounded-2xl bg-white/[0.04] motion-safe:animate-pulse`}
+            aria-hidden
+        />
+    )
+}
+
+const SocialPresenceSection = dynamic(
+    () => import("@/components/blocks/social-presence-section").then((m) => m.SocialPresenceSection),
+    { loading: () => <LazyBlock minH="min-h-[200px]" /> },
+)
+
+
+const VideoShowcaseGrid = dynamic(
+    () => import("@/components/blocks/video-showcase-grid").then((m) => m.VideoShowcaseGrid),
+    { loading: () => <LazyBlock minH="min-h-[340px]" /> },
+)
+
+const BrandsMarquee = dynamic(
+    () => import("@/components/blocks/brands-marquee").then((m) => m.BrandsMarquee),
+    { loading: () => <LazyBlock minH="min-h-[72px]" /> },
+)
+
+const StatsSection = dynamic(
+    () => import("@/components/blocks/stats-section").then((m) => m.StatsSection),
+    { loading: () => <LazyBlock minH="min-h-[200px]" /> },
+)
+
+const FeaturesSection = dynamic(
+    () => import("@/components/blocks/features-section").then((m) => m.FeaturesSection),
+    { loading: () => <LazyBlock minH="min-h-[280px]" /> },
+)
+
+const HowItWorks = dynamic(
+    () => import("@/components/blocks/how-it-works").then((m) => m.HowItWorks),
+    { loading: () => <LazyBlock minH="min-h-[320px]" /> },
+)
+
+const AvatarCarousel = dynamic(
+    () => import("@/components/blocks/avatar-carousel").then((m) => m.AvatarCarousel),
+    { loading: () => <LazyBlock minH="min-h-[380px]" /> },
+)
+
+const TestimonialsSection = dynamic(
+    () => import("@/components/blocks/testimonials-section").then((m) => m.TestimonialsSection),
+    { loading: () => <LazyBlock minH="min-h-[260px]" /> },
+)
+
+const VideoRotatingMarquee = dynamic(
+    () => import("@/components/blocks/video-rotating-marquee").then((m) => m.VideoRotatingMarquee),
+    { loading: () => <LazyBlock minH="min-h-[420px]" /> },
+)
+
+const VisionStatement = dynamic(
+    () => import("@/components/blocks/vision-statement").then((m) => m.VisionStatement),
+    { loading: () => <LazyBlock minH="min-h-[120px]" /> },
+)
+
+const CtaBanner = dynamic(
+    () => import("@/components/blocks/cta-banner").then((m) => m.CtaBanner),
+    { loading: () => <LazyBlock minH="min-h-[140px]" /> },
+)
+
+const RegisterSection = dynamic(
+    () => import("@/components/blocks/register-section").then((m) => m.RegisterSection),
+    { loading: () => <LazyBlock minH="min-h-[200px]" /> },
+)
 
 const footerCols = [
     {
@@ -35,11 +94,11 @@ const footerCols = [
 ]
 
 const socials = [
-    { label: "𝕏",  title: "X / Twitter" },
-    { label: "in", title: "LinkedIn"     },
-    { label: "♪",  title: "TikTok"       },
-    { label: "◎",  title: "Instagram"    },
-    { label: "▶",  title: "YouTube"      },
+    { label: "𝕏", title: "X / Twitter" },
+    { label: "in", title: "LinkedIn" },
+    { label: "♪", title: "TikTok" },
+    { label: "◎", title: "Instagram" },
+    { label: "▶", title: "YouTube" },
 ]
 
 export default async function Home() {

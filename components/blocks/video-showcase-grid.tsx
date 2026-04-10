@@ -2,6 +2,7 @@
 
 import { useRef, useState, useSyncExternalStore } from "react"
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react"
+import { useInViewOnce } from "@/lib/hooks/use-in-view-once"
 
 type VideoItem = {
     src: string
@@ -13,6 +14,62 @@ type VideoShowcaseGridProps = {
 }
 
 const noopSubscribe = () => () => { }
+
+function ShowcaseVideoTile({
+    video,
+    isMuted,
+    onToggleMute,
+}: {
+    video: VideoItem
+    isMuted: boolean
+    onToggleMute: () => void
+}) {
+    const wrapRef = useRef<HTMLDivElement>(null)
+    const inView = useInViewOnce(wrapRef, { rootMargin: "200px 0px" })
+
+    return (
+        <article
+            className="group relative w-[260px] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 bg-black/40 sm:w-[300px] md:w-[340px]"
+        >
+            <div ref={wrapRef} className="relative aspect-9/16">
+                {inView ? (
+                    <video
+                        suppressHydrationWarning
+                        src={video.src}
+                        autoPlay
+                        muted={isMuted}
+                        loop
+                        playsInline
+                        preload="none"
+                        className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                    />
+                ) : (
+                    <div className="h-full w-full bg-neutral-950 motion-safe:animate-pulse" aria-hidden />
+                )}
+                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-black/15" />
+                <p className="absolute left-2 top-2 rounded bg-black/65 px-2 py-1 font-space-mono text-[9px] uppercase tracking-wider text-white/80">
+                    AI Generated
+                </p>
+                <button
+                    type="button"
+                    aria-label={isMuted ? "Unmute video" : "Mute video"}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        onToggleMute()
+                    }}
+                    className="absolute bottom-2 right-2 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/65 text-white/90 backdrop-blur-sm transition hover:bg-black/80"
+                >
+                    {isMuted ? (
+                        <VolumeX className="h-4 w-4" />
+                    ) : (
+                        <Volume2 className="h-4 w-4" />
+                    )}
+                </button>
+            </div>
+        </article>
+    )
+}
 
 export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
     const railRef = useRef<HTMLDivElement>(null)
@@ -74,46 +131,12 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
 
                 <div ref={railRef} className="no-scrollbar flex min-w-0 snap-x snap-mandatory gap-4 overflow-x-auto pb-2">
                     {videos.map((video) => (
-                        <article
+                        <ShowcaseVideoTile
                             key={video.src}
-                            className="group relative w-[260px] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 bg-black/40 sm:w-[300px] md:w-[340px]"
-                        >
-                            <div className="relative aspect-9/16">
-                                <video
-                                    suppressHydrationWarning
-                                    src={video.src}
-                                    autoPlay
-                                    muted={isMuted(video.src)}
-                                    loop
-                                    playsInline
-                                    preload="metadata"
-                                    className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-                                />
-                                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-black/15" />
-                                <p className="absolute left-2 top-2 rounded bg-black/65 px-2 py-1 font-space-mono text-[9px] uppercase tracking-wider text-white/80">
-                                    AI Generated
-                                </p>
-                                {/* <p className="absolute bottom-2 left-2 right-2 text-[11px] leading-snug text-white/90">
-                                    {video.title}
-                                </p> */}
-                                <button
-                                    type="button"
-                                    aria-label={isMuted(video.src) ? "Unmute video" : "Mute video"}
-                                    onClick={(e) => {
-                                        e.preventDefault()
-                                        e.stopPropagation()
-                                        toggleMuted(video.src)
-                                    }}
-                                    className="absolute bottom-2 right-2 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/65 text-white/90 backdrop-blur-sm transition hover:bg-black/80"
-                                >
-                                    {isMuted(video.src) ? (
-                                        <VolumeX className="h-4 w-4" />
-                                    ) : (
-                                        <Volume2 className="h-4 w-4" />
-                                    )}
-                                </button>
-                            </div>
-                        </article>
+                            video={video}
+                            isMuted={isMuted(video.src)}
+                            onToggleMute={() => toggleMuted(video.src)}
+                        />
                     ))}
                 </div>
 

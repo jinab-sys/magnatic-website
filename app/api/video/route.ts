@@ -1,6 +1,10 @@
-import { promises as fs } from "node:fs"
+import { createReadStream } from "node:fs"
+import { stat } from "node:fs/promises"
 import path from "node:path"
+import { Readable } from "node:stream"
 import { NextResponse } from "next/server"
+
+const CACHE = "public, max-age=31536000, immutable"
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
@@ -19,11 +23,65 @@ export async function GET(request: Request) {
     const filePath = path.join(videosDir, name)
 
     try {
-        const fileBuffer = await fs.readFile(filePath)
-        return new NextResponse(fileBuffer, {
+        const fileStat = await stat(filePath)
+        const fileSize = fileStat.size
+        const range = request.headers.get("range")
+
+        if (range) {
+            const match = /^bytes=(\d*)-(\d*)$/i.exec(range.trim())
+            if (!match) {
+                return new NextResponse(null, {
+                    status: 416,
+                    headers: {
+                        "Content-Range": `bytes */${fileSize}`,
+                    },
+                })
+            }
+
+            let start = match[1] === "" ? 0 : Number.parseInt(match[1], 10)
+            let end = match[2] === "" ? fileSize - 1 : Number.parseInt(match[2], 10)
+
+            if (Number.isNaN(start) || Number.isNaN(end) || start < 0 || start >= fileSize) {
+                return new NextResponse(null, {
+                    status: 416,
+                    headers: {
+                        "Content-Range": `bytes */${fileSize}`,
+                    },
+                })
+            }
+
+            end = Math.min(end, fileSize - 1)
+            if (end < start) {
+                return new NextResponse(null, {
+                    status: 416,
+                    headers: {
+                        "Content-Range": `bytes */${fileSize}`,
+                    },
+                })
+            }
+
+            const chunkSize = end - start + 1
+            const nodeStream = createReadStream(filePath, { start, end })
+
+            return new NextResponse(Readable.toWeb(nodeStream) as ReadableStream<Uint8Array>, {
+                status: 206,
+                headers: {
+                    "Accept-Ranges": "bytes",
+                    "Content-Range": `bytes ${start}-${end}/${fileSize}`,
+                    "Content-Length": String(chunkSize),
+                    "Content-Type": "video/mp4",
+                    "Cache-Control": CACHE,
+                },
+            })
+        }
+
+        const nodeStream = createReadStream(filePath)
+        return new NextResponse(Readable.toWeb(nodeStream) as ReadableStream<Uint8Array>, {
             headers: {
+                "Accept-Ranges": "bytes",
+                "Content-Length": String(fileSize),
                 "Content-Type": "video/mp4",
-                "Cache-Control": "public, max-age=31536000, immutable",
+                "Cache-Control": CACHE,
             },
         })
     } catch {

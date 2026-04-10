@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react"
 import { Volume2, VolumeX } from "lucide-react"
+import { useInViewOnce } from "@/lib/hooks/use-in-view-once"
 
 export type RotatingVideoItem = {
     src: string
@@ -122,7 +123,7 @@ function RingVideoCell({ video, cardWidthPx, videoRef, cellRef }: RingCellProps)
                     muted={hasMounted ? muted : true}
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="none"
                     className="h-full w-full object-cover"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/10" />
@@ -151,7 +152,7 @@ function RingVideoCell({ video, cardWidthPx, videoRef, cellRef }: RingCellProps)
  * 3D cylindrical ring: same videos as {@link VideoShowcaseGrid}. Dark stage; front card
  * is largest, back-of-ring cards shrink and soften for a clear rotational read.
  */
-export function VideoRotatingMarquee({ videos }: VideoRotatingMarqueeProps) {
+function VideoRotatingMarqueeCarousel({ videos }: VideoRotatingMarqueeProps) {
     const ringItems = useMemo(() => expandRingVideos(videos), [videos])
     const n = ringItems.length
     const angleStepDeg = 360 / n
@@ -304,26 +305,7 @@ export function VideoRotatingMarquee({ videos }: VideoRotatingMarqueeProps) {
     const sceneH = layout.cardW * (16 / 9) + 88
 
     return (
-        <section
-            id="video-rotating-showcase"
-            className="relative z-20 w-full overflow-hidden py-16 sm:py-22 mag-section-dim"
-            aria-labelledby="video-rotating-showcase-heading"
-        >
-            <div className="mx-auto mb-8 max-w-7xl px-6 text-center md:mb-10 md:text-left">
-                <p className="mb-3 inline-flex rounded-full border border-[rgba(179,255,118,0.28)] bg-[rgba(179,255,118,0.08)] px-4 py-1.5 font-space-mono text-[11px] uppercase tracking-[0.2em] text-[rgba(225,255,204,0.9)] md:inline-flex">
-                    In motion
-                </p>
-                <h2
-                    id="video-rotating-showcase-heading"
-                    className="font-syne text-3xl font-bold tracking-tight text-white md:text-5xl"
-                >
-                    Work on a loop
-                </h2>
-                <p className="mx-auto mt-3 max-w-2xl font-dm-sans text-sm text-white/65 md:mx-0 md:text-base">
-                    Same samples as above—on a dark 3D ring: the hero clip stays large; clips moving to the back shrink and layer behind for a clear spin.
-                </p>
-            </div>
-
+        <>
             <div className="mx-auto max-w-7xl px-4 sm:px-6">
                 <div
                     className="relative mx-auto overflow-hidden rounded-[2rem] border border-white/10 bg-[#080908] py-7 shadow-[0_32px_100px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(179,255,118,0.07)] ring-1 ring-[rgba(179,255,118,0.15)] sm:rounded-[2.5rem] sm:py-9"
@@ -381,6 +363,48 @@ export function VideoRotatingMarquee({ videos }: VideoRotatingMarqueeProps) {
                     3D rotation is paused because your device prefers reduced motion.
                 </p>
             ) : null}
+        </>
+    )
+}
+
+export function VideoRotatingMarquee({ videos }: VideoRotatingMarqueeProps) {
+    const sectionRef = useRef<HTMLElement>(null)
+    const showCarousel = useInViewOnce(sectionRef, { rootMargin: "120px 0px" })
+
+    if (!videos.length) return null
+
+    return (
+        <section
+            ref={sectionRef}
+            id="video-rotating-showcase"
+            className="relative z-20 w-full overflow-hidden py-16 sm:py-22 mag-section-dim"
+            aria-labelledby="video-rotating-showcase-heading"
+        >
+            <div className="mx-auto mb-8 max-w-7xl px-6 text-center md:mb-10 md:text-left">
+                <p className="mb-3 inline-flex rounded-full border border-[rgba(179,255,118,0.28)] bg-[rgba(179,255,118,0.08)] px-4 py-1.5 font-space-mono text-[11px] uppercase tracking-[0.2em] text-[rgba(225,255,204,0.9)] md:inline-flex">
+                    In motion
+                </p>
+                <h2
+                    id="video-rotating-showcase-heading"
+                    className="font-syne text-3xl font-bold tracking-tight text-white md:text-5xl"
+                >
+                    Work on a loop
+                </h2>
+                <p className="mx-auto mt-3 max-w-2xl font-dm-sans text-sm text-white/65 md:mx-0 md:text-base">
+                    Same samples as above—on a dark 3D ring: the hero clip stays large; clips moving to the back shrink and layer behind for a clear spin.
+                </p>
+            </div>
+
+            {showCarousel ? (
+                <VideoRotatingMarqueeCarousel videos={videos} />
+            ) : (
+                <div className="mx-auto max-w-7xl px-4 sm:px-6">
+                    <div
+                        className="relative mx-auto min-h-[min(420px,72vw)] overflow-hidden rounded-[2rem] border border-white/10 bg-[#080908] py-7 shadow-[0_32px_100px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(179,255,118,0.07)] ring-1 ring-[rgba(179,255,118,0.15)] motion-safe:animate-pulse sm:rounded-[2.5rem] sm:py-9"
+                        aria-hidden
+                    />
+                </div>
+            )}
         </section>
     )
 }

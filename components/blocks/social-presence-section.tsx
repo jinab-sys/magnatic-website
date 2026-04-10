@@ -190,7 +190,7 @@ export function SocialPresenceSection() {
                 <p className="font-dm-sans text-sm max-w-[340px]" style={{ color: "#444" }}>
                     Let us handle the content — you focus on growing your business.
                 </p>
-                <Link href="/register">
+                <Link href="/#register">
                     <button
                         type="button"
                         className="mt-2 font-dm-sans font-extrabold text-[13px] uppercase tracking-[0.06em] px-9 py-3.5 rounded-full transition-all duration-150 hover:opacity-85 hover:scale-[1.04]"
