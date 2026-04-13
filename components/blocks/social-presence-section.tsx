@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { scrollToRegisterForm } from "@/lib/scroll-to-register"
 
+
 const painPoints = [
     {
         n: "01",
@@ -55,7 +56,7 @@ const painPoints = [
 
 export function SocialPresenceSection() {
     return (
-        <section className="relative w-full z-20 flex flex-col items-center px-6 py-20 sm:py-28">
+        <section className="relative w-full z-20 flex flex-col items-center px-4 sm:px-6 py-20 sm:py-28">
 
             {/* eyebrow */}
             <motion.p
@@ -86,61 +87,74 @@ export function SocialPresenceSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="font-dm-sans text-lg mb-16"
+                className="font-dm-sans text-lg mb-8"
                 style={{ color: "#555" }}
             >
                 You&apos;re not alone.
             </motion.p>
 
+            {/* Book a Meeting button */}
+            <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                viewport={{ once: true }}
+                className="mb-12"
+            >
+                <button
+                    type="button"
+                    onClick={() => scrollToRegisterForm()}
+                    className="cursor-pointer font-dm-sans font-extrabold text-[13px] uppercase tracking-[0.08em] px-8 py-3 rounded-full transition-all duration-150 hover:opacity-85 hover:scale-[1.04]"
+                    style={{ background: "var(--mag-accent-from)", color: "#0c0c0c" }}
+                >
+                    Book a Meeting
+                </button>
+            </motion.div>
+
             {/* cards */}
-            <div className="flex flex-col gap-3.5 w-full max-w-[700px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-[1400px]">
                 {painPoints.map((p, i) => (
                     <motion.div
                         key={p.n}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: i * 0.08 }}
                         viewport={{ once: true }}
-                        className="group flex items-stretch rounded-2xl overflow-hidden cursor-default"
-                        style={{ background: "#131313", border: "0.5px solid #252525", transition: "border-color 0.2s, background 0.2s" }}
+                        className="group relative flex flex-col rounded-2xl overflow-hidden cursor-default"
+                        style={{ background: "#0e0e0e", border: "0.5px solid #222", transition: "border-color 0.25s, background 0.25s" }}
                         onMouseEnter={e => {
-                            (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,215,0,0.27)"
-                            ;(e.currentTarget as HTMLElement).style.background = "#161616"
+                            (e.currentTarget as HTMLElement).style.borderColor = "rgba(179,255,118,0.25)"
+                            ;(e.currentTarget as HTMLElement).style.background = "#121212"
                         }}
                         onMouseLeave={e => {
-                            (e.currentTarget as HTMLElement).style.borderColor = "#252525"
-                            ;(e.currentTarget as HTMLElement).style.background = "#131313"
+                            (e.currentTarget as HTMLElement).style.borderColor = "#222"
+                            ;(e.currentTarget as HTMLElement).style.background = "#0e0e0e"
                         }}
                     >
-                        {/* accent bar */}
+                        {/* top accent line */}
                         <div
-                            className="w-[3px] shrink-0 self-stretch transition-colors duration-200"
-                            style={{ background: "#232323" }}
-                            ref={el => {
-                                if (!el) return
-                                const card = el.parentElement!
-                                card.addEventListener("mouseenter", () => el.style.background = "var(--mag-accent-from)")
-                                card.addEventListener("mouseleave", () => el.style.background = "#232323")
-                            }}
+                            className="absolute inset-x-0 top-0 h-[2px] transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                            style={{ background: "linear-gradient(90deg, transparent, var(--mag-accent-from), transparent)" }}
+                            aria-hidden
                         />
 
-                        <div className="flex items-center gap-[18px] px-6 py-[22px] flex-1">
+                        <div className="flex flex-col gap-5 px-7 py-8 flex-1">
                             {/* icon */}
                             <div
-                                className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200"
-                                style={{ background: "#1c1c1c", border: "0.5px solid #2e2e2e", color: "#555" }}
+                                className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-250"
+                                style={{ background: "#1a1a1a", border: "0.5px solid #333", color: "#999" }}
                                 ref={el => {
                                     if (!el) return
                                     const card = el.closest(".group")!
                                     card.addEventListener("mouseenter", () => {
-                                        el.style.borderColor = "rgba(255,215,0,0.2)"
-                                        el.style.background = "rgba(255,215,0,0.07)"
+                                        el.style.borderColor = "rgba(179,255,118,0.2)"
+                                        el.style.background = "rgba(179,255,118,0.07)"
                                         el.style.color = "var(--mag-accent-from)"
                                     })
                                     card.addEventListener("mouseleave", () => {
-                                        el.style.borderColor = "#2e2e2e"
-                                        el.style.background = "#1c1c1c"
-                                        el.style.color = "#555"
+                                        el.style.borderColor = "#333"
+                                        el.style.background = "#1a1a1a"
+                                        el.style.color = "#999"
                                     })
                                 }}
                             >
@@ -148,20 +162,20 @@ export function SocialPresenceSection() {
                             </div>
 
                             {/* text */}
-                            <div className="flex-1">
+                            <div className="flex flex-col gap-2">
                                 <p
-                                    className="font-space-mono text-[10px] font-bold uppercase tracking-[0.15em] mb-[5px] transition-colors duration-200"
-                                    style={{ color: "#3a3a3a" }}
+                                    className="font-space-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors duration-250"
+                                    style={{ color: "#888" }}
                                     ref={el => {
                                         if (!el) return
                                         const card = el.closest(".group")!
                                         card.addEventListener("mouseenter", () => el.style.color = "var(--mag-accent-from)")
-                                        card.addEventListener("mouseleave", () => el.style.color = "#3a3a3a")
+                                        card.addEventListener("mouseleave", () => el.style.color = "#888")
                                     }}
                                 >
-                                    {p.n} &nbsp;/&nbsp; {p.label}
+                                    {p.label}
                                 </p>
-                                <p className="font-dm-sans text-[15px] leading-[1.55]" style={{ color: "#bbb" }}>
+                                <p className="font-dm-sans text-[15px] leading-[1.6]" style={{ color: "#c0c0c0" }}>
                                     {p.text}
                                 </p>
                             </div>
@@ -190,15 +204,45 @@ export function SocialPresenceSection() {
                 <p className="font-dm-sans text-sm max-w-[340px]" style={{ color: "#444" }}>
                     Let us handle the content — you focus on growing your business.
                 </p>
-                <button
-                    type="button"
-                    onClick={() => scrollToRegisterForm()}
-                    className="mt-2 cursor-pointer font-dm-sans font-extrabold text-[13px] uppercase tracking-[0.06em] px-9 py-3.5 rounded-full transition-all duration-150 hover:opacity-85 hover:scale-[1.04]"
-                    style={{ background: "var(--mag-accent-from)", color: "#0c0c0c" }}
-                >
-                    Get Started Today
-                </button>
             </motion.div>
+
+            {/* KPI cards */}
+            <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className="mx-auto mt-12 grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-3"
+            >
+                {[
+                    { label: "Models, influencers & creators", value: "AI" },
+                    { label: "Social accounts we run & grow", value: "Social" },
+                    { label: "Product shoots, edited for you", value: "Ads" },
+                ].map((kpi, i) => (
+                    <motion.div
+                        key={kpi.label}
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.45, delay: 0.15 + i * 0.07, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                        className="group relative overflow-hidden rounded-2xl border border-white/12 bg-linear-to-b from-white/7 to-black/25 px-5 py-5 text-center shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-md transition duration-300 hover:border-[rgba(179,255,118,0.22)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.45)] md:py-5"
+                    >
+                        <div
+                            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[rgba(179,255,118,0.35)] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                            aria-hidden
+                        />
+                        <div
+                            className="absolute left-0 top-0 h-full w-[3px] bg-white/10 transition-colors duration-300 group-hover:bg-(--mag-accent-from)"
+                            aria-hidden
+                        />
+                        <p className="font-syne text-2xl font-bold tracking-tight text-white md:text-3xl">{kpi.value}</p>
+                        <p className="mt-2 font-space-mono text-[10px] uppercase leading-snug tracking-[0.18em] text-white/60">
+                            {kpi.label}
+                        </p>
+                    </motion.div>
+                ))}
+            </motion.div>
+
         </section>
     )
 }
