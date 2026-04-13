@@ -17,9 +17,13 @@ function AvatarCard({ img }: { img: AvatarImage }) {
             <img
                 src={img.src}
                 alt={img.name}
-                loading="eager"
+                loading="lazy"
                 decoding="async"
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onError={(e) => {
+                    const el = e.currentTarget.closest<HTMLElement>(".group")
+                    if (el) el.style.display = "none"
+                }}
             />
             {/* bottom gradient */}
             <div

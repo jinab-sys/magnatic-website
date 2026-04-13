@@ -1,5 +1,7 @@
-import { promises as fs } from "node:fs"
+import { createReadStream } from "node:fs"
+import { stat } from "node:fs/promises"
 import path from "node:path"
+import { Readable } from "node:stream"
 import { NextResponse } from "next/server"
 
 const ROOT = path.join(process.cwd(), "app", "assets", "avatars")
@@ -13,14 +15,10 @@ function mimeForExt(ext: string) {
 
 export async function GET(request: Request) {
     const raw = new URL(request.url).searchParams.get("name")
-    if (!raw) {
-        return NextResponse.json({ error: "Missing name." }, { status: 400 })
-    }
+    if (!raw) return NextResponse.json({ error: "Missing name." }, { status: 400 })
 
     const normalized = path.normalize(raw)
-    if (normalized.includes("..")) {
-        return NextResponse.json({ error: "Invalid path." }, { status: 400 })
-    }
+    if (normalized.includes("..")) return NextResponse.json({ error: "Invalid path." }, { status: 400 })
 
     const fullPath = path.resolve(path.join(ROOT, normalized))
     if (!fullPath.startsWith(path.resolve(ROOT) + path.sep)) {
@@ -33,10 +31,13 @@ export async function GET(request: Request) {
     }
 
     try {
-        const buf = await fs.readFile(fullPath)
-        return new NextResponse(buf, {
+        const fileStat = await stat(fullPath)
+        const stream = createReadStream(fullPath)
+
+        return new NextResponse(Readable.toWeb(stream) as ReadableStream<Uint8Array>, {
             headers: {
                 "Content-Type": mimeForExt(ext),
+                "Content-Length": String(fileStat.size),
                 "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
             },
         })
