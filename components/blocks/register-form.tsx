@@ -3,10 +3,14 @@
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
+const SERVICES = [
+    { value: "brand_ad", label: "Brand Ad" },
+    { value: "social_calendar", label: "Social Calendar" },
+    { value: "end_to_end_social_media_management", label: "End to End SMM" },
+]
+
 type RegisterFormProps = {
-    /** Show logo above the card (standalone /register page). */
     showLogo?: boolean
-    /** Landing embed: section provides the headline; card is fields only. */
     embedded?: boolean
 }
 
@@ -14,8 +18,11 @@ export function RegisterForm({ showLogo = false, embedded = false }: RegisterFor
     const router = useRouter()
 
     const [businessName, setBusinessName] = useState("")
+    const [personName, setPersonName] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
+    const [businessAddress, setBusinessAddress] = useState("")
+    const [service, setService] = useState("")
     const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
@@ -28,7 +35,7 @@ export function RegisterForm({ showLogo = false, embedded = false }: RegisterFor
         const res = await fetch("/api/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ businessName, email, phone, message }),
+            body: JSON.stringify({ businessName, personName, email, phone, businessAddress, service, message }),
         })
 
         if (!res.ok) {
@@ -48,6 +55,9 @@ export function RegisterForm({ showLogo = false, embedded = false }: RegisterFor
         router.push("/waitlisted")
     }
 
+    const inputClass = "rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white/30"
+    const labelClass = "text-xs font-medium uppercase tracking-wider mag-text-muted"
+
     return (
         <>
             {showLogo && (
@@ -60,57 +70,108 @@ export function RegisterForm({ showLogo = false, embedded = false }: RegisterFor
             <div className="mag-panel rounded-3xl p-8 shadow-2xl">
                 {!embedded && (
                     <>
-                        <h2 className="mb-1 text-2xl font-bold text-white">Get Access</h2>
+                        <h2 className="mb-1 text-2xl font-bold text-white">Get in Touch</h2>
                         <p className="mb-8 text-sm mag-text-muted">Tell us about your business and we&apos;ll reach out.</p>
                     </>
                 )}
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                    <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-medium uppercase tracking-wider mag-text-muted">
-                            Business Name *
-                        </label>
-                        <input
-                            type="text"
-                            required
-                            placeholder="Acme Inc."
-                            value={businessName}
-                            onChange={(e) => setBusinessName(e.target.value)}
-                            className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white/30"
-                        />
+
+                    {/* Row 1: Business Name + Person Name */}
+                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                        <div className="flex flex-col gap-1.5">
+                            <label className={labelClass}>Business Name *</label>
+                            <input
+                                type="text"
+                                required
+                                placeholder="Acme Inc."
+                                value={businessName}
+                                onChange={(e) => setBusinessName(e.target.value)}
+                                className={inputClass}
+                            />
+                        </div>
+                        <div className="flex flex-col gap-1.5">
+                            <label className={labelClass}>Your Name *</label>
+                            <input
+                                type="text"
+                                required
+                                placeholder="John Smith"
+                                value={personName}
+                                onChange={(e) => setPersonName(e.target.value)}
+                                className={inputClass}
+                            />
+                        </div>
                     </div>
 
-                    <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-medium uppercase tracking-wider mag-text-muted">
-                            Email Address *
-                        </label>
-                        <input
-                            type="email"
-                            required
-                            placeholder="you@company.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white/30"
-                        />
+                    {/* Row 2: Email + Phone */}
+                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                        <div className="flex flex-col gap-1.5">
+                            <label className={labelClass}>Email Address *</label>
+                            <input
+                                type="email"
+                                required
+                                placeholder="you@company.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className={inputClass}
+                            />
+                        </div>
+                        <div className="flex flex-col gap-1.5">
+                            <label className={labelClass}>Phone Number *</label>
+                            <input
+                                type="tel"
+                                required
+                                placeholder="+1 (555) 000-0000"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                className={inputClass}
+                            />
+                        </div>
                     </div>
 
+                    {/* Business Address */}
                     <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-medium uppercase tracking-wider mag-text-muted">
-                            Phone Number{" "}
+                        <label className={labelClass}>
+                            Business Address{" "}
                             <span className="normal-case text-[color:var(--mag-fg-subtle)]">(optional)</span>
                         </label>
                         <input
-                            type="tel"
-                            placeholder="+1 (555) 000-0000"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white/30"
+                            type="text"
+                            placeholder="123 Main St, New York, NY"
+                            value={businessAddress}
+                            onChange={(e) => setBusinessAddress(e.target.value)}
+                            className={inputClass}
                         />
                     </div>
 
+                    {/* Service */}
+                    <div className="flex flex-col gap-2">
+                        <label className={labelClass}>Which service do you want? *</label>
+                        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+                            {SERVICES.map((s) => (
+                                <button
+                                    key={s.value}
+                                    type="button"
+                                    onClick={() => setService(s.value)}
+                                    className="rounded-xl border px-4 py-3 text-left text-sm font-medium transition-all duration-200"
+                                    style={{
+                                        background: service === s.value ? "rgba(179,255,118,0.1)" : "rgba(255,255,255,0.04)",
+                                        borderColor: service === s.value ? "rgba(179,255,118,0.5)" : "rgba(255,255,255,0.1)",
+                                        color: service === s.value ? "var(--mag-accent-from)" : "#aaa",
+                                    }}
+                                >
+                                    {s.label}
+                                </button>
+                            ))}
+                        </div>
+                        {/* hidden required input to enforce selection */}
+                        <input type="text" required value={service} onChange={() => {}} className="sr-only" aria-hidden />
+                    </div>
+
+                    {/* Message */}
                     <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-medium uppercase tracking-wider mag-text-muted">
-                            Message for us{" "}
+                        <label className={labelClass}>
+                            Message{" "}
                             <span className="normal-case text-[color:var(--mag-fg-subtle)]">(optional)</span>
                         </label>
                         <textarea
@@ -118,7 +179,7 @@ export function RegisterForm({ showLogo = false, embedded = false }: RegisterFor
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             rows={3}
-                            className="resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white/30"
+                            className={`resize-none ${inputClass}`}
                         />
                     </div>
 
@@ -129,7 +190,7 @@ export function RegisterForm({ showLogo = false, embedded = false }: RegisterFor
                         disabled={loading}
                         className="mag-btn-primary mt-1 rounded-xl py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-40"
                     >
-                        {loading ? "Submitting…" : "Register"}
+                        {loading ? "Submitting…" : "Submit"}
                     </button>
                 </form>
             </div>

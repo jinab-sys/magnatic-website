@@ -88,7 +88,7 @@ export function SocialPresenceSection() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
                 className="font-dm-sans text-lg mb-8"
-                style={{ color: "#555" }}
+                style={{ color: "#fff" }}
             >
                 You&apos;re not alone.
             </motion.p>
@@ -142,7 +142,7 @@ export function SocialPresenceSection() {
                             {/* icon */}
                             <div
                                 className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-250"
-                                style={{ background: "#1a1a1a", border: "0.5px solid #333", color: "#999" }}
+                                style={{ background: "#1a1a1a", border: "0.5px solid #333", color: "#fff" }}
                                 ref={el => {
                                     if (!el) return
                                     const card = el.closest(".group")!
@@ -154,7 +154,7 @@ export function SocialPresenceSection() {
                                     card.addEventListener("mouseleave", () => {
                                         el.style.borderColor = "#333"
                                         el.style.background = "#1a1a1a"
-                                        el.style.color = "#999"
+                                        el.style.color = "#fff"
                                     })
                                 }}
                             >
@@ -162,20 +162,20 @@ export function SocialPresenceSection() {
                             </div>
 
                             {/* text */}
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-3">
                                 <p
-                                    className="font-space-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors duration-250"
-                                    style={{ color: "#888" }}
+                                    className="font-syne text-[17px] font-extrabold uppercase tracking-[0.08em] transition-colors duration-250"
+                                    style={{ color: "#fff" }}
                                     ref={el => {
                                         if (!el) return
                                         const card = el.closest(".group")!
                                         card.addEventListener("mouseenter", () => el.style.color = "var(--mag-accent-from)")
-                                        card.addEventListener("mouseleave", () => el.style.color = "#888")
+                                        card.addEventListener("mouseleave", () => el.style.color = "#fff")
                                     }}
                                 >
                                     {p.label}
                                 </p>
-                                <p className="font-dm-sans text-[15px] leading-[1.6]" style={{ color: "#c0c0c0" }}>
+                                <p className="font-dm-sans text-[15px] leading-[1.65]" style={{ color: "#fff" }}>
                                     {p.text}
                                 </p>
                             </div>
@@ -192,7 +192,7 @@ export function SocialPresenceSection() {
                 viewport={{ once: true }}
                 className="mt-16 flex flex-col items-center gap-4 text-center"
             >
-                <p className="font-space-mono text-[11px] font-semibold uppercase tracking-[0.15em]" style={{ color: "#333" }}>
+                <p className="font-space-mono text-[11px] font-semibold uppercase tracking-[0.15em]" style={{ color: "var(--mag-accent-from)" }}>
                     The solution
                 </p>
                 <p
@@ -201,7 +201,7 @@ export function SocialPresenceSection() {
                 >
                     We&apos;ve got you covered.
                 </p>
-                <p className="font-dm-sans text-sm max-w-[340px]" style={{ color: "#444" }}>
+                <p className="font-dm-sans text-sm max-w-[340px]" style={{ color: "#fff" }}>
                     Let us handle the content — you focus on growing your business.
                 </p>
             </motion.div>
