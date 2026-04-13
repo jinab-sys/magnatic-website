@@ -215,8 +215,8 @@ export function SocialPresenceSection() {
                 className="mx-auto mt-12 grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-3"
             >
                 {[
-                    { label: "Models, influencers & creators", value: "AI" },
-                    { label: "Social accounts we run & grow", value: "Social" },
+                    { label: "AI avatars & influencers, for your ad creation", value: "AI" },
+                    { label: "Proper UGC content for your social channels", value: "Social" },
                     { label: "Product shoots, edited for you", value: "Ads" },
                 ].map((kpi, i) => (
                     <motion.div

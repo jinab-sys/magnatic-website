@@ -4,6 +4,7 @@ import { ScrollToRegisterOnHomeLoad } from "@/components/scroll-to-register-on-h
 import dynamic from "next/dynamic"
 import { readdir } from "node:fs/promises"
 import path from "node:path"
+import { AvatarShowcase } from "@/components/blocks/avatar-showcase"
 
 function LazyBlock({ minH }: { minH: string }) {
     return (
@@ -119,6 +120,21 @@ export default async function Home() {
         videos = []
     }
 
+    const avatarsDir = path.join(process.cwd(), "app/assets/avatars")
+    let avatars: { src: string; name: string }[] = []
+    try {
+        const files = await readdir(avatarsDir)
+        avatars = files
+            .filter((file) => /\.(jpe?g|png|webp)$/i.test(file))
+            .sort((a, b) => a.localeCompare(b))
+            .map((file) => ({
+                src: `/api/avatar-image?name=${encodeURIComponent(file)}`,
+                name: file.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim(),
+            }))
+    } catch {
+        avatars = []
+    }
+
     return (
         <main className="relative min-h-screen overflow-x-hidden">
             <ScrollToRegisterOnHomeLoad />
@@ -128,6 +144,7 @@ export default async function Home() {
                 <ScrollExpandHero />
                 <SocialPresenceSection />
                 <VideoShowcaseGrid videos={videos} />
+                <AvatarShowcase images={avatars} />
                 <BrandsMarquee />
                 <StatsSection />
                 <FeaturesSection />
