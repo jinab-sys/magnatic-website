@@ -4,7 +4,10 @@ import { ScrollToRegisterOnHomeLoad } from "@/components/scroll-to-register-on-h
 import dynamic from "next/dynamic"
 import { readdir } from "node:fs/promises"
 import path from "node:path"
-import { AvatarShowcase } from "@/components/blocks/avatar-showcase"
+const AvatarShowcase = dynamic(
+    () => import("@/components/blocks/avatar-showcase").then((m) => m.AvatarShowcase),
+    { loading: () => <LazyBlock minH="min-h-[500px]" /> },
+)
 
 function LazyBlock({ minH }: { minH: string }) {
     return (
@@ -36,19 +39,9 @@ const StatsSection = dynamic(
     { loading: () => <LazyBlock minH="min-h-[200px]" /> },
 )
 
-const FeaturesSection = dynamic(
-    () => import("@/components/blocks/features-section").then((m) => m.FeaturesSection),
-    { loading: () => <LazyBlock minH="min-h-[280px]" /> },
-)
-
 const HowItWorks = dynamic(
     () => import("@/components/blocks/how-it-works").then((m) => m.HowItWorks),
     { loading: () => <LazyBlock minH="min-h-[320px]" /> },
-)
-
-const AvatarCarousel = dynamic(
-    () => import("@/components/blocks/avatar-carousel").then((m) => m.AvatarCarousel),
-    { loading: () => <LazyBlock minH="min-h-[380px]" /> },
 )
 
 const TestimonialsSection = dynamic(
@@ -147,9 +140,7 @@ export default async function Home() {
                 <AvatarShowcase images={avatars} />
                 <BrandsMarquee />
                 <StatsSection />
-                <FeaturesSection />
                 <HowItWorks />
-                <AvatarCarousel />
                 <TestimonialsSection />
                 <VideoRotatingMarquee videos={videos} />
                 <VisionStatement />

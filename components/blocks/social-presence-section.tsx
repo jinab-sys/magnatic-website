@@ -20,7 +20,7 @@ const painPoints = [
     },
     {
         n: "02",
-        label: "No Bandwidth",
+        label: "Too Busy",
         text: "You don't have the bandwidth to shoot, edit, and post consistently",
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">

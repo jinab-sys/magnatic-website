@@ -5,8 +5,8 @@ import { scrollToRegisterForm } from "@/lib/scroll-to-register"
 const steps = [
     {
         n: "01",
-        title: "Input your URL",
-        body: "Drop your website link and our AI learns your brand in minutes.",
+        title: "Register on Magnatic",
+        body: "Get in touch with our team and we'll take it from there.",
         preview: (
             <div className="rounded-2xl border border-white/10 bg-black/35 p-4">
                 <div className="mb-3 flex items-center gap-2">
@@ -15,7 +15,7 @@ const steps = [
                     <span className="h-2.5 w-2.5 rounded-full bg-white/30" />
                 </div>
                 <div className="rounded-xl border border-[rgba(179,255,118,0.5)] bg-black/60 px-4 py-3 font-dm-sans text-sm text-white/80">
-                    www.yourbrand.com
+                    Get in touch with our team
                 </div>
                 <div className="mt-3 grid grid-cols-5 gap-2">
                     {Array.from({ length: 5 }).map((_, idx) => (
@@ -27,8 +27,8 @@ const steps = [
     },
     {
         n: "02",
-        title: "Swipe ideas",
-        body: "Get fresh content directions daily and pick what fits your campaign goals.",
+        title: "Give us your product",
+        body: "Tell us about the product you want to promote and we handle the rest.",
         preview: (
             <div className="rounded-2xl border border-white/10 bg-black/35 p-4">
                 <div className="h-40 rounded-xl border border-white/10 bg-white/5 p-3">
@@ -46,30 +46,15 @@ const steps = [
     },
     {
         n: "03",
-        title: "Edit & customize",
-        body: "Change copy, visuals, and direction with simple controls. No design skills needed.",
+        title: "Select the service you want",
+        body: "Get your ready ad and images from us.",
         preview: (
             <div className="rounded-2xl border border-white/10 bg-black/35 p-4">
-                <div className="grid grid-cols-[1.4fr_1fr] gap-3">
-                    <div className="h-32 rounded-xl border border-white/10 bg-white/5" />
-                    <div className="space-y-3">
-                        <div className="h-9 rounded-lg border border-white/10 bg-white/5" />
-                        <div className="h-9 rounded-lg border border-white/10 bg-white/5" />
-                        <div className="h-9 rounded-lg border border-[rgba(179,255,118,0.42)] bg-[rgba(179,255,118,0.14)]" />
-                    </div>
+                <div className="grid grid-cols-1 gap-2">
+                    <div className="rounded-lg border border-[rgba(179,255,118,0.42)] bg-[rgba(179,255,118,0.14)] px-4 py-2.5 font-dm-sans text-xs text-[rgba(225,255,204,0.96)]">Product Video</div>
+                    <div className="rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 font-dm-sans text-xs text-white/70">UGC Images of the product</div>
+                    <div className="rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 font-dm-sans text-xs text-white/70">Social Media Calendar</div>
                 </div>
-            </div>
-        ),
-    },
-    {
-        n: "04",
-        title: "Download & publish",
-        body: "Launch more content faster across socials, ads, and outbound campaigns.",
-        preview: (
-            <div className="rounded-2xl border border-white/10 bg-black/35 p-4">
-                <div className="h-12 rounded-xl border border-[rgba(179,255,118,0.45)] bg-[rgba(179,255,118,0.13)]" />
-                <div className="mt-3 h-8 w-3/4 rounded-lg border border-white/10 bg-white/5" />
-                <div className="mt-2 h-8 w-2/3 rounded-lg border border-white/10 bg-white/5" />
             </div>
         ),
     },
@@ -84,7 +69,7 @@ export function HowItWorks() {
                         How It Works
                     </p>
                     <h3 className="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight">
-                        Build content in 4 steps
+                        Build content in 3 steps
                     </h3>
                     <p className="mx-auto mt-4 max-w-2xl font-dm-sans text-base text-white/65 sm:text-lg">
                         Inspired by the same simple workflow style: fast setup, fast output, premium results.
@@ -120,13 +105,19 @@ export function HowItWorks() {
                     ))}
                 </div>
 
-                <div className="mt-14 flex justify-center">
+                <div className="mt-14 flex flex-col items-center gap-5">
+                    <p
+                        className="font-syne font-black text-center leading-tight"
+                        style={{ fontSize: "clamp(22px, 4vw, 36px)", color: "#ffffff", letterSpacing: "-0.02em" }}
+                    >
+                        First month is free — what are you waiting for?
+                    </p>
                     <button
                         type="button"
                         onClick={() => scrollToRegisterForm()}
                         className="mag-btn-primary px-7 py-3 font-dm-sans text-sm font-semibold rounded-full hover:scale-[1.02]"
                     >
-                        Start your content engine
+                        Register now
                     </button>
                 </div>
             </div>

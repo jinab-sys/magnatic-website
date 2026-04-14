@@ -1,6 +1,8 @@
 "use client"
 
+import { useRef } from "react"
 import { motion } from "framer-motion"
+import { useInViewOnce } from "@/lib/hooks/use-in-view-once"
 
 type AvatarImage = { src: string; name: string }
 
@@ -25,13 +27,11 @@ function AvatarCard({ img }: { img: AvatarImage }) {
                     if (el) el.style.display = "none"
                 }}
             />
-            {/* bottom gradient */}
             <div
                 className="absolute inset-x-0 bottom-0 h-1/3 pointer-events-none"
                 style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6), transparent)" }}
                 aria-hidden
             />
-            {/* green top accent on hover */}
             <div
                 className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                 style={{ background: "linear-gradient(90deg, transparent, var(--mag-accent-from), transparent)" }}
@@ -42,7 +42,6 @@ function AvatarCard({ img }: { img: AvatarImage }) {
 }
 
 function MarqueeRow({ images, reverse = false, duration = "40s" }: { images: AvatarImage[]; reverse?: boolean; duration?: string }) {
-    // Quadruple so the screen is always fully covered with no gaps
     const tiles = [...images, ...images, ...images, ...images]
     return (
         <div className="overflow-hidden w-full">
@@ -61,17 +60,34 @@ function MarqueeRow({ images, reverse = false, duration = "40s" }: { images: Ava
     )
 }
 
+function AvatarMarquee({ images }: { images: AvatarImage[] }) {
+    return (
+        <div
+            className="flex flex-col gap-4"
+            style={{
+                maskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+                WebkitMaskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+            }}
+        >
+            <MarqueeRow images={images} duration="45s" />
+            <MarqueeRow images={images} reverse duration="38s" />
+        </div>
+    )
+}
+
 export function AvatarShowcase({ images }: { images: AvatarImage[] }) {
+    const sectionRef = useRef<HTMLElement>(null)
+    const inView = useInViewOnce(sectionRef, { rootMargin: "150px 0px" })
+
     if (images.length === 0) return null
 
     return (
-        <section className="relative z-20 w-full overflow-hidden py-20 sm:py-28">
+        <section ref={sectionRef} className="relative z-20 w-full overflow-hidden py-20 sm:py-28">
             <div
                 className="mag-blob mag-blob-b h-[360px] w-[360px]"
                 style={{ top: "10%", left: "-80px", animationDelay: "2s" }}
             />
 
-            {/* heading */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -96,17 +112,11 @@ export function AvatarShowcase({ images }: { images: AvatarImage[] }) {
                 </p>
             </motion.div>
 
-            {/* marquee rows */}
-            <div
-                className="flex flex-col gap-4"
-                style={{
-                    maskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
-                    WebkitMaskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
-                }}
-            >
-                <MarqueeRow images={images} duration="45s" />
-                <MarqueeRow images={images} reverse duration="38s" />
-            </div>
+            {inView ? (
+                <AvatarMarquee images={images} />
+            ) : (
+                <div className="h-[560px] motion-safe:animate-pulse" aria-hidden />
+            )}
         </section>
     )
 }
