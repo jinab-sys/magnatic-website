@@ -1,28 +1,27 @@
 import type { Metadata } from "next";
-import { Outfit, Syne, DM_Sans, Space_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
+/** Humanist sans — body, UI, long copy (readable on dark backgrounds). */
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-instrument-sans",
+  display: "swap",
 });
 
-const syne = Syne({
+/** Expressive grotesque — headlines (creative / production-house feel vs generic geometric stacks). */
+const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["700", "800"],
+  variable: "--font-bricolage",
+  weight: ["500", "600", "700", "800"],
+  display: "swap",
 });
 
-const dmSans = DM_Sans({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["400", "500"],
-});
-
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  variable: "--font-space-mono",
-  weight: "400",
+  variable: "--font-ibm-plex-mono",
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -41,7 +40,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${outfit.variable} ${syne.variable} ${dmSans.variable} ${spaceMono.variable} font-sans antialiased text-[color:var(--mag-fg)]`}>
+      <body
+        className={`${instrumentSans.variable} ${bricolageGrotesque.variable} ${ibmPlexMono.variable} font-sans antialiased text-[color:var(--mag-fg)]`}
+      >
         {children}
       </body>
     </html>
