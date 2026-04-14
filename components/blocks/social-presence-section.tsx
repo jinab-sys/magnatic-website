@@ -87,10 +87,10 @@ export function SocialPresenceSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="font-dm-sans text-lg mb-8"
+                className="font-syne font-black text-3xl sm:text-4xl mb-8"
                 style={{ color: "#fff" }}
             >
-                You&apos;re not alone.
+                We got you.
             </motion.p>
 
             {/* Book a Meeting button */}
@@ -195,12 +195,7 @@ export function SocialPresenceSection() {
                 <p className="font-space-mono text-[11px] font-semibold uppercase tracking-[0.15em]" style={{ color: "var(--mag-accent-from)" }}>
                     The solution
                 </p>
-                <p
-                    className="font-syne font-black leading-[1.1] tracking-tight"
-                    style={{ fontSize: "clamp(28px, 5vw, 44px)", color: "var(--mag-accent-from)", letterSpacing: "-0.02em" }}
-                >
-                    We&apos;ve got you covered.
-                </p>
+                <img src="/logo-full-white.svg" alt="Magnatic" className="h-10 sm:h-14" />
                 <p className="font-dm-sans text-sm max-w-[340px]" style={{ color: "#fff" }}>
                     Let us handle the content — you focus on growing your business.
                 </p>

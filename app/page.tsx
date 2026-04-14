@@ -128,6 +128,21 @@ export default async function Home() {
         avatars = []
     }
 
+    const ugcDir = path.join(process.cwd(), "app/assets/UGC")
+    let ugcImages: { src: string; title: string }[] = []
+    try {
+        const files = await readdir(ugcDir)
+        ugcImages = files
+            .filter((file) => /\.(jpe?g|png|webp)$/i.test(file))
+            .sort((a, b) => a.localeCompare(b))
+            .map((file) => ({
+                src: `/api/ugc-image?name=${encodeURIComponent(file)}`,
+                title: file.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim(),
+            }))
+    } catch {
+        ugcImages = []
+    }
+
     return (
         <main className="relative min-h-screen overflow-x-hidden">
             <ScrollToRegisterOnHomeLoad />
@@ -142,7 +157,7 @@ export default async function Home() {
                 <StatsSection />
                 <HowItWorks />
                 <TestimonialsSection />
-                <VideoRotatingMarquee videos={videos} />
+                <VideoRotatingMarquee images={ugcImages} />
                 <VisionStatement />
                 <CtaBanner />
                 <RegisterSection />
