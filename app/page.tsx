@@ -29,6 +29,11 @@ const VideoShowcaseGrid = dynamic(
     { loading: () => <LazyBlock minH="min-h-[340px]" /> },
 )
 
+const FeaturesSection = dynamic(
+    () => import("@/components/blocks/features-section").then((m) => m.FeaturesSection),
+    { loading: () => <LazyBlock minH="min-h-[380px]" /> },
+)
+
 const BrandsMarquee = dynamic(
     () => import("@/components/blocks/brands-marquee").then((m) => m.BrandsMarquee),
     { loading: () => <LazyBlock minH="min-h-[72px]" /> },
@@ -137,6 +142,7 @@ export default async function Home() {
                 <ScrollExpandHero />
                 <SocialPresenceSection />
                 <VideoShowcaseGrid videos={videos} />
+                <FeaturesSection />
                 <AvatarShowcase images={avatars} />
                 <BrandsMarquee />
                 <StatsSection />

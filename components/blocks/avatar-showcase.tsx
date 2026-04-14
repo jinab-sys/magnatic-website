@@ -79,10 +79,20 @@ export function AvatarShowcase({ images }: { images: AvatarImage[] }) {
     const sectionRef = useRef<HTMLElement>(null)
     const inView = useInViewOnce(sectionRef, { rootMargin: "150px 0px" })
 
-    if (images.length === 0) return null
+    if (images.length === 0) {
+        return (
+            <section id="avatars" className="relative z-20 w-full py-20 sm:py-28">
+                <div className="mx-auto max-w-7xl px-6 text-center">
+                    <p className="font-space-mono text-[11px] uppercase tracking-[0.2em] mag-eyebrow mb-4">AI Avatars</p>
+                    <h2 className="font-syne text-2xl font-bold text-white sm:text-3xl">Avatar lineup coming soon</h2>
+                    <p className="mt-3 font-dm-sans text-sm text-white/60">Check back shortly for our full roster.</p>
+                </div>
+            </section>
+        )
+    }
 
     return (
-        <section ref={sectionRef} className="relative z-20 w-full overflow-hidden py-20 sm:py-28">
+        <section id="avatars" ref={sectionRef} className="relative z-20 w-full overflow-hidden py-20 sm:py-28">
             <div
                 className="mag-blob mag-blob-b h-[360px] w-[360px]"
                 style={{ top: "10%", left: "-80px", animationDelay: "2s" }}
