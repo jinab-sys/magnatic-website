@@ -1,29 +1,26 @@
 "use client"
 
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react"
-import { Volume2, VolumeX } from "lucide-react"
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { useInViewOnce } from "@/lib/hooks/use-in-view-once"
 
-export type RotatingVideoItem = {
+export type RotatingImageItem = {
     src: string
     title: string
 }
 
-type VideoRotatingMarqueeProps = {
-    videos: RotatingVideoItem[]
+type ImageRotatingMarqueeProps = {
+    images: RotatingImageItem[]
 }
-
-const noopSubscribe = () => () => {}
 
 const MIN_RING_SLOTS = 12
 
-function expandRingVideos(videos: RotatingVideoItem[]): RotatingVideoItem[] {
-    if (videos.length === 0) return []
-    if (videos.length >= MIN_RING_SLOTS) return videos
-    const out: RotatingVideoItem[] = []
+function expandRingImages(images: RotatingImageItem[]): RotatingImageItem[] {
+    if (images.length === 0) return []
+    if (images.length >= MIN_RING_SLOTS) return images
+    const out: RotatingImageItem[] = []
     let k = 0
     while (out.length < MIN_RING_SLOTS) {
-        out.push(videos[k % videos.length]!)
+        out.push(images[k % images.length]!)
         k++
     }
     return out
@@ -34,7 +31,6 @@ function minArcDistanceToFront(deg: number): number {
     return Math.min(u, 360 - u)
 }
 
-/** Signed angle from “front” toward camera: 0° = facing viewer, ±90° = sides, ±180° = back. */
 function signedAngleFromFrontDeg(slotAngleDeg: number, rotationDeg: number): number {
     let a = ((slotAngleDeg + rotationDeg) % 360) + 360
     a %= 360
@@ -42,11 +38,6 @@ function signedAngleFromFrontDeg(slotAngleDeg: number, rotationDeg: number): num
     return a
 }
 
-/**
- * True cylindrical motion: cards orbit with rotateY + translateZ; scale + brightness fall off
- * toward the back. Z-order uses cos(signedAngle) so the front hemisphere always stacks above
- * the rear (cards curve behind through depth, not z-fight).
- */
 function cellTransformForAngle(
     slotAngleDeg: number,
     rotationDeg: number,
@@ -58,7 +49,6 @@ function cellTransformForAngle(
 
     const d = minArcDistanceToFront(slotAngleDeg + rotationDeg)
     const u = Math.min(d, 100) / 100
-    // Slightly below 1 at the front so cards stay inside the clipped stage.
     const scale = 0.3 + 0.62 * Math.cos(u * (Math.PI / 2))
     const zBoost = (1 - Math.min(d, 68) / 68) * 42
     const opacity = 0.52 + (1 - u) * 0.48
@@ -75,30 +65,12 @@ function cellTransformForAngle(
 }
 
 type RingCellProps = {
-    video: RotatingVideoItem
+    image: RotatingImageItem
     cardWidthPx: number
-    videoRef: (el: HTMLVideoElement | null) => void
     cellRef: (el: HTMLDivElement | null) => void
 }
 
-function RingVideoCell({ video, cardWidthPx, videoRef, cellRef }: RingCellProps) {
-    const [muted, setMuted] = useState(true)
-    const hasMounted = useSyncExternalStore(noopSubscribe, () => true, () => false)
-    const localVideoRef = useRef<HTMLVideoElement | null>(null)
-
-    const setRefs = useCallback(
-        (node: HTMLVideoElement | null) => {
-            localVideoRef.current = node
-            videoRef(node)
-        },
-        [videoRef],
-    )
-
-    useEffect(() => {
-        const v = localVideoRef.current
-        if (v) v.muted = muted
-    }, [muted])
-
+function RingImageCell({ image, cardWidthPx, cellRef }: RingCellProps) {
     const cardHeightPx = (cardWidthPx * 16) / 9
 
     return (
@@ -115,45 +87,26 @@ function RingVideoCell({ video, cardWidthPx, videoRef, cellRef }: RingCellProps)
                 WebkitBackfaceVisibility: "hidden",
             }}
         >
-            <div className="group relative h-full w-full bg-neutral-950">
-                <video
-                    ref={setRefs}
-                    suppressHydrationWarning
-                    src={video.src}
-                    muted={hasMounted ? muted : true}
-                    loop
-                    playsInline
-                    preload="none"
+            <div className="relative h-full w-full bg-neutral-950">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src={image.src}
+                    alt={image.title}
                     className="h-full w-full object-cover"
+                    draggable={false}
                 />
                 <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/10" />
                 <p className="absolute left-2.5 top-2.5 rounded-md bg-black/55 px-2 py-0.5 font-space-mono text-[8px] uppercase tracking-wider text-white/90">
-                    AI Generated
+                    UGC
                 </p>
-                <button
-                    type="button"
-                    aria-label={muted ? "Unmute video" : "Mute video"}
-                    onClick={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                        setMuted((m) => !m)
-                    }}
-                    className="absolute bottom-2.5 right-2.5 z-20 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/25 bg-black/55 text-white/95 backdrop-blur-sm transition hover:bg-black/75"
-                >
-                    {muted ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
-                </button>
             </div>
-            <span className="sr-only">{video.title}</span>
+            <span className="sr-only">{image.title}</span>
         </div>
     )
 }
 
-/**
- * 3D cylindrical ring: same videos as {@link VideoShowcaseGrid}. Dark stage; front card
- * is largest, back-of-ring cards shrink and soften for a clear rotational read.
- */
-function VideoRotatingMarqueeCarousel({ videos }: VideoRotatingMarqueeProps) {
-    const ringItems = useMemo(() => expandRingVideos(videos), [videos])
+function ImageRotatingMarqueeCarousel({ images }: ImageRotatingMarqueeProps) {
+    const ringItems = useMemo(() => expandRingImages(images), [images])
     const n = ringItems.length
     const angleStepDeg = 360 / n
 
@@ -161,7 +114,6 @@ function VideoRotatingMarqueeCarousel({ videos }: VideoRotatingMarqueeProps) {
     const carouselRef = useRef<HTMLDivElement>(null)
     const rotationRef = useRef(0)
     const lastTRef = useRef<number | null>(null)
-    const videoElsRef = useRef<(HTMLVideoElement | null)[]>([])
     const cellElsRef = useRef<(HTMLDivElement | null)[]>([])
     const layoutRef = useRef({ radius: 360, cardW: 176 })
     const pausedByHoverRef = useRef(false)
@@ -186,7 +138,6 @@ function VideoRotatingMarqueeCarousel({ videos }: VideoRotatingMarqueeProps) {
         if (!el) return
         const ro = new ResizeObserver(() => {
             const w = el.clientWidth
-            // Keep cards smaller vs viewport so 3D edges don’t clip under overflow-hidden.
             const cardW = Math.min(216, Math.max(128, w * 0.175))
             const sin = Math.sin(Math.PI / n)
             const radius = sin > 0.001 ? (cardW * 0.92) / (2 * sin) + cardW * 0.22 : 360
@@ -195,16 +146,6 @@ function VideoRotatingMarqueeCarousel({ videos }: VideoRotatingMarqueeProps) {
         ro.observe(el)
         return () => ro.disconnect()
     }, [n])
-
-    const videoSlotRefs = useMemo(
-        () =>
-            Array.from({ length: n }, (_, index) => (node: HTMLVideoElement | null) => {
-                const arr = videoElsRef.current
-                while (arr.length <= index) arr.push(null)
-                arr[index] = node
-            }),
-        [n],
-    )
 
     const cellSlotRefs = useMemo(
         () =>
@@ -241,15 +182,7 @@ function VideoRotatingMarqueeCarousel({ videos }: VideoRotatingMarqueeProps) {
         if (reduceMotion) {
             rotationRef.current = 0
             if (carouselRef.current) carouselRef.current.style.transform = "rotateY(0deg)"
-            const id = requestAnimationFrame(() => {
-                applyAllCellTransforms(0)
-                videoElsRef.current.forEach((v, i) => {
-                    if (!v) return
-                    const d = minArcDistanceToFront(i * angleStepDeg)
-                    if (d < 50) v.play().catch(() => {})
-                    else v.pause()
-                })
-            })
+            const id = requestAnimationFrame(() => applyAllCellTransforms(0))
             return () => cancelAnimationFrame(id)
         }
 
@@ -273,23 +206,6 @@ function VideoRotatingMarqueeCarousel({ videos }: VideoRotatingMarqueeProps) {
             }
 
             applyAllCellTransforms(rotationRef.current)
-
-            let bestI = 0
-            let bestD = 999
-            for (let i = 0; i < n; i++) {
-                const d = minArcDistanceToFront(i * angleStepDeg + rotationRef.current)
-                if (d < bestD) {
-                    bestD = d
-                    bestI = i
-                }
-            }
-
-            videoElsRef.current.forEach((v, i) => {
-                if (!v) return
-                if (i === bestI && bestD < 52) v.play().catch(() => {})
-                else v.pause()
-            })
-
             raf = requestAnimationFrame(tick)
         }
 
@@ -300,7 +216,7 @@ function VideoRotatingMarqueeCarousel({ videos }: VideoRotatingMarqueeProps) {
         }
     }, [n, angleStepDeg, reduceMotion, applyAllCellTransforms])
 
-    if (!videos.length) return null
+    if (!images.length) return null
 
     const sceneH = layout.cardW * (16 / 9) + 88
 
@@ -309,12 +225,8 @@ function VideoRotatingMarqueeCarousel({ videos }: VideoRotatingMarqueeProps) {
             <div className="mx-auto max-w-7xl px-4 sm:px-6">
                 <div
                     className="relative mx-auto overflow-hidden rounded-[2rem] border border-white/10 bg-[#080908] py-7 shadow-[0_32px_100px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(179,255,118,0.07)] ring-1 ring-[rgba(179,255,118,0.15)] sm:rounded-[2.5rem] sm:py-9"
-                    onMouseEnter={() => {
-                        pausedByHoverRef.current = true
-                    }}
-                    onMouseLeave={() => {
-                        pausedByHoverRef.current = false
-                    }}
+                    onMouseEnter={() => { pausedByHoverRef.current = true }}
+                    onMouseLeave={() => { pausedByHoverRef.current = false }}
                 >
                     <div
                         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_45%,rgba(179,255,118,0.06),transparent_58%)]"
@@ -341,19 +253,18 @@ function VideoRotatingMarqueeCarousel({ videos }: VideoRotatingMarqueeProps) {
                                 willChange: "transform",
                             }}
                         >
-                            {ringItems.map((video, i) => (
-                                <RingVideoCell
-                                    key={`${video.src}-ring-${i}`}
-                                    video={video}
+                            {ringItems.map((image, i) => (
+                                <RingImageCell
+                                    key={`${image.src}-ring-${i}`}
+                                    image={image}
                                     cardWidthPx={layout.cardW}
-                                    videoRef={videoSlotRefs[i]!}
                                     cellRef={cellSlotRefs[i]!}
                                 />
                             ))}
                         </div>
                     </div>
                     <p className="relative mt-3 text-center font-dm-sans text-[11px] text-white/45">
-                        Hover to pause · Only the front-facing clip plays
+                        Hover to pause · Real UGC content
                     </p>
                 </div>
             </div>
@@ -367,11 +278,11 @@ function VideoRotatingMarqueeCarousel({ videos }: VideoRotatingMarqueeProps) {
     )
 }
 
-export function VideoRotatingMarquee({ videos }: VideoRotatingMarqueeProps) {
+export function VideoRotatingMarquee({ images }: ImageRotatingMarqueeProps) {
     const sectionRef = useRef<HTMLElement>(null)
     const showCarousel = useInViewOnce(sectionRef, { rootMargin: "120px 0px" })
 
-    if (!videos.length) return null
+    if (!images.length) return null
 
     return (
         <section
@@ -382,21 +293,21 @@ export function VideoRotatingMarquee({ videos }: VideoRotatingMarqueeProps) {
         >
             <div className="mx-auto mb-8 max-w-7xl px-6 text-center md:mb-10 md:text-left">
                 <p className="mb-3 inline-flex rounded-full border border-[rgba(179,255,118,0.28)] bg-[rgba(179,255,118,0.08)] px-4 py-1.5 font-space-mono text-[11px] uppercase tracking-[0.2em] text-[rgba(225,255,204,0.9)] md:inline-flex">
-                    In motion
+                    UGC Content
                 </p>
                 <h2
                     id="video-rotating-showcase-heading"
                     className="font-syne text-3xl font-bold tracking-tight text-white md:text-5xl"
                 >
-                    Work on a loop
+                    UGC content specific to your needs
                 </h2>
                 <p className="mx-auto mt-3 max-w-2xl font-dm-sans text-sm text-white/65 md:mx-0 md:text-base">
-                    Same samples as above—on a dark 3D ring: the hero clip stays large; clips moving to the back shrink and layer behind for a clear spin.
+                    Authentic, scroll-stopping user-generated content — tailored to your product and brand, delivered ready to publish.
                 </p>
             </div>
 
             {showCarousel ? (
-                <VideoRotatingMarqueeCarousel videos={videos} />
+                <ImageRotatingMarqueeCarousel images={images} />
             ) : (
                 <div className="mx-auto max-w-7xl px-4 sm:px-6">
                     <div

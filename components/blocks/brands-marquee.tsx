@@ -2,33 +2,29 @@ import { Marquee } from "@/components/ui/3d-testimonials"
 import { cn } from "@/lib/utils"
 
 const brands = [
-    { name: "NIKE",              className: "font-black tracking-[0.14em] text-[0.8rem] sm:text-[0.95rem]" },
-    { name: "SEPHORA",           className: "font-bold tracking-[0.2em] text-[0.72rem] sm:text-[0.85rem]" },
-    { name: "Glossier",          className: "font-medium tracking-[0.06em] italic text-[0.85rem] sm:text-[1rem]" },
-    { name: "GYMSHARK",          className: "font-extrabold tracking-[0.1em] text-[0.75rem] sm:text-[0.9rem]" },
-    { name: "FENTY BEAUTY",      className: "font-bold tracking-[0.16em] text-[0.65rem] sm:text-[0.78rem]" },
-    { name: "SKIMS",             className: "font-black tracking-[0.28em] text-[0.78rem] sm:text-[0.95rem]" },
-    { name: "Warby Parker",      className: "font-semibold tracking-[0.05em] text-[0.78rem] sm:text-[0.95rem]" },
-    { name: "Dollar Shave Club", className: "font-extrabold tracking-[0.07em] text-[0.62rem] sm:text-[0.75rem]" },
-    { name: "Allbirds",          className: "font-semibold tracking-[0.04em] text-[0.82rem] sm:text-[1rem]" },
-    { name: "LIQUID I.V.",       className: "font-black tracking-[0.18em] text-[0.72rem] sm:text-[0.88rem]" },
+    { name: "Nike",             file: "nike copy.jpeg",             imgClass: "h-12 sm:h-14" },
+    { name: "Sephora",          file: "sephora copy.jpeg",          imgClass: "h-24 sm:h-28" },
+    { name: "Glossier",         file: "glossier copy.jpeg",         imgClass: "h-16 sm:h-20" },
+    { name: "Gymshark",         file: "gymshark copy.jpeg",         imgClass: "h-8 sm:h-10"  },
+    { name: "Fenty Beauty",     file: "fentybeauty copy.jpeg",      imgClass: "h-28 sm:h-32" },
+    { name: "SKIMS",            file: "skims copy.jpeg",            imgClass: "h-14 sm:h-16" },
+    { name: "Warby Parker",     file: "warbyparker copy.jpeg",      imgClass: "h-10 sm:h-12" },
+    { name: "Dollar Shave Club",file: "dollarshaveclub copy.jpeg",  imgClass: "h-10 sm:h-12" },
+    { name: "Allbirds",         file: "allbirds copy.jpeg",         imgClass: "h-16 sm:h-18" },
+    { name: "Liquid I.V.",      file: "liquidIV copy.jpeg",         imgClass: "h-10 sm:h-12" },
 ]
 
-function BrandPill({ name, className }: { name: string; className: string }) {
+function BrandPill({ name, file, imgClass }: { name: string; file: string; imgClass: string }) {
+    const src = `/api/logo-image?name=${encodeURIComponent(file)}`
     return (
-        <span
-            className={cn(
-                "inline-flex shrink-0 items-center justify-center rounded-full px-4 py-2 font-dm-sans",
-                "border border-[rgba(179,255,118,0.22)] bg-(--mag-surface)",
-                "shadow-[inset_0_1px_0_rgba(179,255,118,0.09),0_6px_24px_rgba(0,0,0,0.45)]",
-                "whitespace-nowrap text-(--mag-fg)",
-                "backdrop-blur-md transition-all duration-300",
-                "hover:border-[rgba(179,255,118,0.45)] hover:bg-[rgba(179,255,118,0.1)] hover:text-(--mag-accent) hover:shadow-[0_0_28px_rgba(179,255,118,0.12)]",
-                "sm:px-5 sm:py-2.5",
-                className,
-            )}
-        >
-            {name}
+        <span className="inline-flex shrink-0 items-center justify-center px-4 sm:px-5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+                src={src}
+                alt={name}
+                className={cn("w-auto object-contain", imgClass)}
+                draggable={false}
+            />
         </span>
     )
 }
@@ -49,14 +45,14 @@ export function BrandsMarquee() {
             >
                 <Marquee pauseOnHover repeat={6} className="[--duration:34s] [--gap:0.65rem] sm:[--gap:0.85rem]">
                     {brands.map((b) => (
-                        <BrandPill key={b.name} name={b.name} className={b.className} />
+                        <BrandPill key={b.name} name={b.name} file={b.file} imgClass={b.imgClass} />
                     ))}
                 </Marquee>
 
                 <div className="pl-6 sm:pl-14 md:pl-24">
                     <Marquee pauseOnHover reverse repeat={6} className="[--duration:30s] [--gap:0.65rem] sm:[--gap:0.85rem]">
                         {brands.map((b) => (
-                            <BrandPill key={`r-${b.name}`} name={b.name} className={b.className} />
+                            <BrandPill key={`r-${b.name}`} name={b.name} file={b.file} imgClass={b.imgClass} />
                         ))}
                     </Marquee>
                 </div>
