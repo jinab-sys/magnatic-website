@@ -1,31 +1,34 @@
 import { Marquee } from "@/components/ui/3d-testimonials"
-import { cn } from "@/lib/utils"
 
 const brands = [
-    { name: "Nike",             file: "nike copy.jpeg",             imgClass: "h-12 sm:h-14" },
-    { name: "Sephora",          file: "sephora copy.jpeg",          imgClass: "h-24 sm:h-28" },
-    { name: "Glossier",         file: "glossier copy.jpeg",         imgClass: "h-16 sm:h-20" },
-    { name: "Gymshark",         file: "gymshark copy.jpeg",         imgClass: "h-8 sm:h-10"  },
-    { name: "Fenty Beauty",     file: "fentybeauty copy.jpeg",      imgClass: "h-28 sm:h-32" },
-    { name: "SKIMS",            file: "skims copy.jpeg",            imgClass: "h-14 sm:h-16" },
-    { name: "Warby Parker",     file: "warbyparker copy.jpeg",      imgClass: "h-10 sm:h-12" },
-    { name: "Dollar Shave Club",file: "dollarshaveclub copy.jpeg",  imgClass: "h-10 sm:h-12" },
-    { name: "Allbirds",         file: "allbirds copy.jpeg",         imgClass: "h-16 sm:h-18" },
-    { name: "Liquid I.V.",      file: "liquidIV copy.jpeg",         imgClass: "h-10 sm:h-12" },
+    { name: "Nike", file: "nike copy.png" },
+    { name: "Sephora", file: "sephora.png" },
+    { name: "Glossier", file: "glossier.png" },
+    { name: "Gymshark", file: "gymshark.png" },
+    { name: "Fenty Beauty", file: "fenty.png" },
+    { name: "SKIMS", file: "skims copy.png" },
+    { name: "Warby Parker", file: "warbyparker copy.jpeg" },
+    { name: "Dollar Shave Club", file: "dollar.png" },
+    { name: "Allbirds", file: "allbirds.png" },
+    { name: "Liquid I.V.", file: "liquid.png" },
 ]
 
-function BrandPill({ name, file, imgClass }: { name: string; file: string; imgClass: string }) {
+/** Same footprint for every logo: scale inside the box, no per-brand tuning. */
+function BrandLogoTile({ name, file }: { name: string; file: string }) {
     const src = `/api/logo-image?name=${encodeURIComponent(file)}`
     return (
-        <span className="inline-flex shrink-0 items-center justify-center px-4 sm:px-5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-                src={src}
-                alt={name}
-                className={cn("w-auto object-contain", imgClass)}
-                draggable={false}
-            />
-        </span>
+        <div className="flex h-17 w-35 shrink-0 items-center justify-center sm:h-19 sm:w-40">
+            <div className="flex h-full w-full min-h-0 min-w-0 items-center justify-center rounded-2xl border border-white/12 bg-[#0c0f0e] p-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] sm:p-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src={src}
+                    alt={name}
+                    className="max-h-full max-w-full object-contain object-center"
+                    draggable={false}
+                    decoding="async"
+                />
+            </div>
+        </div>
     )
 }
 
@@ -47,14 +50,14 @@ export function BrandsMarquee() {
             >
                 <Marquee pauseOnHover repeat={6} className="[--duration:34s] [--gap:0.65rem] sm:[--gap:0.85rem]">
                     {brands.map((b) => (
-                        <BrandPill key={b.name} name={b.name} file={b.file} imgClass={b.imgClass} />
+                        <BrandLogoTile key={b.name} name={b.name} file={b.file} />
                     ))}
                 </Marquee>
 
                 <div className="pl-6 sm:pl-14 md:pl-24">
                     <Marquee pauseOnHover reverse repeat={6} className="[--duration:30s] [--gap:0.65rem] sm:[--gap:0.85rem]">
                         {brands.map((b) => (
-                            <BrandPill key={`r-${b.name}`} name={b.name} file={b.file} imgClass={b.imgClass} />
+                            <BrandLogoTile key={`r-${b.name}`} name={b.name} file={b.file} />
                         ))}
                     </Marquee>
                 </div>
