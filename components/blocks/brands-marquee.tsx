@@ -32,9 +32,11 @@ function BrandPill({ name, file, imgClass }: { name: string; file: string; imgCl
 export function BrandsMarquee() {
     return (
         <section className="relative z-20 w-full overflow-hidden border-y border-white/10 bg-[#060807] py-14 mag-section-dim">
-            <p className="mb-10 text-center font-space-mono text-[11px] uppercase tracking-[0.2em] text-[rgba(225,255,204,0.85)]">
-                Trusted by Fast-Growing Brands
-            </p>
+            <div className="mb-10 flex justify-center">
+                <h2 className="font-syne text-3xl font-black uppercase tracking-tight sm:text-4xl" style={{ color: "#ffffff" }}>
+                    Trusted by Authentic Brands
+                </h2>
+            </div>
 
             <div
                 className="flex w-full flex-col gap-4 overflow-hidden sm:gap-5"

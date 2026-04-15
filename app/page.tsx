@@ -76,20 +76,12 @@ const RegisterSection = dynamic(
 
 const footerCols = [
     {
-        title: "Product",
-        links: ["Features", "Pricing", "API", "Updates"],
-    },
-    {
-        title: "Company",
-        links: ["About", "Blog", "Careers", "Press"],
-    },
-    {
-        title: "Resources",
-        links: ["Help Center", "Tutorials", "Avatar Library", "Templates"],
+        title: "Services",
+        links: ["AI Video Ads", "UGC Content", "AI Avatars & Influencers", "Product Shoots"],
     },
     {
         title: "Legal",
-        links: ["Privacy", "Terms", "GDPR", "Cookies"],
+        links: ["Privacy", "Terms"],
     },
 ]
 
@@ -114,6 +106,12 @@ export default async function Home() {
                 src: `/api/video?name=${encodeURIComponent(file)}`,
                 title: file.replace(/\.mp4$/i, "").replace(/[_-]+/g, " ").trim(),
             }))
+
+        // Swap second video (index 1) with third-last video (index length-3)
+        if (videos.length >= 4) {
+            const thirdLast = videos.length - 3;
+            [videos[1], videos[thirdLast]] = [videos[thirdLast]!, videos[1]!]
+        }
     } catch {
         videos = []
     }
@@ -173,14 +171,13 @@ export default async function Home() {
                     <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
 
                         {/* Top grid */}
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 mb-16">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-16">
                             {/* Brand */}
-                            <div className="col-span-2 sm:col-span-3 lg:col-span-1">
-                                <p className="font-syne font-bold text-xl tracking-widest mb-3 mag-text-gradient">
-                                    MAGNATIC
-                                </p>
-                                <p className="font-dm-sans text-white/60 text-sm leading-relaxed max-w-[200px]">
-                                    AI models and influencers, premium product ads, and social calendar management—ideation to publishing.
+                            <div className="sm:col-span-1">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src="/logo-full-white.svg" alt="Magnatic" className="h-7 mb-4" />
+                                <p className="font-dm-sans text-white/60 text-sm leading-relaxed max-w-[220px]">
+                                    AI avatars, UGC content, and premium product ads — delivered ready to publish.
                                 </p>
                             </div>
 

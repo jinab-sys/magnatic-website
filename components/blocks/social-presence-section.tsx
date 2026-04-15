@@ -7,7 +7,7 @@ import { scrollToRegisterForm } from "@/lib/scroll-to-register"
 const painPoints = [
     {
         n: "01",
-        label: "Camera Shy",
+        label: "Camera Shy?",
         text: "You're camera-shy and don't want to be the face of your brand",
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
@@ -20,7 +20,7 @@ const painPoints = [
     },
     {
         n: "02",
-        label: "Too Busy",
+        label: "Too Busy?",
         text: "You don't have the bandwidth to shoot, edit, and post consistently",
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
@@ -32,7 +32,7 @@ const painPoints = [
     },
     {
         n: "03",
-        label: "Overpaying",
+        label: "Overpaying?",
         text: "You're tired of paying premium rates for influencers with average results",
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
@@ -42,7 +42,7 @@ const painPoints = [
     },
     {
         n: "04",
-        label: "AI Creators",
+        label: "Need a Catalog?",
         text: "You have no idea how to leverage AI creators for your business",
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
@@ -231,7 +231,7 @@ export function SocialPresenceSection() {
                             aria-hidden
                         />
                         <p className="font-syne text-2xl font-bold tracking-tight text-white md:text-3xl">{kpi.value}</p>
-                        <p className="mt-2 font-space-mono text-[10px] uppercase leading-snug tracking-[0.18em] text-white/60">
+                        <p className="mt-2 font-space-mono text-[10px] font-bold uppercase leading-snug tracking-[0.18em] text-white">
                             {kpi.label}
                         </p>
                     </motion.div>

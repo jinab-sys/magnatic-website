@@ -302,7 +302,7 @@ export function VideoRotatingMarquee({ images }: ImageRotatingMarqueeProps) {
                     UGC content specific to your needs
                 </h2>
                 <p className="mx-auto mt-3 max-w-2xl font-dm-sans text-sm text-white/65 md:mx-0 md:text-base">
-                    Authentic, scroll-stopping user-generated content — tailored to your product and brand, delivered ready to publish.
+                    Authentic, scroll-stopping user-generated content — tailored to your product and brand, ready to publish.
                 </p>
             </div>
 

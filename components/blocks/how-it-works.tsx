@@ -52,7 +52,7 @@ const steps = [
             <div className="rounded-2xl border border-white/10 bg-black/35 p-4">
                 <div className="grid grid-cols-1 gap-2">
                     <div className="rounded-lg border border-[rgba(179,255,118,0.42)] bg-[rgba(179,255,118,0.14)] px-4 py-2.5 font-dm-sans text-xs text-[rgba(225,255,204,0.96)]">Product Video</div>
-                    <div className="rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 font-dm-sans text-xs text-white/70">UGC Images of the product</div>
+                    <div className="rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 font-dm-sans text-xs text-white/70">UGC Product Images</div>
                     <div className="rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 font-dm-sans text-xs text-white/70">Social Media Calendar</div>
                 </div>
             </div>
