@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
@@ -62,8 +63,10 @@ export function RegisterForm({ showLogo = false, embedded = false }: RegisterFor
         <>
             {showLogo && (
                 <div className="mb-10 flex justify-center">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/logo-full-white.svg" alt="Magnatic" className="h-8" />
+                    <Link href="/">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/logo-full-white.svg" alt="Magnatic" className="h-8" />
+                    </Link>
                 </div>
             )}
 
