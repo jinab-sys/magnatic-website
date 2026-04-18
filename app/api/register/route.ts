@@ -54,6 +54,13 @@ export async function POST(request: Request) {
             );
         }
 
+        // Fire Make.com webhook without awaiting — doesn't slow down form submission
+        fetch(process.env.MAKE_WEBHOOK_URL!, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ businessName, personName, email, phone, businessAddress, service, message }),
+        }).catch(() => {});
+
         return NextResponse.json({ success: true }, { status: 200 });
     } catch (err) {
         console.error("Server error:", err);
