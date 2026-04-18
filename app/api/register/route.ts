@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { google } from "googleapis";
 import { NextResponse } from "next/server";
 
 const VALID_SERVICES = [
@@ -6,6 +7,24 @@ const VALID_SERVICES = [
     "social_calendar",
     "end_to_end_social_media_management",
 ]
+
+async function appendToSheet(values: string[]) {
+    const auth = new google.auth.GoogleAuth({
+        credentials: {
+            client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+            private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+        },
+        scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    });
+
+    const sheets = google.sheets({ version: "v4", auth });
+    await sheets.spreadsheets.values.append({
+        spreadsheetId: process.env.GOOGLE_SHEET_ID,
+        range: "Sheet1!A:H",
+        valueInputOption: "RAW",
+        requestBody: { values: [values] },
+    });
+}
 
 export async function POST(request: Request) {
     try {
@@ -54,12 +73,16 @@ export async function POST(request: Request) {
             );
         }
 
-        // Fire Make.com webhook without awaiting — doesn't slow down form submission
-        fetch(process.env.MAKE_WEBHOOK_URL!, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ businessName, personName, email, phone, businessAddress, service, message }),
-        }).catch(() => {});
+        await appendToSheet([
+            businessName,
+            personName,
+            email,
+            phone,
+            businessAddress || "",
+            service,
+            message || "",
+            new Date().toISOString(),
+        ]).catch((err) => console.error("Sheets error:", err));
 
         return NextResponse.json({ success: true }, { status: 200 });
     } catch (err) {
