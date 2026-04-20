@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { PhoneInput } from "@/components/ui/phone-input"
 
 const SERVICES = [
     { value: "brand_ad", label: "Brand Ad" },
@@ -27,11 +28,28 @@ export function RegisterForm({ showLogo = false, embedded = false }: RegisterFor
     const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
+    const [phoneError, setPhoneError] = useState("")
+
+    function validatePhone(val: string) {
+        // Strip dial code prefix and spaces, count digits
+        const digits = val.replace(/\D/g, "")
+        if (digits.length < 7) return "Phone number is too short."
+        if (digits.length > 15) return "Phone number is too long."
+        return ""
+    }
 
     async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
         e.preventDefault()
         setLoading(true)
         setError("")
+
+        const phoneValidationError = validatePhone(phone)
+        if (phoneValidationError) {
+            setPhoneError(phoneValidationError)
+            setLoading(false)
+            return
+        }
+        setPhoneError("")
 
         const res = await fetch("/api/register", {
             method: "POST",
@@ -106,30 +124,24 @@ export function RegisterForm({ showLogo = false, embedded = false }: RegisterFor
                         </div>
                     </div>
 
-                    {/* Row 2: Email + Phone */}
-                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                        <div className="flex flex-col gap-1.5">
-                            <label className={labelClass}>Email Address *</label>
-                            <input
-                                type="email"
-                                required
-                                placeholder="you@company.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className={inputClass}
-                            />
-                        </div>
-                        <div className="flex flex-col gap-1.5">
-                            <label className={labelClass}>Phone Number *</label>
-                            <input
-                                type="tel"
-                                required
-                                placeholder="+1 (555) 000-0000"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                className={inputClass}
-                            />
-                        </div>
+                    {/* Row 2: Email */}
+                    <div className="flex flex-col gap-1.5">
+                        <label className={labelClass}>Email Address *</label>
+                        <input
+                            type="email"
+                            required
+                            placeholder="you@company.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className={inputClass}
+                        />
+                    </div>
+
+                    {/* Row 3: Phone */}
+                    <div className="flex flex-col gap-1.5">
+                        <label className={labelClass}>Phone Number *</label>
+                        <PhoneInput onChange={setPhone} required />
+                        {phoneError && <p className="text-xs text-red-400">{phoneError}</p>}
                     </div>
 
                     {/* Business Address */}
