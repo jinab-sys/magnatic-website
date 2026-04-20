@@ -107,11 +107,7 @@ export default async function Home() {
                 title: file.replace(/\.mp4$/i, "").replace(/[_-]+/g, " ").trim(),
             }))
 
-        // Swap second video (index 1) with third-last video (index length-3)
-        if (videos.length >= 4) {
-            const thirdLast = videos.length - 3;
-            [videos[1], videos[thirdLast]] = [videos[thirdLast]!, videos[1]!]
-        }
+
     } catch {
         videos = []
     }
