@@ -11,7 +11,7 @@ export function RegisterSection() {
                 <div className="mb-10 text-center">
                     <p className="mb-3 font-space-mono text-[11px] uppercase tracking-[0.15em] mag-eyebrow">Get started</p>
                     <h2 id="register-heading" className="font-syne text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                        Request access
+                        Book a meeting
                     </h2>
                     <p className="mx-auto mt-3 max-w-md font-dm-sans text-sm text-white/65">
                         We&apos;re opening registration for our waitlist. Sign up to be notified when spots open for our premium service.
