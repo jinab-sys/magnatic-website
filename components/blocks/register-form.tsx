@@ -71,7 +71,7 @@ export function RegisterForm({ showLogo = false, embedded = false }: RegisterFor
         }
 
         document.cookie = "magnatic_registered=true; path=/; max-age=31536000; SameSite=Lax"
-        router.push("/waitlisted")
+        router.push("/thankyou")
     }
 
     const inputClass = "rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white/30"
